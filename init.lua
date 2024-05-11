@@ -504,5 +504,12 @@ require("telescope").setup({
 })
 keymap("n", "<leader>u", "<cmd>Telescope undo<cr>")
 --- NEOGIT -------------------------------------------------------
-require("neogit").setup({})
+require("neogit").setup({
+	mappings = {
+		popup = {
+			["p"] = "PushPopup",
+			["P"] = "PullPopup",
+		},
+	},
+})
 keymap("n", "<leader>g", "<cmd>Neogit<cr>")
