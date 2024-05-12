@@ -126,7 +126,11 @@ require("lazy").setup({
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
 	{ "neovim/nvim-lspconfig", dependencies = { "hrsh7th/cmp-nvim-lsp" }, version = "*" },
-	{ "hrsh7th/nvim-cmp", version = "*", dependencies = { "hrsh7th/cmp-buffer", "onsails/lspkind.nvim" } },
+	{
+		"hrsh7th/nvim-cmp",
+		version = "*",
+		dependencies = { "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "onsails/lspkind.nvim" },
+	},
 	{ "ray-x/lsp_signature.nvim", version = "*", event = "VeryLazy" },
 	{ "L3MON4D3/LuaSnip", dependencies = { "rafamadriz/friendly-snippets", "saadparwaiz1/cmp_luasnip" } },
 	{ "stevearc/conform.nvim", version = "*" },
@@ -289,6 +293,7 @@ require("cmp").setup({
 		{ name = "nvim_lsp" },
 		{ name = "buffer" },
 		{ name = "luasnip" },
+		{ name = "path" },
 	},
 	window = {
 		documentation = cmp.config.window.bordered(),
