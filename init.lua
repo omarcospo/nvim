@@ -99,21 +99,13 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	"nathom/filetype.nvim",
 	-- UI
-	{
-		"olivercederborg/poimandres.nvim",
-		lazy = false,
-		priority = 1000,
-	},
 	"akinsho/bufferline.nvim",
 	"sainnhe/gruvbox-material",
-	"rktjmp/lush.nvim",
 	"nvim-tree/nvim-web-devicons",
-	"MunifTanjim/nui.nvim",
 	"nvim-lua/plenary.nvim",
 	{ "nvim-telescope/telescope.nvim", version = "*" },
 	{ "nvim-treesitter/nvim-treesitter", version = "*" },
 	{ "nvim-lualine/lualine.nvim", version = "*" },
-	{ "nvim-neo-tree/neo-tree.nvim", event = "VeryLazy" },
 	-- Editing
 	"phaazon/hop.nvim",
 	"mateuszwieloch/automkdir.nvim",
@@ -153,6 +145,7 @@ require("lazy").setup({
 	{ "okuuva/auto-save.nvim", cmd = "ASToggle", event = { "InsertLeave", "TextChanged" } },
 	{ "folke/which-key.nvim", event = "VeryLazy" },
 	{ "NeogitOrg/neogit", dependencies = { "sindrets/diffview.nvim" }, version = "*" },
+	"renerocksai/telekasten.nvim",
 })
 -- THEMING --------------------------------------------------------
 cmd([[hi Normal guibg=NONE ctermbg=NONE]])
@@ -386,44 +379,6 @@ keymap("n", "<leader>d", ":DevdocsOpenCurrentFloat<CR>")
 --- LUASNIP -------------------------------------------------------
 local luasnip = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
---- PYTHON -------------------------------------------------------
-lsp.ruff_lsp.setup({})
-lsp.pylsp.setup({
-	settings = {
-		pylsp = {
-			plugins = {
-				ruff = { enabled = true },
-				pycodestyle = { enabled = false },
-				pyflakes = { enabled = false },
-				mccabe = { enabled = false },
-				flake8 = { enabled = false },
-				mypy = { enabled = false },
-			},
-		},
-	},
-})
-------- TYPST ----------------------------------------------------
-autocmd("BufWinEnter", {
-	pattern = "*.typ",
-	command = "set filetype=typst",
-})
-lsp.typst_lsp.setup({
-	settings = {
-		exportPdf = "onType", -- Choose onType, onSave or never.
-	},
-})
---- FORMATTER -------------------------------------------------------
-require("conform").setup({
-	formatters_by_ft = {
-		lua = { "stylua" },
-		python = { "ruff_format", "ruff" },
-	},
-	format_on_save = {
-		timeout_ms = 500,
-		lsp_fallback = true,
-	},
-	notify_on_error = false,
-})
 --- FILE MANAGER -------------------------------------------------------
 require("fm-nvim").setup({
 	edit_cmd = "edit",
@@ -436,18 +391,15 @@ require("fm-nvim").setup({
 			float_hl = "Normal",
 			border_hl = "FloatBorder",
 			blend = 0,
-			height = 0.8,
-			width = 0.8,
+			height = 0.9,
+			width = 0.9,
 			x = 0.5,
 			y = 0.5,
 		},
 		split = {
-			direction = "topleft",
+			direction = "topright",
 			size = 24,
 		},
-	},
-	cmds = {
-		ranger_cmd = "ranger",
 	},
 	mappings = {
 		vert_split = "<C-v>",
@@ -458,7 +410,7 @@ require("fm-nvim").setup({
 	},
 	broot_conf = vim.fn.stdpath("data") .. "/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson",
 })
-keymap("n", "<leader>ff", "<cmd>Ranger<CR>")
+keymap("n", "<leader>ff", ":Lf<CR>")
 --- TERMINAL -------------------------------------------------------
 require("toggleterm").setup({
 	hide_numbers = true,
@@ -513,3 +465,45 @@ require("neogit").setup({
 	},
 })
 keymap("n", "<leader>g", "<cmd>Neogit<cr>")
+--- PYTHON -------------------------------------------------------
+lsp.ruff_lsp.setup({})
+lsp.pylsp.setup({
+	settings = {
+		pylsp = {
+			plugins = {
+				ruff = { enabled = true },
+				pycodestyle = { enabled = false },
+				pyflakes = { enabled = false },
+				mccabe = { enabled = false },
+				flake8 = { enabled = false },
+				mypy = { enabled = false },
+			},
+		},
+	},
+})
+------- NIM ----------------------------------------------------
+------- TYPST ----------------------------------------------------
+autocmd("BufWinEnter", {
+	pattern = "*.typ",
+	command = "set filetype=typst",
+})
+lsp.typst_lsp.setup({
+	settings = {
+		exportPdf = "onType", -- Choose onType, onSave or never.
+	},
+})
+--- FORMATTER -------------------------------------------------------
+require("conform").setup({
+	formatters_by_ft = {
+		lua = { "stylua" },
+		python = { "ruff_format", "ruff" },
+	},
+	format_on_save = {
+		timeout_ms = 500,
+		lsp_fallback = true,
+	},
+	notify_on_error = false,
+})
+--- NOTE TAKING -------------------------------------------------------
+require("telekasten").setup({ home = vim.fn.expand("~/Notes") })
+keymap("n", "<leader>o", "<cmd>Telekasten find_notes<cr>")
