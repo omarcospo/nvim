@@ -48,6 +48,13 @@ lsp.pylsp.setup({
 		},
 	},
 })
+--- PYTHON REPL -------------------------------------------------------
+vim.g["repl_filetype_commands"] = {
+	python = "~/.local/python/bin/ipython --no-autoindent",
+}
+Keymap("n", "<leader>rr", ":ReplToggle<CR>")
+Keymap("n", "<leader>rc", ":ReplRunCell<CR>")
+Keymap("v", "<leader>rr", "<Plug>ReplSendVisual")
 ------- TYPST ----------------------------------------------------
 Autocmd("BufWinEnter", {
 	pattern = "*.typ",

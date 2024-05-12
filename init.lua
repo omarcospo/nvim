@@ -31,19 +31,61 @@ end
 Opt.rtp:prepend(lazypath)
 --- ALL PLUGINS -------------------------------------------------------
 require("lazy").setup({
+	--- defaults
 	"nathom/filetype.nvim",
-	-- UI
+	"nvim-lua/plenary.nvim",
+	"mateuszwieloch/automkdir.nvim",
+	"Shatur/neovim-session-manager",
+	{ "okuuva/auto-save.nvim", cmd = "ASToggle", event = { "InsertLeave", "TextChanged" } },
+	--- ui
 	"akinsho/bufferline.nvim",
 	"sainnhe/gruvbox-material",
 	"nvim-tree/nvim-web-devicons",
-	"nvim-lua/plenary.nvim",
-	{ "nvim-telescope/telescope.nvim", version = "*" },
-	{ "nvim-treesitter/nvim-treesitter", version = "*" },
+	{ "echasnovski/mini.indentscope", version = "*" },
+	--- modeline
 	{ "nvim-lualine/lualine.nvim", version = "*" },
-	-- Editing
+	--- completion
+	{
+		"hrsh7th/nvim-cmp",
+		version = "*",
+		dependencies = { "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "onsails/lspkind.nvim" },
+	},
+	{
+		"L3MON4D3/LuaSnip",
+		dependencies = { "rafamadriz/friendly-snippets", "saadparwaiz1/cmp_luasnip" },
+		version = "*",
+	},
+	--- looker
+	{ "nvim-telescope/telescope.nvim", version = "*" },
+	{ "debugloop/telescope-undo.nvim", version = "*" },
+	{ "smartpde/telescope-recent-files", version = "*" },
+	{ "2kabhishek/nerdy.nvim", dependencies = { "stevearc/dressing.nvim" }, cmd = "Nerdy" },
+	{ "renerocksai/telekasten.nvim", version = "*" },
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", version = "*" },
+	--- lsp
+	"williamboman/mason.nvim",
+	"williamboman/mason-lspconfig.nvim",
+	{ "neovim/nvim-lspconfig", dependencies = { "hrsh7th/cmp-nvim-lsp" }, version = "*" },
+	{ "ray-x/lsp_signature.nvim", version = "*", event = "VeryLazy" },
+	{ "LukasPietzschmann/boo.nvim", version = "*" },
+	{ "stevearc/conform.nvim", version = "*" },
+	{ "luckasRanarison/nvim-devdocs", version = "*", event = "VeryLazy" },
+	{ "folke/trouble.nvim", version = "*" },
+	{ "dnlhc/glance.nvim", version = "*" },
+	{ "zeioth/garbage-day.nvim", event = "VeryLazy", version = "*" },
+	--- languages
+	{ "nvim-treesitter/nvim-treesitter", version = "*" },
+	{ "kaarmu/typst.vim", ft = "typst", lazy = false },
+	{ "michaelb/sniprun", build = "./install.sh", version = "*" },
+	"pappasam/nvim-repl",
+	--- applications
+	{ "NeogitOrg/neogit", dependencies = { "sindrets/diffview.nvim" }, version = "*" },
+	{ "codota/tabnine-nvim", build = "./dl_binaries.sh", version = "*" },
+	{ "akinsho/toggleterm.nvim", event = "VeryLazy", version = "*" },
+	{ "is0n/fm-nvim", event = "VeryLazy" },
+	{ "HakonHarnes/img-clip.nvim", event = "VeryLazy", keys = { { "<leader>p", "<cmd>PasteImage<cr>" } } },
+	--- editing
 	{ "phaazon/hop.nvim", version = "*" },
-	"mateuszwieloch/automkdir.nvim",
-	"Shatur/neovim-session-manager",
 	{ "filipdutescu/renamer.nvim", event = "VeryLazy" },
 	{
 		"echasnovski/mini.pairs",
@@ -54,42 +96,6 @@ require("lazy").setup({
 		},
 	},
 	{ "numToStr/Comment.nvim", version = "*" },
-	{ "HakonHarnes/img-clip.nvim", event = "VeryLazy", keys = { { "<leader>p", "<cmd>PasteImage<cr>" } } },
-	{ "kaarmu/typst.vim", ft = "typst", lazy = false },
-	-- LSP
-	"williamboman/mason.nvim",
-	"williamboman/mason-lspconfig.nvim",
-	{ "neovim/nvim-lspconfig", dependencies = { "hrsh7th/cmp-nvim-lsp" }, version = "*" },
-	{
-		"hrsh7th/nvim-cmp",
-		version = "*",
-		dependencies = { "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "onsails/lspkind.nvim" },
-	},
-	{ "ray-x/lsp_signature.nvim", version = "*", event = "VeryLazy" },
-	{
-		"L3MON4D3/LuaSnip",
-		dependencies = { "rafamadriz/friendly-snippets", "saadparwaiz1/cmp_luasnip" },
-		version = "*",
-	},
-	{ "stevearc/conform.nvim", version = "*" },
-	{ "luckasRanarison/nvim-devdocs", version = "*", event = "VeryLazy" },
-	{ "folke/trouble.nvim", version = "*" },
-	{ "LukasPietzschmann/boo.nvim", version = "*" },
-	{ "dnlhc/glance.nvim", version = "*" },
-	{ "zeioth/garbage-day.nvim", event = "VeryLazy", version = "*" },
-	-- Tools
-	{ "is0n/fm-nvim", event = "VeryLazy" },
-	{ "akinsho/toggleterm.nvim", event = "VeryLazy", version = "*" },
-	{ "codota/tabnine-nvim", build = "./dl_binaries.sh", version = "*" },
-	{ "michaelb/sniprun", build = "./install.sh", version = "*" },
-	{ "debugloop/telescope-undo.nvim", version = "*" },
-	{ "smartpde/telescope-recent-files", version = "*" },
-	{ "okuuva/auto-save.nvim", cmd = "ASToggle", event = { "InsertLeave", "TextChanged" } },
-	{ "NeogitOrg/neogit", dependencies = { "sindrets/diffview.nvim" }, version = "*" },
-	{ "renerocksai/telekasten.nvim", version = "*" },
-	{ "echasnovski/mini.indentscope", version = "*" },
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", version = "*" },
-	{ "2kabhishek/nerdy.nvim", dependencies = { "stevearc/dressing.nvim" }, cmd = "Nerdy" },
 })
 --- Modules -------------------------------------------------------
 load("defaults")

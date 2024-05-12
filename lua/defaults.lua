@@ -32,7 +32,7 @@ Opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
 Opt.backup = false -- this is recommended by coc
 Opt.writebackup = false -- this is recommended by coc
 Opt.updatetime = 500 -- faster completion
-Opt.timeoutlen = 400 -- by default timeoutlen is 1000 ms
+Opt.timeoutlen = 1000 -- by default timeoutlen is 1000 ms
 Opt.autochdir = true -- working directory will always be the same as your working directory
 Opt.fixeol = false -- turn off appending new line in the end of a file
 -- folding
@@ -89,4 +89,4 @@ Keymap("n", "<leader>fs", "<cmd>write!<CR>")
 Keymap("n", "<leader>fe", "<cmd>e ~/.config/nvim/init.lua<CR>")
 -- Visual
 Keymap("v", "<C-r>", ":s/")
-Keymap("v", "<leader>r", ":SnipRun<CR>")
+Keymap("v", "<C-.>", ":SnipRun<CR>")
