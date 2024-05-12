@@ -150,6 +150,7 @@ require("lazy").setup({
 	{ "folke/which-key.nvim", event = "VeryLazy" },
 	{ "NeogitOrg/neogit", dependencies = { "sindrets/diffview.nvim" }, version = "*" },
 	"renerocksai/telekasten.nvim",
+	"echasnovski/mini.indentscope",
 })
 -- THEMING --------------------------------------------------------
 cmd([[hi Normal guibg=NONE ctermbg=NONE]])
@@ -511,3 +512,11 @@ require("conform").setup({
 --- NOTE TAKING -------------------------------------------------------
 require("telekasten").setup({ home = vim.fn.expand("~/Notes") })
 keymap("n", "<leader>o", "<cmd>Telekasten find_notes<cr>")
+--- -------------------------------------------------------
+require("mini.indentscope").setup({
+	draw = {
+		delay = 30,
+		priority = 2,
+	},
+	symbol = "│",
+})
