@@ -1,9 +1,9 @@
 --- THEMING --------------------------------------------------------
-Cmd([[hi Normal guibg=NONE ctermbg=NONE]])
-Set.gruvbox_material_background = "medium"
-Set.gruvbox_material_foreground = "original"
-Set.gruvbox_material_better_performance = 1
-Cmd.colorscheme("gruvbox-material")
+vim.cmd([[hi Normal guibg=NONE ctermbg=NONE]])
+vim.g.gruvbox_material_background = "medium"
+vim.g.gruvbox_material_foreground = "original"
+vim.g.gruvbox_material_better_performance = 1
+vim.cmd.colorscheme("gruvbox-material")
 require("bufferline").setup()
 --- INDENTATION -------------------------------------------------------
 require("mini.indentscope").setup({

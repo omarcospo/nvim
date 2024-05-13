@@ -10,12 +10,7 @@ local load = function(mod)
 	require(mod)
 end
 --- NVIM API --------------------------------------------------------
-Keymap = vim.keymap.set -- set keycommand
-Autocmd = vim.api.nvim_create_autocmd -- autocmd
-Opt = vim.opt -- global/buffer/windows-scoped options
-Cmd = vim.cmd -- command
-Set = vim.g -- command
-Keymap("n", "<c-,>", ":source $MYVIMRC<cr>")
+vim.keymap.set("n", "<c-,>", ":source $MYVIMRC<cr>")
 ----- LAZY ------------------------------------------------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -28,7 +23,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 		lazypath,
 	})
 end
-Opt.rtp:prepend(lazypath)
+vim.opt.rtp:prepend(lazypath)
 --- ALL PLUGINS -------------------------------------------------------
 require("lazy").setup({
 	--- defaults
@@ -123,4 +118,5 @@ require("session_manager").setup({
 	autosave_only_in_session = false,
 	max_path_length = 80,
 })
+----------------------------------------------------------
 vim.loader.enable()

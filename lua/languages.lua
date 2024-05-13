@@ -52,11 +52,12 @@ lsp.pylsp.setup({
 vim.g["repl_filetype_commands"] = {
 	python = "~/.local/python/bin/ipython --no-autoindent",
 }
-Keymap("n", "<leader>rr", ":ReplToggle<CR>")
-Keymap("n", "<leader>rc", ":ReplRunCell<CR>")
-Keymap("v", "<leader>rr", "<Plug>ReplSendVisual")
+vim.keymap.set("n", "<leader>rr", ":ReplToggle<CR>")
+vim.keymap.set("n", "<leader>rl", ":ReplClear<CR>")
+vim.keymap.set("n", "<leader>rc", ":ReplRunCell<CR>")
+vim.keymap.set("v", "<leader>rr", "<Plug>ReplSendVisual")
 ------- TYPST ----------------------------------------------------
-Autocmd("BufWinEnter", {
+vim.api.nvim_create_autocmd("BufWinEnter", {
 	pattern = "*.typ",
 	command = "set filetype=typst",
 })

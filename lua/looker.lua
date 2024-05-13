@@ -72,15 +72,15 @@ telescope.setup({
 --- NOTE TAKING -------------------------------------------------------
 require("telekasten").setup({ home = vim.fn.expand("~/Notes") })
 --- KEYMAPS -------------------------------------------------------
-Keymap("n", "<leader>u", "<cmd>Telescope undo<cr>")
-Keymap("n", "<leader>o", "<cmd>Telekasten find_notes<cr>")
-Keymap(
+vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>")
+vim.keymap.set("n", "<leader>o", "<cmd>Telekasten find_notes<cr>")
+vim.keymap.set(
 	"n",
 	"<leader>fr",
 	[[<cmd>lua require('telescope').extensions.recent_files.pick()<CR>]],
 	{ noremap = true, silent = true }
 )
-Keymap("n", "<leader>bb", "<cmd>Telescope buffers<CR>")
+vim.keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<CR>")
 -- Search
-Keymap("n", "<leader>s", ":Telescope live_grep<CR>")
-Keymap("n", "<leader>fl", ":Telescope live_grep search_dirs=. '~/'<CR>")
+vim.keymap.set("n", "<leader>s", ":Telescope live_grep<CR>")
+vim.keymap.set("n", "<leader>fl", ":Telescope live_grep search_dirs=. '~/'<CR>")

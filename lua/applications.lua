@@ -29,7 +29,7 @@ require("fm-nvim").setup({
 	},
 	broot_conf = vim.fn.stdpath("data") .. "/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson",
 })
-Keymap("n", "<leader>ff", ":Lf<CR>")
+vim.keymap.set("n", "<leader>ff", ":Lf<CR>")
 --- TERMINAL -------------------------------------------------------
 require("toggleterm").setup({
 	hide_numbers = true,
@@ -42,12 +42,12 @@ require("toggleterm").setup({
 	close_on_exit = true,
 	auto_scroll = true,
 })
-Autocmd("TermOpen", {
+vim.api.nvim_create_autocmd("TermOpen", {
 	pattern = "*",
 	command = "setlocal cursorline nocursorline",
 })
-Keymap("n", "<leader>v", "<cmd>ToggleTerm<CR>", { remap = true }) -- toggle outside terminal
-Keymap("t", "<C-v>", "<cmd>ToggleTerm<CR>") -- toggle inside terminal
+vim.keymap.set("n", "<leader>v", "<cmd>ToggleTerm<CR>", { remap = true }) -- toggle outside terminal
+vim.keymap.set("t", "<C-v>", "<cmd>ToggleTerm<CR>") -- toggle inside terminal
 --- TABNINE  -------------------------------------------------------
 require("tabnine").setup({
 	disable_auto_comment = true,
@@ -67,4 +67,4 @@ require("neogit").setup({
 		},
 	},
 })
-Keymap("n", "<leader>g", "<cmd>Neogit<cr>")
+vim.keymap.set("n", "<leader>g", "<cmd>Neogit<cr>")

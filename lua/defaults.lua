@@ -1,92 +1,92 @@
 --- BETTER DEFAULTS --------------------------------------------------------
-Set.mapleader = " "
-Set.maplocalleader = " "
-Set.did_load_filetypes = 1
-Opt.showtabline = 2
-Opt.conceallevel = 3
-Opt.sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize"
-Opt.undofile = true
-Opt.undodir = vim.fn.expand("~/.nvim/.undo")
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+vim.g.did_load_filetypes = 1
+vim.opt.showtabline = 2
+vim.opt.conceallevel = 3
+vim.opt.sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize"
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.expand("~/.nvim/.undo")
 --
-Opt.clipboard = "unnamedplus" -- copy/paste to system clipboard
-Opt.hidden = true -- enable background buffers
-Opt.history = 100 -- remember n lines in history
-Opt.updatetime = 250
-Opt.lazyredraw = true -- faster scrolling
-Opt.synmaxcol = 240 -- max column for syntax highlight
-Opt.mouse = "a" -- enable your mouse
-Opt.encoding = "utf-8" -- the encoding displayed
-Opt.fileencoding = "utf-8" -- the encoding written to file
+vim.opt.clipboard = "unnamedplus" -- copy/paste to system clipboard
+vim.opt.hidden = true -- enable background buffers
+vim.opt.history = 100 -- remember n lines in history
+vim.opt.updatetime = 250
+vim.opt.lazyredraw = true -- faster scrolling
+vim.opt.synmaxcol = 240 -- max column for syntax highlight
+vim.opt.mouse = "a" -- enable your mouse
+vim.opt.encoding = "utf-8" -- the encoding displayed
+vim.opt.fileencoding = "utf-8" -- the encoding written to file
 -- indent and tabs
-Opt.autoindent = true -- good auto indent
-Opt.smartcase = true -- ignore lowercase for the whole pattern
-Opt.smartindent = true -- autoindent new lines
-Opt.tabstop = 2 -- insert 2 spaces for a tab
-Opt.shiftwidth = 2 -- change the number of space characters inserted for indentation
-Opt.smarttab = true -- makes tabbing smarter will realize you have 2 vs 4
-Opt.expandtab = true -- converts tabs to spaces
+vim.opt.autoindent = true -- good auto indent
+vim.opt.smartcase = true -- ignore lowercase for the whole pattern
+vim.opt.smartindent = true -- autoindent new lines
+vim.opt.tabstop = 2 -- insert 2 spaces for a tab
+vim.opt.shiftwidth = 2 -- change the number of space characters inserted for indentation
+vim.opt.smarttab = true -- makes tabbing smarter will realize you have 2 vs 4
+vim.opt.expandtab = true -- converts tabs to spaces
 -- undo
-Opt.undofile = true
+vim.opt.undofile = true
 --
-Opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
-Opt.backup = false -- this is recommended by coc
-Opt.writebackup = false -- this is recommended by coc
-Opt.updatetime = 500 -- faster completion
-Opt.timeoutlen = 1000 -- by default timeoutlen is 1000 ms
-Opt.autochdir = true -- working directory will always be the same as your working directory
-Opt.fixeol = false -- turn off appending new line in the end of a file
+vim.opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
+vim.opt.backup = false -- this is recommended by coc
+vim.opt.writebackup = false -- this is recommended by coc
+vim.opt.updatetime = 500 -- faster completion
+vim.opt.timeoutlen = 1000 -- by default timeoutlen is 1000 ms
+vim.opt.autochdir = true -- working directory will always be the same as your working directory
+vim.opt.fixeol = false -- turn off appending new line in the end of a file
 -- folding
-Opt.foldmethod = "syntax"
+vim.opt.foldmethod = "syntax"
 -- search
-Opt.ignorecase = true -- ignore case if all characters in lower case
-Opt.joinspaces = false -- join multiple spaces in search
-Opt.smartcase = true -- when there is a one capital letter search for exact match
-Opt.showmatch = true -- highlight search instances
+vim.opt.ignorecase = true -- ignore case if all characters in lower case
+vim.opt.joinspaces = false -- join multiple spaces in search
+vim.opt.smartcase = true -- when there is a one capital letter search for exact match
+vim.opt.showmatch = true -- highlight search instances
 -- window
-Opt.splitbelow = true -- put new windows below current
-Opt.splitright = true -- put new vertical splits to right
-Opt.mouse = "a"
-Opt.wrap = false -- dont wrap
-Opt.termguicolors = true -- guicolor
-Opt.number = true -- show line numbers
-Opt.relativenumber = true -- set to relative line numbers
-Opt.list = true
-Opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-Opt.cursorline = true
-Opt.scrolloff = 10
-Opt.hlsearch = true
-Opt.linebreak = true
+vim.opt.splitbelow = true -- put new windows below current
+vim.opt.splitright = true -- put new vertical splits to right
+vim.opt.mouse = "a"
+vim.opt.wrap = false -- dont wrap
+vim.opt.termguicolors = true -- guicolor
+vim.opt.number = true -- show line numbers
+vim.opt.relativenumber = true -- set to relative line numbers
+vim.opt.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.cursorline = true
+vim.opt.scrolloff = 10
+vim.opt.hlsearch = true
+vim.opt.linebreak = true
 ----- NEOVIDE ------------------------------------------------------
-Opt.guifont = "IosevkaTerm_Nerd_Font:h15"
-Set.neovide_padding_top = 0
-Set.neovide_padding_bottom = 0
-Set.neovide_padding_right = 0
-Set.neovide_padding_left = 0
-Set.neovide_floating_shadow = false
-Set.neovide_scroll_animation_length = 0.1
-Set.neovide_scroll_animation_far_lines = 5
-Set.neovide_cursor_trail_size = 0.4
-Set.neovide_hide_mouse_when_typing = true
-Set.neovide_floating_blur_amount_x = 1.0
+vim.opt.guifont = "IosevkaTerm_Nerd_Font:h15"
+vim.g.neovide_padding_top = 0
+vim.g.neovide_padding_bottom = 0
+vim.g.neovide_padding_right = 0
+vim.g.neovide_padding_left = 0
+vim.g.neovide_floating_shadow = false
+vim.g.neovide_scroll_animation_length = 0.1
+vim.g.neovide_scroll_animation_far_lines = 5
+vim.g.neovide_cursor_trail_size = 0.4
+vim.g.neovide_hide_mouse_when_typing = true
+vim.g.neovide_floating_blur_amount_x = 1.0
 --- KEYBOARD -------------------------------------------------------
-Keymap("n", "<C-q>", "<cmd>nohlsearch<CR>")
-Keymap("i", "<C-q>", "<Esc>")
-Keymap("n", "<C-l>", "$")
-Keymap("n", "<C-h>", "0")
+vim.keymap.set("n", "<C-q>", "<cmd>nohlsearch<CR>")
+vim.keymap.set("i", "<C-q>", "<Esc>")
+vim.keymap.set("n", "<C-l>", "$")
+vim.keymap.set("n", "<C-h>", "0")
 -- Window/Buffers
-Keymap("n", "<leader>wh", "<C-w><C-h>")
-Keymap("n", "<leader>wl", "<C-w><C-l>")
-Keymap("n", "<leader>wj", "<C-w><C-j>")
-Keymap("n", "<leader>wk", "<C-w><C-k>")
-Keymap("n", "<leader>ws", "<C-w>s")
-Keymap("n", "<leader>wv", "<C-w>v")
-Keymap("n", "<leader>wc", "<C-w>c")
-Keymap("n", "<leader>wq", "<C-w>q")
-Keymap("n", "<leader>bk", "<cmd>bdelete!<CR>")
-Keymap("n", "<leader>tl", "<cmd>set wrap!<CR>")
+vim.keymap.set("n", "<leader>wh", "<C-w><C-h>")
+vim.keymap.set("n", "<leader>wl", "<C-w><C-l>")
+vim.keymap.set("n", "<leader>wj", "<C-w><C-j>")
+vim.keymap.set("n", "<leader>wk", "<C-w><C-k>")
+vim.keymap.set("n", "<leader>ws", "<C-w>s")
+vim.keymap.set("n", "<leader>wv", "<C-w>v")
+vim.keymap.set("n", "<leader>wc", "<C-w>c")
+vim.keymap.set("n", "<leader>wq", "<C-w>q")
+vim.keymap.set("n", "<leader>bk", "<cmd>bdelete!<CR>")
+vim.keymap.set("n", "<leader>tl", "<cmd>set wrap!<CR>")
 -- File
-Keymap("n", "<leader>fs", "<cmd>write!<CR>")
-Keymap("n", "<leader>fe", "<cmd>e ~/.config/nvim/init.lua<CR>")
+vim.keymap.set("n", "<leader>fs", "<cmd>write!<CR>")
+vim.keymap.set("n", "<leader>fe", "<cmd>e ~/.config/nvim/init.lua<CR>")
 -- Visual
-Keymap("v", "<C-r>", ":s/")
-Keymap("v", "<C-.>", ":SnipRun<CR>")
+vim.keymap.set("v", "<C-r>", ":s/")
+vim.keymap.set("v", "<C-.>", ":SnipRun<CR>")
