@@ -1,4 +1,4 @@
-local color = vim.api.nvim_set_hl -- set a color
+local color = vim.api.nvim_set_hl
 --- COMPLETION -------------------------------------------------------
 local cmp = require("cmp")
 local lspkind = require("lspkind")
@@ -6,10 +6,11 @@ local luasnip = require("luasnip")
 ---
 require("cmp").setup({
 	sources = {
-		{ name = "nvim_lsp" },
-		{ name = "buffer" },
-		{ name = "luasnip" },
-		{ name = "path" },
+		{ name = "nvim_lsp", max_item_count = 10, priority = 1000 },
+		{ name = "luasnip", max_item_count = 5, priority = 750 },
+		{ name = "buffer", max_item_count = 10, priority = 500 },
+		{ name = "async_path", priority = 250 },
+		{ name = "cmp_tabnine", priority = 250 },
 	},
 	window = {
 		documentation = cmp.config.window.bordered(),
@@ -22,7 +23,12 @@ require("cmp").setup({
 		format = function(entry, vim_item)
 			local kind = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
 			local strings = vim.split(kind.kind, "%s", { trimempty = true })
-			kind.kind = (strings[1] or "") .. " "
+			if entry.source.name == "cmp_tabnine" then
+				vim_item.kind = ""
+				vim_item.abbr = string.sub(vim_item.abbr, 1, 80)
+			else
+				kind.kind = (strings[1] or "") .. " "
+			end
 			kind.menu = (strings[2] or "")
 			return kind
 		end,
@@ -31,6 +37,13 @@ require("cmp").setup({
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
 		end,
+	},
+	matching = {
+		disallow_fuzzy_matching = false,
+		disallow_fullfuzzy_matching = false,
+		disallow_partial_fuzzy_matching = false,
+		disallow_partial_matching = false,
+		disallow_prefix_unmatching = false,
 	},
 	mapping = cmp.mapping.preset.insert({
 		["<C-k>"] = cmp.mapping.select_prev_item(),
@@ -51,6 +64,9 @@ require("cmp").setup({
 		end, { "i", "s" }),
 	}),
 })
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+local cmp = require("cmp")
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 --- Borders
 color(0, "FloatBorder", { bg = "NONE", fg = "#ADADAD" }) -- BG is Padding color and FG border
 color(0, "NormalFloat", { bg = "NONE" }) -- Documentation background

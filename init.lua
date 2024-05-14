@@ -27,31 +27,35 @@ vim.opt.rtp:prepend(lazypath)
 --- ALL PLUGINS -------------------------------------------------------
 require("lazy").setup({
 	--- defaults
-	"nathom/filetype.nvim",
 	"nvim-lua/plenary.nvim",
-	"mateuszwieloch/automkdir.nvim",
+	{ "mateuszwieloch/automkdir.nvim", event = "VeryLazy" },
 	"Shatur/neovim-session-manager",
-	{ "okuuva/auto-save.nvim", cmd = "ASToggle", event = { "InsertLeave", "TextChanged" } },
+	{ "okuuva/auto-save.nvim", event = { "InsertLeave", "TextChanged" } },
 	--- ui
 	"akinsho/bufferline.nvim",
-	"sainnhe/gruvbox-material",
+	{ "sainnhe/gruvbox-material", priority = 100 },
 	"nvim-tree/nvim-web-devicons",
-	{ "echasnovski/mini.indentscope", version = "*" },
+	{ "echasnovski/mini.indentscope", event = "VeryLazy", version = "*" },
 	--- modeline
 	{ "nvim-lualine/lualine.nvim", version = "*" },
 	--- completion
 	{
 		"hrsh7th/nvim-cmp",
 		version = "*",
+		event = "VeryLazy",
 		dependencies = { "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "onsails/lspkind.nvim" },
 	},
+	{ "FelipeLema/cmp-async-path", url = "https://codeberg.org/FelipeLema/cmp-async-path.git" },
 	{
 		"L3MON4D3/LuaSnip",
 		dependencies = { "rafamadriz/friendly-snippets", "saadparwaiz1/cmp_luasnip" },
 		version = "*",
+		event = "VeryLazy",
 	},
+	"windwp/nvim-autopairs",
+	{ "tzachar/cmp-tabnine", build = "./install.sh" },
 	--- looker
-	{ "nvim-telescope/telescope.nvim", version = "*" },
+	{ "nvim-telescope/telescope.nvim", event = "VeryLazy", version = "*" },
 	{ "debugloop/telescope-undo.nvim", version = "*" },
 	{ "smartpde/telescope-recent-files", version = "*" },
 	{ "2kabhishek/nerdy.nvim", dependencies = { "stevearc/dressing.nvim" }, cmd = "Nerdy" },
@@ -70,38 +74,21 @@ require("lazy").setup({
 	{ "zeioth/garbage-day.nvim", event = "VeryLazy", version = "*" },
 	--- languages
 	{ "nvim-treesitter/nvim-treesitter", version = "*" },
-	{ "kaarmu/typst.vim", ft = "typst", lazy = false },
+	{ "kaarmu/typst.vim", ft = "typst" },
 	{ "michaelb/sniprun", build = "./install.sh", version = "*" },
 	"pappasam/nvim-repl",
 	--- applications
 	{ "NeogitOrg/neogit", dependencies = { "sindrets/diffview.nvim" }, version = "*" },
 	{ "codota/tabnine-nvim", build = "./dl_binaries.sh", version = "*" },
 	{ "akinsho/toggleterm.nvim", event = "VeryLazy", version = "*" },
-	{ "is0n/fm-nvim", event = "VeryLazy" },
+	{ "is0n/fm-nvim", cmd = "Lf" },
 	{ "HakonHarnes/img-clip.nvim", event = "VeryLazy", keys = { { "<leader>p", "<cmd>PasteImage<cr>" } } },
 	--- editing
-	{ "phaazon/hop.nvim", version = "*" },
+	{ "phaazon/hop.nvim", version = false },
 	{ "filipdutescu/renamer.nvim", event = "VeryLazy" },
-	{
-		"echasnovski/mini.pairs",
-		dependencies = {
-			"echasnovski/mini.cursorword",
-			"echasnovski/mini.surround",
-			"echasnovski/mini.ai",
-		},
-	},
-	{ "numToStr/Comment.nvim", version = "*" },
+	{ "echasnovski/mini.nvim", version = false },
+	{ "MagicDuck/grug-far.nvim", cmd = "GrugFar" },
 })
---- Modules -------------------------------------------------------
-load("defaults")
-load("ui")
-load("modeline")
-load("completion")
-load("looker")
-load("lsp")
-load("languages")
-load("applications")
-load("editing")
 ----- SESSION MANAGER -----------------------------------------------------
 local Path = require("plenary.path")
 local config = require("session_manager.config")
@@ -118,5 +105,21 @@ require("session_manager").setup({
 	autosave_only_in_session = false,
 	max_path_length = 80,
 })
+--- Modules -------------------------------------------------------
+load("defaults")
+load("ui")
+load("modeline")
+load("completion")
+load("looker")
+load("lsp")
+load("languages")
+load("applications")
+load("editing")
 ----------------------------------------------------------
 vim.loader.enable()
+--- DIAGNOSTICS AT GUTTER
+local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
+for type, icon in pairs(signs) do
+	local hl = "LspDiagnosticsSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
