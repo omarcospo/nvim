@@ -26,6 +26,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 --- ALL PLUGINS -------------------------------------------------------
 require("lazy").setup({
+	profiling = {
+		loader = true,
+		require = true,
+	},
 	--- defaults
 	"nvim-lua/plenary.nvim",
 	{ "mateuszwieloch/automkdir.nvim", event = "VeryLazy" },
@@ -34,7 +38,7 @@ require("lazy").setup({
 	--- ui
 	"akinsho/bufferline.nvim",
 	{ "sainnhe/gruvbox-material", priority = 100 },
-	"nvim-tree/nvim-web-devicons",
+	{ "nvim-tree/nvim-web-devicons", lazy = true },
 	{ "echasnovski/mini.indentscope", event = "VeryLazy", version = "*" },
 	--- modeline
 	{ "nvim-lualine/lualine.nvim", version = "*" },
@@ -75,10 +79,11 @@ require("lazy").setup({
 	--- languages
 	{ "nvim-treesitter/nvim-treesitter", version = "*" },
 	{ "kaarmu/typst.vim", ft = "typst" },
-	{ "michaelb/sniprun", build = "./install.sh", version = "*" },
+	{ "michaelb/sniprun", cmd = "SnipRun", build = "./install.sh", version = "*" },
 	"pappasam/nvim-repl",
 	--- applications
-	{ "NeogitOrg/neogit", dependencies = { "sindrets/diffview.nvim" }, version = "*" },
+	{ "sindrets/diffview.nvim", cmd = "Neogit" },
+	{ "NeogitOrg/neogit", cmd = "Neogit", version = "*" },
 	{ "codota/tabnine-nvim", build = "./dl_binaries.sh", version = "*" },
 	{ "akinsho/toggleterm.nvim", event = "VeryLazy", version = "*" },
 	{ "is0n/fm-nvim", cmd = "Lf" },
