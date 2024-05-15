@@ -38,7 +38,6 @@ require("lazy").setup({
 	{ "mateuszwieloch/automkdir.nvim", event = "VeryLazy" },
 	"Shatur/neovim-session-manager",
 	{ "okuuva/auto-save.nvim", event = { "InsertLeave", "TextChanged" } },
-	{ "grapp-dev/nui-components.nvim", dependencies = { "MunifTanjim/nui.nvim" } },
 	--- ui
 	"akinsho/bufferline.nvim",
 	{ "sainnhe/gruvbox-material", priority = 100 },
@@ -124,6 +123,7 @@ load("lsp")
 load("languages")
 load("applications")
 load("editing")
+load("snipper")
 ----------------------------------------------------------
 vim.loader.enable()
 -----------------------------------------------------------
