@@ -2,7 +2,6 @@
 require("mini.pairs").setup() -- autopairs
 require("mini.cursorword").setup() -- highlight ocurrences of current word at point
 require("mini.surround").setup() -- surround object with thingy
-require("mini.ai").setup({ n_lines = 500 })
 require("mini.comment").setup({
 	options = {
 		ignore_blank_line = true,

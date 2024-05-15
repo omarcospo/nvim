@@ -73,11 +73,11 @@ lsp.typst_lsp.setup({
 --- nvim-lspconfig for typescript, html, css, rust and json
 lsp.tsserver.setup({})
 ------- LUA ----------------------------------------------------
-lsp.lua_ls.setup({
-	settings = {
-		format = {
-			formatting_options = nil,
-			timeout_ms = nil,
-		},
-	},
-})
+-- lsp.lua_ls.setup({
+-- 	settings = {
+-- 		format = {
+-- 			formatting_options = nil,
+-- 			timeout_ms = nil,
+-- 		},
+-- 	},
+-- })

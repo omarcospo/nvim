@@ -90,8 +90,13 @@ if vim.g.neovide then
 	end)
 end
 --- KEYBOARD -------------------------------------------------------
+---- Pending operators
+vim.keymap.set("o", "p", "i(", { noremap = true })
+vim.keymap.set("o", "q", 'i"', { noremap = true })
+-- ESC with C-q
 vim.keymap.set("n", "<C-q>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("i", "<C-q>", "<Esc>")
+-- Begin and end of line
 vim.keymap.set("n", "<C-l>", "$")
 vim.keymap.set("n", "<C-h>", "0")
 -- Window/Buffers
