@@ -48,26 +48,47 @@ vim.opt.splitright = true -- put new vertical splits to right
 vim.opt.mouse = "a"
 vim.opt.wrap = false -- dont wrap
 vim.opt.termguicolors = true -- guicolor
-vim.opt.number = true -- show line numbers
-vim.opt.relativenumber = true -- set to relative line numbers
 vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
 vim.opt.linebreak = true
+-- gutter
+vim.opt.number = true -- show line numbers
+vim.opt.relativenumber = true -- show relative line numbers
+vim.opt.signcolumn = "yes"
+vim.opt.numberwidth = 3
 ----- NEOVIDE ------------------------------------------------------
-vim.opt.guifont = "IosevkaTerm_Nerd_Font:h15"
-vim.g.neovide_padding_top = 0
-vim.g.neovide_padding_bottom = 0
-vim.g.neovide_padding_right = 0
-vim.g.neovide_padding_left = 0
-vim.g.neovide_floating_shadow = false
-vim.g.neovide_scroll_animation_length = 0.1
-vim.g.neovide_scroll_animation_far_lines = 5
-vim.g.neovide_cursor_trail_size = 0.4
-vim.g.neovide_hide_mouse_when_typing = true
-vim.g.neovide_floating_blur_amount_x = 1.0
+if vim.g.neovide then
+	vim.opt.guifont = "IosevkaTerm_Nerd_Font:h15"
+	vim.g.neovide_padding_top = 0
+	vim.g.neovide_padding_bottom = 0
+	vim.g.neovide_padding_right = 0
+	vim.g.neovide_padding_left = 0
+	vim.g.neovide_floating_shadow = false
+	vim.g.neovide_scroll_animation_length = 0.1
+	vim.g.neovide_scroll_animation_far_lines = 5
+	vim.g.neovide_cursor_trail_size = 0.4
+	vim.g.neovide_hide_mouse_when_typing = true
+	vim.g.neovide_floating_blur_amount_x = 1.0
+	vim.keymap.set("n", "<sc-s>", ":w<CR>") -- Save
+	vim.keymap.set("v", "<sc-c>", '"+y') -- Copy
+	vim.keymap.set("n", "<sc-v>", '"+P') -- Paste normal mode
+	vim.keymap.set("v", "<sc-v>", '"+P') -- Paste visual mode
+	vim.keymap.set("c", "<sc-v>", "<C-R>+") -- Paste command mode
+	vim.keymap.set("i", "<sc-v>", '<ESC>l"+Pli') -- Paste insert mode
+	vim.g.neovide_scale_factor = 1.0
+	local change_scale_factor = function(delta)
+		vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+	end
+	vim.keymap.set("n", "<C-=>", function()
+		change_scale_factor(1.05)
+	end)
+	vim.keymap.set("n", "<C-->", function()
+		change_scale_factor(1 / 1.05)
+	end)
+end
 --- KEYBOARD -------------------------------------------------------
 vim.keymap.set("n", "<C-q>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("i", "<C-q>", "<Esc>")

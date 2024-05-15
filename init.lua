@@ -10,6 +10,10 @@ local load = function(mod)
 	require(mod)
 end
 --- NVIM API --------------------------------------------------------
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = "~/.config/nvim/*",
+	command = "luafile ~/.config/nvim/init.lua",
+})
 vim.keymap.set("n", "<c-,>", ":source $MYVIMRC<cr>")
 ----- LAZY ------------------------------------------------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -81,6 +85,8 @@ require("lazy").setup({
 	{ "kaarmu/typst.vim", ft = "typst" },
 	{ "michaelb/sniprun", cmd = "SnipRun", build = "./install.sh", version = "*" },
 	"pappasam/nvim-repl",
+	--- TAURI: typescript, html, css, rust and json
+
 	--- applications
 	{ "sindrets/diffview.nvim", cmd = "Neogit" },
 	{ "NeogitOrg/neogit", cmd = "Neogit", version = "*" },
@@ -93,6 +99,7 @@ require("lazy").setup({
 	{ "filipdutescu/renamer.nvim", event = "VeryLazy" },
 	{ "echasnovski/mini.nvim", version = false },
 	{ "MagicDuck/grug-far.nvim", cmd = "GrugFar" },
+	{ "kevinhwang91/nvim-ufo", dependencies = "kevinhwang91/promise-async" },
 })
 ----- SESSION MANAGER -----------------------------------------------------
 local Path = require("plenary.path")
@@ -122,9 +129,3 @@ load("applications")
 load("editing")
 ----------------------------------------------------------
 vim.loader.enable()
---- DIAGNOSTICS AT GUTTER
-local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
-for type, icon in pairs(signs) do
-	local hl = "LspDiagnosticsSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
