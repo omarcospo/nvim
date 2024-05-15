@@ -30,10 +30,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 --- ALL PLUGINS -------------------------------------------------------
 require("lazy").setup({
-	profiling = {
-		loader = true,
-		require = true,
-	},
+	profiling = { loader = true, require = true },
+	checker = { enabled = true, notify = true },
+	lockfile = nil,
 	--- defaults
 	"nvim-lua/plenary.nvim",
 	{ "mateuszwieloch/automkdir.nvim", event = "VeryLazy" },
@@ -43,55 +42,51 @@ require("lazy").setup({
 	"akinsho/bufferline.nvim",
 	{ "sainnhe/gruvbox-material", priority = 100 },
 	{ "nvim-tree/nvim-web-devicons", lazy = true },
-	{ "echasnovski/mini.indentscope", event = "VeryLazy", version = "*" },
+	{ "echasnovski/mini.indentscope", event = "VeryLazy" },
 	--- modeline
-	{ "nvim-lualine/lualine.nvim", version = "*" },
+	{ "nvim-lualine/lualine.nvim" },
 	--- completion
 	{
 		"hrsh7th/nvim-cmp",
-		version = "*",
 		event = "VeryLazy",
 		dependencies = { "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "onsails/lspkind.nvim" },
 	},
 	{ "FelipeLema/cmp-async-path", url = "https://codeberg.org/FelipeLema/cmp-async-path.git" },
-	{
-		"L3MON4D3/LuaSnip",
-		dependencies = { "rafamadriz/friendly-snippets", "saadparwaiz1/cmp_luasnip" },
-		version = "*",
-		event = "VeryLazy",
-	},
+	{ "dcampos/nvim-snippy", event = "VeryLazy" },
+	{ "dcampos/cmp-snippy", event = "VeryLazy" },
+	{ "honza/vim-snippets", event = "VeryLazy" },
 	"windwp/nvim-autopairs",
 	{ "tzachar/cmp-tabnine", build = "./install.sh" },
 	--- looker
-	{ "nvim-telescope/telescope.nvim", event = "VeryLazy", version = "*" },
-	{ "debugloop/telescope-undo.nvim", version = "*" },
-	{ "smartpde/telescope-recent-files", version = "*" },
+	{ "nvim-telescope/telescope.nvim", event = "VeryLazy" },
+	{ "debugloop/telescope-undo.nvim" },
+	{ "smartpde/telescope-recent-files" },
 	{ "2kabhishek/nerdy.nvim", dependencies = { "stevearc/dressing.nvim" }, cmd = "Nerdy" },
-	{ "renerocksai/telekasten.nvim", version = "*" },
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", version = "*" },
+	{ "renerocksai/telekasten.nvim" },
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	--- lsp
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
-	{ "neovim/nvim-lspconfig", dependencies = { "hrsh7th/cmp-nvim-lsp" }, version = "*" },
-	{ "ray-x/lsp_signature.nvim", version = "*", event = "VeryLazy" },
-	{ "LukasPietzschmann/boo.nvim", version = "*" },
-	{ "stevearc/conform.nvim", version = "*" },
-	{ "luckasRanarison/nvim-devdocs", version = "*", event = "VeryLazy" },
-	{ "folke/trouble.nvim", version = "*" },
-	{ "dnlhc/glance.nvim", version = "*" },
-	{ "zeioth/garbage-day.nvim", event = "VeryLazy", version = "*" },
+	{ "neovim/nvim-lspconfig", dependencies = { "hrsh7th/cmp-nvim-lsp" } },
+	{ "ray-x/lsp_signature.nvim", event = "VeryLazy" },
+	{ "LukasPietzschmann/boo.nvim" },
+	{ "stevearc/conform.nvim" },
+	{ "luckasRanarison/nvim-devdocs", event = "VeryLazy" },
+	{ "folke/trouble.nvim" },
+	{ "dnlhc/glance.nvim" },
+	{ "zeioth/garbage-day.nvim", event = "VeryLazy" },
 	--- languages
-	{ "nvim-treesitter/nvim-treesitter", version = "*" },
+	{ "nvim-treesitter/nvim-treesitter" },
 	{ "kaarmu/typst.vim", ft = "typst" },
-	{ "michaelb/sniprun", cmd = "SnipRun", build = "./install.sh", version = "*" },
+	{ "michaelb/sniprun", cmd = "SnipRun", build = "./install.sh" },
 	"pappasam/nvim-repl",
 	--- TAURI: typescript, html, css, rust and json
 
 	--- applications
 	{ "sindrets/diffview.nvim", cmd = "Neogit" },
-	{ "NeogitOrg/neogit", cmd = "Neogit", version = "*" },
-	{ "codota/tabnine-nvim", build = "./dl_binaries.sh", version = "*" },
-	{ "akinsho/toggleterm.nvim", event = "VeryLazy", version = "*" },
+	{ "NeogitOrg/neogit", cmd = "Neogit" },
+	{ "codota/tabnine-nvim", build = "./dl_binaries.sh" },
+	{ "akinsho/toggleterm.nvim", event = "VeryLazy" },
 	{ "is0n/fm-nvim", cmd = "Lf" },
 	{ "HakonHarnes/img-clip.nvim", event = "VeryLazy", keys = { { "<leader>p", "<cmd>PasteImage<cr>" } } },
 	--- editing
@@ -101,6 +96,7 @@ require("lazy").setup({
 	{ "MagicDuck/grug-far.nvim", cmd = "GrugFar" },
 	{ "kevinhwang91/nvim-ufo", dependencies = "kevinhwang91/promise-async" },
 })
+vim.keymap.set("n", "<c-1>", ":Lazy<cr>")
 ----- SESSION MANAGER -----------------------------------------------------
 local Path = require("plenary.path")
 local config = require("session_manager.config")
@@ -129,3 +125,4 @@ load("applications")
 load("editing")
 ----------------------------------------------------------
 vim.loader.enable()
+-----------------------------------------------------------

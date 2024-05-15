@@ -2,12 +2,12 @@ local color = vim.api.nvim_set_hl
 --- COMPLETION -------------------------------------------------------
 local cmp = require("cmp")
 local lspkind = require("lspkind")
-local luasnip = require("luasnip")
+local snippy = require("snippy")
 ---
 require("cmp").setup({
 	sources = {
 		{ name = "nvim_lsp", max_item_count = 10, priority = 1000 },
-		{ name = "luasnip", max_item_count = 5, priority = 750 },
+		{ name = "snippy", max_item_count = 5, priority = 750 },
 		{ name = "buffer", max_item_count = 10, priority = 500 },
 		{ name = "async_path", priority = 250 },
 		{ name = "cmp_tabnine", priority = 250 },
@@ -35,7 +35,7 @@ require("cmp").setup({
 	},
 	snippet = {
 		expand = function(args)
-			luasnip.lsp_expand(args.body)
+			require("snippy").expand_snippet(args.body)
 		end,
 	},
 	matching = {
@@ -56,8 +56,8 @@ require("cmp").setup({
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
+			elseif snippy.can_expand_or_advance() then
+				snippy.expand_or_advance()
 			else
 				fallback()
 			end
@@ -70,5 +70,3 @@ cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 --- Borders
 color(0, "FloatBorder", { bg = "NONE", fg = "#ADADAD" }) -- BG is Padding color and FG border
 color(0, "NormalFloat", { bg = "NONE" }) -- Documentation background
---- LUASNIP -------------------------------------------------------
-require("luasnip.loaders.from_vscode").lazy_load()
