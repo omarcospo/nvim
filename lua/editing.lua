@@ -2,12 +2,6 @@
 require("mini.pairs").setup() -- autopairs
 require("mini.cursorword").setup() -- highlight ocurrences of current word at point
 require("mini.surround").setup() -- surround object with thingy
-require("mini.comment").setup({
-	options = {
-		ignore_blank_line = true,
-		pad_comment_parts = true,
-	},
-})
 require("renamer").setup()
 -- stylua: ignore
 vim.keymap.set("n", "gr", function() require("renamer").rename() end, { remap = true })

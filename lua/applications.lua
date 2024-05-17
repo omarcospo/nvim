@@ -68,3 +68,34 @@ require("neogit").setup({
 	},
 })
 vim.keymap.set("n", "<leader>g", "<cmd>Neogit<cr>")
+--- CODE SCREENSHOT -------------------------------------------------------
+require("rayso").setup({
+	open_cmd = "org.mozilla.firefox",
+	options = {
+		background = false, -- If the screenshot should have a background.
+		padding = 16, -- The default padding that the screenshot will have.
+		theme = "sunset", -- Theme
+		title = "Untitled", -- Default title
+	},
+})
+vim.keymap.set("v", "<leader>l", require("lib.create").create_snippet)
+--- DISCORD ----
+require("presence").setup({
+	auto_update = true,
+	neovim_image_text = "The One True Text Editor",
+	main_image = "neovim",
+	client_id = "793271441293967371",
+	debounce_timeout = 10,
+	enable_line_number = false,
+	blacklist = {},
+	buttons = true,
+	file_assets = {},
+	show_time = false,
+	editing_text = "Editing %s",
+	file_explorer_text = "Browsing %s",
+	git_commit_text = "Committing changes",
+	plugin_manager_text = "Managing plugins",
+	reading_text = "Reading %s",
+	workspace_text = "Working on %s",
+	line_number_text = "Line %s out of %s",
+})

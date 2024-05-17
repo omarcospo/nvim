@@ -70,4 +70,6 @@ lsp.typst_lsp.setup({
 		},
 	},
 })
+------- TYPESCRIPT ----------------------------------------------------
+require("typescript-tools").setup({})
 --- nvim-lspconfig for typescript, html, css, rust and json

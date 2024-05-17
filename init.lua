@@ -71,24 +71,26 @@ require("lazy").setup({
 	{ "ray-x/lsp_signature.nvim", event = "VeryLazy" },
 	{ "LukasPietzschmann/boo.nvim" },
 	{ "stevearc/conform.nvim" },
-	{ "luckasRanarison/nvim-devdocs", event = "VeryLazy" },
+	{ "luckasRanarison/nvim-devdocs", version = "*" },
 	{ "folke/trouble.nvim" },
 	{ "dnlhc/glance.nvim" },
 	{ "zeioth/garbage-day.nvim", event = "VeryLazy" },
 	--- languages
-	{ "nvim-treesitter/nvim-treesitter" },
+	{ "nvim-treesitter/nvim-treesitter", version = "*" },
 	{ "kaarmu/typst.vim", ft = "typst" },
 	{ "michaelb/sniprun", cmd = "SnipRun", build = "./install.sh" },
 	"pappasam/nvim-repl",
 	--- TAURI: typescript, html, css, rust and json
-
+	"pmizio/typescript-tools.nvim",
 	--- applications
 	{ "sindrets/diffview.nvim", cmd = "Neogit" },
-	{ "NeogitOrg/neogit", cmd = "Neogit" },
+	{ "NeogitOrg/neogit", cmd = "Neogit", branch = "nightly" },
 	{ "codota/tabnine-nvim", build = "./dl_binaries.sh" },
 	{ "akinsho/toggleterm.nvim", event = "VeryLazy" },
 	{ "is0n/fm-nvim", cmd = "Lf" },
 	{ "HakonHarnes/img-clip.nvim", event = "VeryLazy", keys = { { "<leader>p", "<cmd>PasteImage<cr>" } } },
+	"TobinPalmer/rayso.nvim",
+	"andweeb/presence.nvim",
 	--- editing
 	{ "phaazon/hop.nvim", version = false },
 	{ "filipdutescu/renamer.nvim", event = "VeryLazy" },
@@ -108,7 +110,7 @@ require("session_manager").setup({
 	autosave_last_session = true,
 	autosave_ignore_not_normal = true,
 	autosave_ignore_dirs = {},
-	autosave_ignore_filetypes = { "gitcommit", "gitrebase" },
+	autosave_ignore_filetypes = {},
 	autosave_ignore_buftypes = {},
 	autosave_only_in_session = false,
 	max_path_length = 80,
@@ -123,7 +125,6 @@ load("lsp")
 load("languages")
 load("applications")
 load("editing")
-load("snipper")
 ----------------------------------------------------------
 vim.loader.enable()
 -----------------------------------------------------------
