@@ -90,6 +90,7 @@ if vim.g.neovide then
 	end)
 end
 --- KEYBOARD -------------------------------------------------------
+vim.keymap.set("n", "<leader><leader>", ":")
 ---- Pending operators
 vim.keymap.set("o", "p", "i(", { noremap = true })
 vim.keymap.set("o", "q", 'i"', { noremap = true })
