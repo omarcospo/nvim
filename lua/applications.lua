@@ -44,7 +44,10 @@ require("toggleterm").setup({
 })
 vim.api.nvim_create_autocmd("TermOpen", {
 	pattern = "*",
-	command = "setlocal cursorline nocursorline",
+	callback = function()
+		vim.keymap.set({ "t", "n" }, "<C-v>", "<cmd>ToggleTerm<CR>", { buffer = true, silent = true })
+		vim.opt_local.cursorline = nocursorline
+	end,
 })
 vim.keymap.set("n", "<leader>v", "<cmd>ToggleTerm<CR>", { remap = true }) -- toggle outside terminal
 vim.keymap.set("t", "<C-v>", "<cmd>ToggleTerm<CR>") -- toggle inside terminal

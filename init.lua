@@ -1,3 +1,6 @@
+vim.deprecate = function() end -- Disable deprecation warnings
+-- Faster startup
+vim.loader.enable()
 local ok, wf = pcall(require, "vim.lsp._watchfiles")
 if ok then
 	wf._watchfunc = function()
@@ -10,11 +13,11 @@ local load = function(mod)
 	require(mod)
 end
 --- NVIM API --------------------------------------------------------
-vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = "~/.config/nvim/*",
-	command = "luafile ~/.config/nvim/init.lua",
+vim.api.nvim_create_autocmd("FileWritePost", {
+	pattern = "*.lua",
+	command = "silent source $MYVIMRC",
 })
-vim.keymap.set("n", "<c-,>", ":source $MYVIMRC<cr>")
+vim.keymap.set("n", "<c-,>", ":silent source $MYVIMRC<cr>")
 ----- LAZY ------------------------------------------------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -31,24 +34,25 @@ vim.opt.rtp:prepend(lazypath)
 --- ALL PLUGINS -------------------------------------------------------
 require("lazy").setup({
 	profiling = { loader = true, require = true },
-	checker = { enabled = true, notify = true },
-	lockfile = nil,
 	--- defaults
 	"nvim-lua/plenary.nvim",
 	{ "mateuszwieloch/automkdir.nvim", event = "VeryLazy" },
 	"Shatur/neovim-session-manager",
 	{ "okuuva/auto-save.nvim", event = { "InsertLeave", "TextChanged" } },
 	--- ui
+	"sainnhe/sonokai",
+	"sainnhe/edge",
+	"sainnhe/everforest",
 	"akinsho/bufferline.nvim",
 	{ "sainnhe/gruvbox-material", priority = 100 },
 	{ "nvim-tree/nvim-web-devicons", lazy = true },
 	{ "echasnovski/mini.indentscope", event = "VeryLazy" },
+	"brenoprata10/nvim-highlight-colors",
 	--- modeline
-	{ "nvim-lualine/lualine.nvim" },
+	{ "nvim-lualine/lualine.nvim", lazy = false, priority = 1000 },
 	--- completion
 	{
 		"hrsh7th/nvim-cmp",
-		event = "VeryLazy",
 		dependencies = { "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "onsails/lspkind.nvim" },
 	},
 	{ "FelipeLema/cmp-async-path", url = "https://codeberg.org/FelipeLema/cmp-async-path.git" },
@@ -82,6 +86,7 @@ require("lazy").setup({
 	"pappasam/nvim-repl",
 	--- TAURI: typescript, html, css, rust and json
 	"pmizio/typescript-tools.nvim",
+	"windwp/nvim-ts-autotag",
 	--- applications
 	{ "sindrets/diffview.nvim", cmd = "Neogit" },
 	{ "NeogitOrg/neogit", cmd = "Neogit", branch = "nightly" },
@@ -93,7 +98,7 @@ require("lazy").setup({
 	"andweeb/presence.nvim",
 	--- editing
 	{ "phaazon/hop.nvim", version = false },
-	{ "filipdutescu/renamer.nvim", event = "VeryLazy" },
+	{ "filipdutescu/renamer.nvim" },
 	{ "echasnovski/mini.nvim", version = false },
 	{ "MagicDuck/grug-far.nvim", cmd = "GrugFar" },
 	{ "kevinhwang91/nvim-ufo", dependencies = "kevinhwang91/promise-async" },
@@ -116,8 +121,8 @@ require("session_manager").setup({
 	max_path_length = 80,
 })
 --- Modules -------------------------------------------------------
-load("defaults")
 load("ui")
+load("defaults")
 load("modeline")
 load("completion")
 load("looker")
@@ -125,6 +130,4 @@ load("lsp")
 load("languages")
 load("applications")
 load("editing")
-----------------------------------------------------------
-vim.loader.enable()
 -----------------------------------------------------------

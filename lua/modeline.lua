@@ -1,10 +1,19 @@
 local lualine = require("lualine")
 
+-- Function to get a color from a highlight group
+local function get_color(hl, part)
+	local result = vim.api.nvim_get_hl_by_name(hl, true)
+	if result[part] then
+		return string.format("#%06x", result[part])
+	end
+	return nil
+end
+
 local colors = {
-	bg = "#1D2021",
-	fg = "#DFD0AC",
+	bg = get_color("CursorLine", "background"),
+	fg = get_color("Normal", "foreground"),
 	orange = "#FE8019",
-	aqua = "#8EC07C",
+	aqua = get_color("Function", "foreground"),
 	red = "#FB4934",
 	yellow = "#FABD2F",
 	cyan = "#83A598",
@@ -98,7 +107,7 @@ ins_right({
 	function()
 		local msg = "No Active Lsp"
 		local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-		local clients = vim.lsp.get_active_clients()
+		local clients = vim.lsp.get_clients()
 		if next(clients) == nil then
 			return msg
 		end

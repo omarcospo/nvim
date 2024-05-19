@@ -21,6 +21,11 @@ require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
 		python = { "ruff_format", "ruff" },
+		javascript = { "prettier" },
+		typescript = { "prettier" },
+		json = { "prettier" },
+		css = { "prettier" },
+		go = { "gofmt" },
 	},
 	format_on_save = {
 		timeout_ms = 500,
@@ -72,4 +77,4 @@ lsp.typst_lsp.setup({
 })
 ------- TYPESCRIPT ----------------------------------------------------
 require("typescript-tools").setup({})
---- nvim-lspconfig for typescript, html, css, rust and json
+require("nvim-ts-autotag").setup()

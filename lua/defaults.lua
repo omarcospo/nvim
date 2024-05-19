@@ -7,6 +7,7 @@ vim.opt.conceallevel = 3
 vim.opt.sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize"
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.expand("~/.nvim/.undo")
+vim.g.mousemoveement = true
 --
 vim.opt.clipboard = "unnamedplus" -- copy/paste to system clipboard
 vim.opt.hidden = true -- enable background buffers
@@ -16,7 +17,6 @@ vim.opt.lazyredraw = true -- faster scrolling
 vim.opt.synmaxcol = 240 -- max column for syntax highlight
 vim.opt.mouse = "a" -- enable your mouse
 vim.opt.encoding = "utf-8" -- the encoding displayed
-vim.opt.fileencoding = "utf-8" -- the encoding written to file
 -- indent and tabs
 vim.opt.autoindent = true -- good auto indent
 vim.opt.smartcase = true -- ignore lowercase for the whole pattern
@@ -100,7 +100,12 @@ vim.keymap.set("i", "<C-q>", "<Esc>")
 -- Begin and end of line
 vim.keymap.set("n", "<C-l>", "$")
 vim.keymap.set("n", "<C-h>", "0")
--- Window/Buffers
+-- Buffers
+require("mini.bufremove").setup()
+vim.keymap.set("n", "<leader>bk", function()
+	require("mini.bufremove").delete()
+end)
+-- Window
 vim.keymap.set("n", "<leader>wh", "<C-w><C-h>")
 vim.keymap.set("n", "<leader>wl", "<C-w><C-l>")
 vim.keymap.set("n", "<leader>wj", "<C-w><C-j>")
@@ -108,9 +113,11 @@ vim.keymap.set("n", "<leader>wk", "<C-w><C-k>")
 vim.keymap.set("n", "<leader>ws", "<C-w>s")
 vim.keymap.set("n", "<leader>wv", "<C-w>v")
 vim.keymap.set("n", "<leader>wc", "<C-w>c")
-vim.keymap.set("n", "<leader>wq", "<C-w>q")
-vim.keymap.set("n", "<leader>bk", "<cmd>bdelete!<CR>")
+vim.keymap.set("n", "<leader>wq", ":qa<CR>")
 vim.keymap.set("n", "<leader>tl", "<cmd>set wrap!<CR>")
+-- Tabs
+vim.keymap.set("n", "tj", ":bprev<CR>")
+vim.keymap.set("n", "tk", ":bnext<CR>")
 -- File
 vim.keymap.set("n", "<leader>fs", "<cmd>write!<CR>")
 vim.keymap.set("n", "<leader>fe", "<cmd>e ~/.config/nvim/init.lua<CR>")
