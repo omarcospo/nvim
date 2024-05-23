@@ -44,7 +44,11 @@ telescope.setup({
 			enable_preview = true,
 		},
 	},
+	extensions = {
+		["ui-select"] = { require("telescope.themes").get_dropdown({}) },
+	},
 })
+telescope.load_extension("ui-select")
 telescope.load_extension("recent_files")
 --- FZF NATIVE -------------------------------------------------------
 telescope.setup({

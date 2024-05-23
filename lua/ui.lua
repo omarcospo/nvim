@@ -2,7 +2,6 @@
 vim.g.gruvbox_material_better_performance = 1
 vim.g.gruvbox_material_background = "medium"
 vim.g.gruvbox_material_foreground = "original"
-vim.g.sonokai_better_performance = 1
 vim.cmd.colorscheme("gruvbox-material")
 --- BUFFERLINE -------------------------------------------------------
 require("bufferline").setup({

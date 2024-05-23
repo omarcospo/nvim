@@ -1,6 +1,7 @@
+pcall(function()
+	vim.loader.enable()
+end) -- Faster startup
 vim.deprecate = function() end -- Disable deprecation warnings
--- Faster startup
-vim.loader.enable()
 local ok, wf = pcall(require, "vim.lsp._watchfiles")
 if ok then
 	wf._watchfunc = function()
@@ -38,16 +39,12 @@ require("lazy").setup({
 	"nvim-lua/plenary.nvim",
 	{ "mateuszwieloch/automkdir.nvim", event = "VeryLazy" },
 	"Shatur/neovim-session-manager",
-	{ "okuuva/auto-save.nvim", event = { "InsertLeave", "TextChanged" } },
 	--- ui
-	"sainnhe/sonokai",
-	"sainnhe/edge",
-	"sainnhe/everforest",
 	"akinsho/bufferline.nvim",
 	{ "sainnhe/gruvbox-material", priority = 100 },
 	{ "nvim-tree/nvim-web-devicons", lazy = true },
 	{ "echasnovski/mini.indentscope", event = "VeryLazy" },
-	"brenoprata10/nvim-highlight-colors",
+	{ "brenoprata10/nvim-highlight-colors", event = "VeryLazy" },
 	--- modeline
 	{ "nvim-lualine/lualine.nvim", lazy = false, priority = 1000 },
 	--- completion
@@ -65,6 +62,7 @@ require("lazy").setup({
 	{ "nvim-telescope/telescope.nvim", event = "VeryLazy" },
 	{ "debugloop/telescope-undo.nvim" },
 	{ "smartpde/telescope-recent-files" },
+	"nvim-telescope/telescope-ui-select.nvim",
 	{ "2kabhishek/nerdy.nvim", dependencies = { "stevearc/dressing.nvim" }, cmd = "Nerdy" },
 	{ "renerocksai/telekasten.nvim" },
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
@@ -72,24 +70,30 @@ require("lazy").setup({
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
 	{ "neovim/nvim-lspconfig", dependencies = { "hrsh7th/cmp-nvim-lsp" } },
-	{ "ray-x/lsp_signature.nvim", event = "VeryLazy" },
+	{ "ray-x/lsp_signature.nvim", event = "LspAttach" },
 	{ "LukasPietzschmann/boo.nvim" },
 	{ "stevearc/conform.nvim" },
 	{ "luckasRanarison/nvim-devdocs", version = "*" },
-	{ "folke/trouble.nvim" },
-	{ "dnlhc/glance.nvim" },
+	{ "folke/trouble.nvim", event = "LspAttach" },
+	{ "dnlhc/glance.nvim", event = "LspAttach" },
 	{ "zeioth/garbage-day.nvim", event = "VeryLazy" },
+	{
+		"MysticalDevil/inlay-hints.nvim",
+		event = "LspAttach",
+		config = function()
+			require("inlay-hints").setup()
+		end,
+	},
 	--- languages
 	{ "nvim-treesitter/nvim-treesitter", version = "*" },
 	{ "kaarmu/typst.vim", ft = "typst" },
 	{ "michaelb/sniprun", cmd = "SnipRun", build = "./install.sh" },
 	"pappasam/nvim-repl",
-	--- TAURI: typescript, html, css, rust and json
-	"pmizio/typescript-tools.nvim",
 	"windwp/nvim-ts-autotag",
+	"pmizio/typescript-tools.nvim",
 	--- applications
 	{ "sindrets/diffview.nvim", cmd = "Neogit" },
-	{ "NeogitOrg/neogit", cmd = "Neogit", branch = "nightly" },
+	{ "NeogitOrg/neogit", cmd = "Neogit", branch = "master" },
 	{ "codota/tabnine-nvim", build = "./dl_binaries.sh" },
 	{ "akinsho/toggleterm.nvim", event = "VeryLazy" },
 	{ "is0n/fm-nvim", cmd = "Lf" },
@@ -99,8 +103,8 @@ require("lazy").setup({
 	--- editing
 	{ "phaazon/hop.nvim", version = false },
 	{ "filipdutescu/renamer.nvim" },
-	{ "echasnovski/mini.nvim", version = false },
 	{ "MagicDuck/grug-far.nvim", cmd = "GrugFar" },
+	{ "echasnovski/mini.nvim", version = false },
 	{ "kevinhwang91/nvim-ufo", dependencies = "kevinhwang91/promise-async" },
 })
 vim.keymap.set("n", "<c-1>", ":Lazy<cr>")
@@ -130,4 +134,3 @@ load("lsp")
 load("languages")
 load("applications")
 load("editing")
------------------------------------------------------------

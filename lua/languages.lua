@@ -1,18 +1,10 @@
 --- TREESITTER -------------------------------------------------------
 require("nvim-treesitter.configs").setup({
-	ensure_installed = { "lua", "html", "markdown", "python", "bash", "json", "vim", "markdown_inline", "regex" },
-	sync_install = true,
+	sync_install = false,
 	auto_install = true,
-	indent = { enable = true },
 	highlight = {
 		enable = true,
-		disable = function(lang, buf)
-			local max_filesize = 100 * 1024 -- 100 KB
-			local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-			if ok and stats and stats.size > max_filesize then
-				return true
-			end
-		end,
+		disable = { "html" },
 		additional_vim_regex_highlighting = false,
 	},
 })
@@ -24,6 +16,7 @@ require("conform").setup({
 		javascript = { "prettier" },
 		typescript = { "prettier" },
 		json = { "prettier" },
+		jsonc = { "prettier" },
 		css = { "prettier" },
 		go = { "gofmt" },
 	},
@@ -76,5 +69,18 @@ lsp.typst_lsp.setup({
 	},
 })
 ------- TYPESCRIPT ----------------------------------------------------
-require("typescript-tools").setup({})
+require("typescript-tools").setup({
+	settings = {
+		tsserver_file_preferences = {
+			includeInlayParameterNameHints = "all",
+			includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+			includeInlayFunctionParameterTypeHints = true,
+			includeInlayVariableTypeHints = true,
+			includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+			includeInlayPropertyDeclarationTypeHints = true,
+			includeInlayFunctionLikeReturnTypeHints = true,
+			includeInlayEnumMemberValueHints = true,
+		},
+	},
+})
 require("nvim-ts-autotag").setup()
