@@ -70,7 +70,8 @@ require("neogit").setup({
 		},
 	},
 })
-vim.keymap.set("n", "<leader>g", "<cmd>Neogit<cr>")
+vim.keymap.set("n", "<leader>gg", "<cmd>Neogit cwd=%:p:h<cr>")
+vim.keymap.set("n", "<leader>gc", "<cmd>Neogit cwd=~/.dotfiles/<cr>")
 --- CODE SCREENSHOT -------------------------------------------------------
 require("rayso").setup({
 	open_cmd = "org.mozilla.firefox",

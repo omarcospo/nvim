@@ -92,8 +92,8 @@ require("lazy").setup({
 	"windwp/nvim-ts-autotag",
 	"pmizio/typescript-tools.nvim",
 	--- applications
-	{ "sindrets/diffview.nvim", cmd = "Neogit" },
-	{ "NeogitOrg/neogit", cmd = "Neogit", branch = "master" },
+	{ "sindrets/diffview.nvim" },
+	{ "NeogitOrg/neogit", cmd = "Neogit" },
 	{ "codota/tabnine-nvim", build = "./dl_binaries.sh" },
 	{ "akinsho/toggleterm.nvim", event = "VeryLazy" },
 	{ "is0n/fm-nvim", cmd = "Lf" },
