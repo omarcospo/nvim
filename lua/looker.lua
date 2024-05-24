@@ -59,7 +59,20 @@ telescope.setup({
 	},
 })
 telescope.load_extension("ui-select")
-telescope.load_extension("recent_files")
+--- RECENT FILES -------------------------------------------------------
+telescope.setup({
+	extensions = {
+		frecency = {
+			show_scores = false,
+			show_unindexed = false,
+			ignore_patterns = { "*.git/*", "*/tmp/*", "term:*" },
+			disable_devicons = false,
+			workspaces = {
+				["conf"] = "~/.config",
+			},
+		},
+	},
+})
 --- FZF NATIVE -------------------------------------------------------
 telescope.setup({
 	extensions = {
@@ -73,6 +86,7 @@ telescope.setup({
 })
 telescope.load_extension("fzf")
 --- UNDO -------------------------------------------------------
+
 telescope.load_extension("undo")
 telescope.setup({
 	extensions = {
@@ -92,13 +106,8 @@ require("telekasten").setup({ home = vim.fn.expand("~/Notes") })
 --- KEYMAPS -------------------------------------------------------
 vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>")
 vim.keymap.set("n", "<leader>o", "<cmd>Telekasten find_notes<cr>")
-vim.keymap.set(
-	"n",
-	"<leader>fr",
-	[[<cmd>lua require('telescope').extensions.recent_files.pick()<CR>]],
-	{ noremap = true, silent = true }
-)
 vim.keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<CR>")
+vim.keymap.set("n", "<leader>fr", ":Telescope frecency<CR>")
 -- Search
 vim.keymap.set("n", "<c-f>", ":Telescope fd<CR>")
 vim.keymap.set("n", "<leader>s", ":Telescope live_grep<CR>")

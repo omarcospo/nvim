@@ -93,11 +93,11 @@ require("lazy").setup({
 	--- looker
 	{ "nvim-telescope/telescope.nvim", event = "VeryLazy" },
 	{ "debugloop/telescope-undo.nvim" },
-	{ "smartpde/telescope-recent-files" },
 	"nvim-telescope/telescope-ui-select.nvim",
 	{ "2kabhishek/nerdy.nvim", dependencies = { "stevearc/dressing.nvim" }, cmd = "Nerdy" },
 	{ "renerocksai/telekasten.nvim" },
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+	{ "nvim-telescope/telescope-frecency.nvim" },
 	--- lsp
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
