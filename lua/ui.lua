@@ -27,7 +27,5 @@ require("mini.indentscope").setup({
 --- HIGHLIGHT COLORS AND TODOS -------------------------------------------------------
 local hipatterns = require("mini.hipatterns")
 hipatterns.setup({
-	highlighters = {
-		hex_color = hipatterns.gen_highlighter.hex_color(),
-	},
+	highlighters = { hex_color = hipatterns.gen_highlighter.hex_color() },
 })

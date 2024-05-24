@@ -1,3 +1,4 @@
+-- LSP
 --- TREESITTER -------------------------------------------------------
 require("nvim-treesitter.configs").setup({
 	sync_install = false,
@@ -19,6 +20,8 @@ require("conform").setup({
 		jsonc = { "prettier" },
 		css = { "prettier" },
 		go = { "gofmt" },
+		html = { "prettier" },
+		svg = { "prettier" },
 	},
 	format_on_save = {
 		timeout_ms = 500,
@@ -61,7 +64,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 })
 lsp.typst_lsp.setup({
 	settings = {
-		exportPdf = "onType", -- Choose onType, onSave or never.
+		exportPdf = "onType",
 		format = {
 			formatting_options = nil,
 			timeout_ms = nil,

@@ -14,10 +14,6 @@ local load = function(mod)
 	require(mod)
 end
 --- NVIM API --------------------------------------------------------
-vim.api.nvim_create_autocmd("FileWritePost", {
-	pattern = "*.lua",
-	command = "silent source $MYVIMRC",
-})
 vim.keymap.set("n", "<c-,>", ":silent source $MYVIMRC<cr>")
 ----- LAZY ------------------------------------------------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -35,6 +31,41 @@ vim.opt.rtp:prepend(lazypath)
 --- ALL PLUGINS -------------------------------------------------------
 require("lazy").setup({
 	profiling = { loader = true, require = true },
+	defaults = { version = false },
+	performance = {
+		rtp = {
+			-- disable some rtp plugins
+			disabled_plugins = {
+				"2html_plugin",
+				"tohtml",
+				"getscript",
+				"getscriptPlugin",
+				"gzip",
+				"logipat",
+				"netrw",
+				"netrwPlugin",
+				"netrwSettings",
+				"netrwFileHandlers",
+				"matchit",
+				"tar",
+				"tarPlugin",
+				"rrhelper",
+				"spellfile_plugin",
+				"vimball",
+				"vimballPlugin",
+				"zip",
+				"zipPlugin",
+				"tutor",
+				"rplugin",
+				"syntax",
+				"synmenu",
+				"optwin",
+				"compiler",
+				"bugreport",
+				"ftplugin",
+			},
+		},
+	},
 	--- defaults
 	"nvim-lua/plenary.nvim",
 	{ "mateuszwieloch/automkdir.nvim", event = "VeryLazy" },
@@ -50,6 +81,7 @@ require("lazy").setup({
 	--- completion
 	{
 		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
 		dependencies = { "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "onsails/lspkind.nvim" },
 	},
 	{ "FelipeLema/cmp-async-path", url = "https://codeberg.org/FelipeLema/cmp-async-path.git" },
@@ -85,7 +117,13 @@ require("lazy").setup({
 		end,
 	},
 	--- languages
-	{ "nvim-treesitter/nvim-treesitter", version = "*" },
+	{
+		"nvim-treesitter/nvim-treesitter",
+		version = "*",
+		event = { "BufReadPost", "BufNewFile" },
+		cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+		build = ":TSUpdate",
+	},
 	{ "kaarmu/typst.vim", ft = "typst" },
 	{ "michaelb/sniprun", cmd = "SnipRun", build = "./install.sh" },
 	"pappasam/nvim-repl",

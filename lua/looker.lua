@@ -5,6 +5,16 @@ telescope.setup({
 		prompt_prefix = "   ",
 		selection_caret = "   ",
 		initial_mode = "insert",
+		vimgrep_arguments = {
+			"rg",
+			"-L",
+			"--color=never",
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case",
+		},
 		selection_strategy = "reset",
 		sorting_strategy = "ascending",
 		layout_strategy = "horizontal",
@@ -58,7 +68,6 @@ telescope.setup({
 			override_generic_sorter = true, -- override the generic sorter
 			override_file_sorter = true, -- override the file sorter
 			case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-			-- the default case_mode is "smart_case"
 		},
 	},
 })
@@ -91,6 +100,7 @@ vim.keymap.set(
 )
 vim.keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<CR>")
 -- Search
+vim.keymap.set("n", "<c-f>", ":Telescope fd<CR>")
 vim.keymap.set("n", "<leader>s", ":Telescope live_grep<CR>")
 vim.keymap.set("n", "<leader>h", ":Telescope help_tags<CR>")
 vim.keymap.set("n", "<leader>a", ":Telescope current_buffer_fuzzy_find<CR>")

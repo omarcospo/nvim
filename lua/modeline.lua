@@ -41,9 +41,9 @@ local config = {
 		section_separators = "",
 		theme = {
 			normal = { c = { fg = colors.fg, bg = colors.bg } },
-			inactive = { c = { fg = colors.fg, bg = colors.bg } },
+			inactive = { c = { fg = colors.fg, bg = "#282828" } },
 		},
-		disabled_filetypes = { "neo-tree", "toggleterm" },
+		disabled_filetypes = { "NvimTree", "toggleterm" },
 	},
 	sections = {
 		lualine_a = {},
@@ -81,17 +81,22 @@ ins_left({
 	color = { fg = colors.aqua, gui = "bold" },
 })
 
-ins_left({ "searchcount" })
+ins_left({
+	"branch",
+	icon = "",
+	color = { fg = colors.orange, gui = "bold" },
+})
 
 ins_left({
-	"diagnostics",
-	sources = { "nvim_diagnostic" },
-	symbols = { error = "󰈜 ", warn = "󰀧 ", info = "󰞋 " },
-	diagnostics_color = {
-		color_error = { fg = colors.red },
-		color_warn = { fg = colors.yellow },
-		color_info = { fg = colors.cyan },
+	"diff",
+	-- Is it me or the symbol for modified us really weird
+	symbols = { added = " ", modified = "󰝤 ", removed = " " },
+	diff_color = {
+		added = { fg = colors.aqua },
+		modified = { fg = colors.purple },
+		removed = { fg = colors.red },
 	},
+	cond = conditions.hide_in_width,
 })
 
 -- Insert mid section. You can make any number of sections in neovim :)
@@ -100,6 +105,17 @@ ins_left({
 	function()
 		return "%="
 	end,
+})
+
+ins_right({
+	"diagnostics",
+	sources = { "nvim_diagnostic" },
+	symbols = { error = "󰈜 ", warn = "󰀧 ", info = "󰞋 " },
+	diagnostics_color = {
+		color_error = { fg = colors.red },
+		color_warn = { fg = colors.yellow },
+		color_info = { fg = colors.cyan },
+	},
 })
 
 ins_right({
@@ -123,22 +139,6 @@ ins_right({
 	color = { fg = colors.fg, gui = "bold" },
 })
 
-ins_right({
-	"branch",
-	icon = "",
-	color = { fg = colors.orange, gui = "bold" },
-})
-
-ins_right({
-	"diff",
-	-- Is it me or the symbol for modified us really weird
-	symbols = { added = " ", modified = "󰝤 ", removed = " " },
-	diff_color = {
-		added = { fg = colors.aqua },
-		modified = { fg = colors.purple },
-		removed = { fg = colors.red },
-	},
-	cond = conditions.hide_in_width,
-})
+ins_right({ "searchcount" })
 
 lualine.setup(config)

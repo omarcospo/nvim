@@ -59,6 +59,7 @@ vim.opt.number = true -- show line numbers
 vim.opt.relativenumber = true -- show relative line numbers
 vim.opt.signcolumn = "yes"
 vim.opt.numberwidth = 3
+vim.opt.fillchars:append({ eob = " " })
 ----- NEOVIDE ------------------------------------------------------
 vim.opt.guifont = "IosevkaTerm_Nerd_Font:h15"
 vim.g.neovide_padding_top = 0
@@ -87,6 +88,26 @@ end)
 vim.keymap.set("n", "<C-->", function()
 	change_scale_factor(1 / 1.05)
 end)
+--- AUTOSAVE -------------------------------------------------------
+local function save()
+	local buf = vim.api.nvim_get_current_buf()
+
+	vim.api.nvim_buf_call(buf, function()
+		vim.cmd("silent! write")
+	end)
+end
+
+vim.api.nvim_create_augroup("AutoSave", {
+	clear = true,
+})
+
+vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+	callback = function()
+		save()
+	end,
+	pattern = "*",
+	group = "AutoSave",
+})
 --- KEYBOARD -------------------------------------------------------
 vim.keymap.set("n", "<leader><leader>", ":")
 ---- Pending operators
