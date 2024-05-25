@@ -1,7 +1,7 @@
 pcall(function()
   vim.loader.enable()
 end)
--- vim.deprecate = function() end -- Disable deprecation warnings
+vim.deprecate = function() end -- Disable deprecation warnings
 local ok, wf = pcall(require, "vim.lsp._watchfiles")
 if ok then
   wf._watchfunc = function()
