@@ -131,7 +131,6 @@ require("lazy").setup({
   { "zeioth/garbage-day.nvim", event = "LspAttach" },
   { "MysticalDevil/inlay-hints.nvim", event = "LspAttach" },
   --- applications
-  { "sindrets/diffview.nvim" },
   { "NeogitOrg/neogit", cmd = "Neogit" },
   { "codota/tabnine-nvim", build = "./dl_binaries.sh" },
   { "akinsho/toggleterm.nvim", version = "*", config = true, cmd = "ToggleTerm" },
