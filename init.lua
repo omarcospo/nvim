@@ -135,11 +135,10 @@ require("lazy").setup({
 	{ "sindrets/diffview.nvim" },
 	{ "NeogitOrg/neogit", cmd = "Neogit" },
 	{ "codota/tabnine-nvim", build = "./dl_binaries.sh" },
-	{ "akinsho/toggleterm.nvim", event = "VeryLazy" },
+	{ "akinsho/toggleterm.nvim", version = "*", config = true },
 	{ "is0n/fm-nvim", cmd = "Lf" },
 	"TobinPalmer/rayso.nvim",
 	"andweeb/presence.nvim",
-	"numToStr/FTerm.nvim",
 	{
 		"chrisgrieser/nvim-tinygit",
 		ft = { "git_rebase", "gitcommit" },

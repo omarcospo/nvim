@@ -31,26 +31,30 @@ require("fm-nvim").setup({
 })
 vim.keymap.set("n", "<leader>ff", ":Lf<CR>")
 ---- TERM  -------------------------------------------------------
-require("FTerm").setup({
-	border = "rounded",
-	dimensions = {
-		height = 0.9,
-		width = 0.9,
-	},
-})
----
-vim.keymap.set("n", "<leader>v", '<CMD>lua require("FTerm").toggle()<CR>')
-vim.keymap.set("t", "<C-v>", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
----
 vim.api.nvim_create_autocmd("TermOpen", {
 	pattern = "*",
 	callback = function()
-		-- vim.keymap.set({ "t", "n" }, "<C-v>", "<cmd>ToggleTerm<CR>", { buffer = true, silent = true })
 		vim.opt_local.cursorline = nocursorline
 		vim.opt_local.number = false
 		vim.opt_local.relativenumber = false
+		vim.keymap.set({ "t", "n" }, "<C-v>", "<C-\\><C-n><cmd>ToggleTerm<CR>", { buffer = true, silent = true })
+		vim.keymap.set("t", "<C-q>", "<C-\\><C-n>:normal<CR>", { buffer = true, silent = true })
+		vim.cmd("startinsert!")
 	end,
 })
+----------------------------------------------------------------------
+require("toggleterm").setup({
+	shade_filetypes = {},
+	autochdir = true,
+	terminal_mappings = true,
+	persist_size = true,
+	persist_mode = true,
+	close_on_exit = true,
+	auto_scroll = true,
+	direction = "horizontal",
+	float_opts = { border = "rounded" },
+})
+vim.keymap.set("n", "<leader>v", "<cmd>ToggleTerm<CR>", { remap = true }) --- toggle outside terminal
 ---- TABNINE  -------------------------------------------------------
 require("tabnine").setup({
 	disable_auto_comment = true,
@@ -103,11 +107,3 @@ require("presence").setup({
 	workspace_text = "Working on %s",
 	line_number_text = "Line %s out of %s",
 })
----- TINYGIT -------------------------------------------------------
-vim.keymap.set("n", "ga", "<cmd>Gitsigns add_hunk<CR>") -- gitsigns.nvim
-vim.keymap.set("n", "gv", function()
-	require("tinygit").smartCommit()
-end)
-vim.keymap.set("n", "gp", function()
-	require("tinygit").push()
-end)
