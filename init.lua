@@ -99,6 +99,7 @@ require("lazy").setup({
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	{ "nvim-telescope/telescope-frecency.nvim" },
 	--- lsp
+	"mfussenegger/nvim-lint",
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
 	{ "neovim/nvim-lspconfig", dependencies = { "hrsh7th/cmp-nvim-lsp" } },

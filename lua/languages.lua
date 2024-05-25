@@ -1,4 +1,3 @@
---- LSP
 ---- TREESITTER -------------------------------------------------------
 require("nvim-treesitter.configs").setup({
 	sync_install = false,
@@ -29,26 +28,18 @@ require("conform").setup({
 	},
 	notify_on_error = false,
 })
----- PYTHON -------------------------------------------------------
-lsp.ruff_lsp.setup({})
-lsp.pylsp.setup({
-	settings = {
-		pylsp = {
-			plugins = {
-				ruff = { enabled = true },
-				pycodestyle = { enabled = false },
-				pyflakes = { enabled = false },
-				mccabe = { enabled = false },
-				flake8 = { enabled = false },
-				mypy = { enabled = false },
-			},
-		},
-		format = {
-			formatting_options = nil,
-			timeout_ms = nil,
-		},
-	},
+--------- LINTING --------------------------------
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+	callback = function()
+		require("lint").try_lint()
+	end,
 })
+require("lint").linters_by_ft = {
+	python = { "ruff" },
+	sh = { "dash" },
+}
+---- PYTHON -------------------------------------------------------
+lsp.pylsp.setup({})
 ---- PYTHON REPL -------------------------------------------------------
 vim.g["repl_filetype_commands"] = {
 	python = "~/.local/python/bin/ipython --no-autoindent",
