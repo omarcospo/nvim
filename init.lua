@@ -1,7 +1,7 @@
 pcall(function()
   vim.loader.enable()
 end) -- Faster startup
-vim.deprecate = function() end -- Disable deprecation warnings
+-- vim.deprecate = function() end -- Disable deprecation warnings
 local ok, wf = pcall(require, "vim.lsp._watchfiles")
 if ok then
   wf._watchfunc = function()
@@ -120,6 +120,7 @@ require("lazy").setup({
   {
     "nvim-treesitter/nvim-treesitter",
     version = "*",
+    branch = "main",
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",

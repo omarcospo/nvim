@@ -169,3 +169,6 @@ vim.keymap.set("v", "<C-.>", ":SnipRun<CR>")
 vim.keymap.set("n", "gr", function()
   return ":%s/" .. vim.fn.expand("<cword>") .. "//g<left><left>"
 end, { desc = "Replace word under cursor", expr = true })
+--- Window size
+vim.keymap.set("n", "<left>", "<c-w>5>")
+vim.keymap.set("n", "<right>", "<c-w>5<")

@@ -37,8 +37,10 @@ vim.api.nvim_create_autocmd("TermOpen", {
     vim.opt_local.cursorline = nocursorline
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
+    vim.opt_local.scrolloff = 0
     vim.keymap.set({ "t", "n" }, "<C-v>", "<C-\\><C-n><cmd>ToggleTerm<CR>", { buffer = true, silent = true })
-    vim.keymap.set("t", "<C-q>", "<C-\\><C-n>:normal<CR>", { buffer = true, silent = true })
+    vim.keymap.set("t", "<c-q>", "<c-\\><c-n>")
+    vim.keymap.set("t", "<esc>", "<c-\\><c-n>")
     vim.cmd("startinsert!")
   end,
 })
