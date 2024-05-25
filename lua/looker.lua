@@ -1,5 +1,5 @@
 local telescope = require("telescope")
---- TELESCOPE -------------------------------------------------------
+---- TELESCOPE -------------------------------------------------------
 telescope.setup({
 	defaults = {
 		prompt_prefix = "   ",
@@ -59,7 +59,7 @@ telescope.setup({
 	},
 })
 telescope.load_extension("ui-select")
---- RECENT FILES -------------------------------------------------------
+---- RECENT FILES -------------------------------------------------------
 telescope.setup({
 	extensions = {
 		frecency = {
@@ -73,19 +73,19 @@ telescope.setup({
 		},
 	},
 })
---- FZF NATIVE -------------------------------------------------------
+---- FZF NATIVE -------------------------------------------------------
 telescope.setup({
 	extensions = {
 		fzf = {
-			fuzzy = true, -- false will only do exact matching
-			override_generic_sorter = true, -- override the generic sorter
-			override_file_sorter = true, -- override the file sorter
-			case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+			fuzzy = true, --- false will only do exact matching
+			override_generic_sorter = true, --- override the generic sorter
+			override_file_sorter = true, --- override the file sorter
+			case_mode = "smart_case", --- or "ignore_case" or "respect_case"
 		},
 	},
 })
 telescope.load_extension("fzf")
---- UNDO -------------------------------------------------------
+---- UNDO -------------------------------------------------------
 
 telescope.load_extension("undo")
 telescope.setup({
@@ -101,14 +101,14 @@ telescope.setup({
 		},
 	},
 })
---- NOTE TAKING -------------------------------------------------------
+---- NOTE TAKING -------------------------------------------------------
 require("telekasten").setup({ home = vim.fn.expand("~/Notes") })
---- KEYMAPS -------------------------------------------------------
+---- KEYMAPS -------------------------------------------------------
 vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>")
 vim.keymap.set("n", "<leader>o", "<cmd>Telekasten find_notes<cr>")
 vim.keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<CR>")
 vim.keymap.set("n", "<leader>fr", ":Telescope frecency<CR>")
--- Search
+--- Search
 vim.keymap.set("n", "<c-f>", ":Telescope fd<CR>")
 vim.keymap.set("n", "<leader>s", ":Telescope live_grep<CR>")
 vim.keymap.set("n", "<leader>h", ":Telescope help_tags<CR>")

@@ -1,9 +1,9 @@
 local color = vim.api.nvim_set_hl
---- COMPLETION -------------------------------------------------------
+---- COMPLETION -------------------------------------------------------
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 local snippy = require("snippy")
----
+----
 require("cmp").setup({
 	sources = {
 		{ name = "nvim_lsp", max_item_count = 10, priority = 1000 },
@@ -64,10 +64,10 @@ require("cmp").setup({
 		end, { "i", "s" }),
 	}),
 })
--- AUTOPAIRS
+--- AUTOPAIRS
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 local cmp = require("cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
---- Borders
-color(0, "FloatBorder", { bg = "NONE", fg = "#ADADAD" }) -- BG is Padding color and FG border
-color(0, "NormalFloat", { bg = "NONE" }) -- Documentation background
+---- Borders
+color(0, "FloatBorder", { bg = "NONE", fg = "#ADADAD" }) --- BG is Padding color and FG border
+color(0, "NormalFloat", { bg = "NONE" }) --- Documentation background

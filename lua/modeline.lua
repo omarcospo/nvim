@@ -1,6 +1,6 @@
 local lualine = require("lualine")
 
--- Function to get a color from a highlight group
+--- Function to get a color from a highlight group
 local function get_color(hl, part)
 	local result = vim.api.nvim_get_hl_by_name(hl, true)
 	if result[part] then
@@ -34,7 +34,7 @@ local conditions = {
 	end,
 }
 
--- Config
+--- Config
 local config = {
 	options = {
 		component_separators = "",
@@ -63,23 +63,17 @@ local config = {
 	},
 }
 
--- Inserts a component in lualine_c at left section
+--- Inserts a component in lualine_c at left section
 local function ins_left(component)
 	table.insert(config.sections.lualine_c, component)
 end
 
--- Inserts a component in lualine_x at right section
+--- Inserts a component in lualine_x at right section
 local function ins_right(component)
 	table.insert(config.sections.lualine_x, component)
 end
 
 ins_left("mode")
-
-ins_left({
-	"filename",
-	cond = conditions.buffer_not_empty,
-	color = { fg = colors.aqua, gui = "bold" },
-})
 
 ins_left({
 	"branch",
@@ -99,23 +93,12 @@ ins_left({
 	cond = conditions.hide_in_width,
 })
 
--- Insert mid section. You can make any number of sections in neovim :)
--- for lualine it's any number greater then 2
+--- Insert mid section. You can make any number of sections in neovim :)
+--- for lualine it's any number greater then 2
 ins_left({
 	function()
 		return "%="
 	end,
-})
-
-ins_right({
-	"diagnostics",
-	sources = { "nvim_diagnostic" },
-	symbols = { error = "󰈜 ", warn = "󰀧 ", info = "󰞋 " },
-	diagnostics_color = {
-		color_error = { fg = colors.red },
-		color_warn = { fg = colors.yellow },
-		color_info = { fg = colors.cyan },
-	},
 })
 
 ins_right({
@@ -138,7 +121,5 @@ ins_right({
 	icon = "󰒔",
 	color = { fg = colors.fg, gui = "bold" },
 })
-
-ins_right({ "searchcount" })
 
 lualine.setup(config)

@@ -14,7 +14,7 @@ local load = function(mod)
 	require(mod)
 end
 --- NVIM API --------------------------------------------------------
-vim.keymap.set("n", "<c-,>", ":silent source $MYVIMRC<cr>")
+vim.keymap.set("n", "<c-,>", ":source $MYVIMRC<cr>")
 ----- LAZY ------------------------------------------------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -76,6 +76,8 @@ require("lazy").setup({
 	{ "nvim-tree/nvim-web-devicons", lazy = true },
 	{ "echasnovski/mini.indentscope", event = "VeryLazy" },
 	{ "brenoprata10/nvim-highlight-colors", event = "VeryLazy" },
+	"b0o/incline.nvim",
+	"nanozuki/tabby.nvim",
 	--- modeline
 	{ "nvim-lualine/lualine.nvim", lazy = false, priority = 1000 },
 	--- completion
@@ -91,7 +93,7 @@ require("lazy").setup({
 	"windwp/nvim-autopairs",
 	{ "tzachar/cmp-tabnine", build = "./install.sh" },
 	--- looker
-	{ "nvim-telescope/telescope.nvim", event = "VeryLazy" },
+	{ "nvim-telescope/telescope.nvim", event = "VeryLazy", cmd = "Telescope" },
 	{ "debugloop/telescope-undo.nvim" },
 	"nvim-telescope/telescope-ui-select.nvim",
 	{ "2kabhishek/nerdy.nvim", dependencies = { "stevearc/dressing.nvim" }, cmd = "Nerdy" },
@@ -135,7 +137,6 @@ require("lazy").setup({
 	{ "codota/tabnine-nvim", build = "./dl_binaries.sh" },
 	{ "akinsho/toggleterm.nvim", event = "VeryLazy" },
 	{ "is0n/fm-nvim", cmd = "Lf" },
-	{ "HakonHarnes/img-clip.nvim", event = "VeryLazy", keys = { { "<leader>p", "<cmd>PasteImage<cr>" } } },
 	"TobinPalmer/rayso.nvim",
 	"andweeb/presence.nvim",
 	--- editing
@@ -165,6 +166,7 @@ require("session_manager").setup({
 --- Modules -------------------------------------------------------
 load("ui")
 load("defaults")
+load("statusline")
 load("modeline")
 load("completion")
 load("looker")

@@ -1,4 +1,4 @@
---- FILE MANAGER -------------------------------------------------------
+---- FILE MANAGER -------------------------------------------------------
 require("fm-nvim").setup({
 	edit_cmd = "edit",
 	on_close = {},
@@ -30,7 +30,7 @@ require("fm-nvim").setup({
 	broot_conf = vim.fn.stdpath("data") .. "/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson",
 })
 vim.keymap.set("n", "<leader>ff", ":Lf<CR>")
---- TERMINAL -------------------------------------------------------
+---- TERMINAL -------------------------------------------------------
 require("toggleterm").setup({
 	hide_numbers = true,
 	shade_filetypes = {},
@@ -49,9 +49,9 @@ vim.api.nvim_create_autocmd("TermOpen", {
 		vim.opt_local.cursorline = nocursorline
 	end,
 })
-vim.keymap.set("n", "<leader>v", "<cmd>ToggleTerm<CR>", { remap = true }) -- toggle outside terminal
-vim.keymap.set("t", "<C-v>", "<cmd>ToggleTerm<CR>") -- toggle inside terminal
---- TABNINE  -------------------------------------------------------
+vim.keymap.set("n", "<leader>v", "<cmd>ToggleTerm<CR>", { remap = true }) --- toggle outside terminal
+vim.keymap.set("t", "<C-v>", "<cmd>ToggleTerm<CR>") --- toggle inside terminal
+---- TABNINE  -------------------------------------------------------
 require("tabnine").setup({
 	disable_auto_comment = true,
 	accept_keymap = "<C-f>",
@@ -61,7 +61,7 @@ require("tabnine").setup({
 	exclude_filetypes = { "TelescopePrompt", "NvimTree" },
 	log_file_path = nil,
 })
---- NEOGIT -------------------------------------------------------
+---- NEOGIT -------------------------------------------------------
 require("neogit").setup({
 	mappings = {
 		popup = {
@@ -72,18 +72,18 @@ require("neogit").setup({
 })
 vim.keymap.set("n", "<leader>gg", "<cmd>Neogit cwd=%:p:h<cr>")
 vim.keymap.set("n", "<leader>gc", "<cmd>Neogit cwd=~/.dotfiles/<cr>")
---- CODE SCREENSHOT -------------------------------------------------------
+---- CODE SCREENSHOT -------------------------------------------------------
 require("rayso").setup({
 	open_cmd = "org.mozilla.firefox",
 	options = {
-		background = false, -- If the screenshot should have a background.
-		padding = 16, -- The default padding that the screenshot will have.
-		theme = "sunset", -- Theme
-		title = "Untitled", -- Default title
+		background = false, --- If the screenshot should have a background.
+		padding = 16, --- The default padding that the screenshot will have.
+		theme = "sunset", --- Theme
+		title = "Untitled", --- Default title
 	},
 })
 vim.keymap.set("v", "<leader>l", require("lib.create").create_snippet)
---- DISCORD ----
+---- DISCORD ----
 require("presence").setup({
 	auto_update = true,
 	neovim_image_text = "The One True Text Editor",

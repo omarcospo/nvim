@@ -1,5 +1,5 @@
--- LSP
---- TREESITTER -------------------------------------------------------
+--- LSP
+---- TREESITTER -------------------------------------------------------
 require("nvim-treesitter.configs").setup({
 	sync_install = false,
 	auto_install = true,
@@ -9,7 +9,7 @@ require("nvim-treesitter.configs").setup({
 		additional_vim_regex_highlighting = false,
 	},
 })
---- FORMATTER -------------------------------------------------------
+---- FORMATTER -------------------------------------------------------
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
@@ -29,7 +29,7 @@ require("conform").setup({
 	},
 	notify_on_error = false,
 })
---- PYTHON -------------------------------------------------------
+---- PYTHON -------------------------------------------------------
 lsp.ruff_lsp.setup({})
 lsp.pylsp.setup({
 	settings = {
@@ -49,7 +49,7 @@ lsp.pylsp.setup({
 		},
 	},
 })
---- PYTHON REPL -------------------------------------------------------
+---- PYTHON REPL -------------------------------------------------------
 vim.g["repl_filetype_commands"] = {
 	python = "~/.local/python/bin/ipython --no-autoindent",
 }
@@ -57,7 +57,7 @@ vim.keymap.set("n", "<leader>rr", ":ReplToggle<CR>")
 vim.keymap.set("n", "<leader>rl", ":ReplClear<CR>")
 vim.keymap.set("n", "<leader>rc", ":ReplRunCell<CR>")
 vim.keymap.set("v", "<leader>rr", "<Plug>ReplSendVisual")
-------- TYPST ----------------------------------------------------
+-------- TYPST ----------------------------------------------------
 vim.api.nvim_create_autocmd("BufWinEnter", {
 	pattern = "*.typ",
 	command = "set filetype=typst",
@@ -71,7 +71,7 @@ lsp.typst_lsp.setup({
 		},
 	},
 })
-------- TYPESCRIPT ----------------------------------------------------
+-------- TYPESCRIPT ----------------------------------------------------
 require("typescript-tools").setup({
 	settings = {
 		tsserver_file_preferences = {
