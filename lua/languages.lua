@@ -1,3 +1,4 @@
+require("inlay-hints").setup()
 ---- TREESITTER -------------------------------------------------------
 require("nvim-treesitter.configs").setup({
   sync_install = false,

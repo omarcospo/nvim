@@ -1,6 +1,6 @@
 pcall(function()
   vim.loader.enable()
-end) -- Faster startup
+end)
 -- vim.deprecate = function() end -- Disable deprecation warnings
 local ok, wf = pcall(require, "vim.lsp._watchfiles")
 if ok then
@@ -66,57 +66,43 @@ require("lazy").setup({
       },
     },
   },
-  --- defaults
+  --- Dependencies
   "nvim-lua/plenary.nvim",
+  { "nvim-tree/nvim-web-devicons" },
+  --- Defaults
   { "mateuszwieloch/automkdir.nvim", event = "VeryLazy" },
-  "Shatur/neovim-session-manager",
-  --- ui
-  { "sainnhe/gruvbox-material", priority = 100 },
-  { "nvim-tree/nvim-web-devicons", lazy = true },
-  { "brenoprata10/nvim-highlight-colors", event = "VeryLazy" },
-  "b0o/incline.nvim",
-  "nanozuki/tabby.nvim",
+  { "Shatur/neovim-session-manager" },
+  --- Fast UI
+  { "sainnhe/gruvbox-material", lazy = false, priority = 101 },
+  { "nvim-lualine/lualine.nvim", lazy = false, priority = 100 },
+  { "b0o/incline.nvim", lazy = false, priority = 100 },
+  { "echasnovski/mini.nvim", lazy = false, priority = 100, version = false },
   --- modeline
-  { "nvim-lualine/lualine.nvim", lazy = false, priority = 1000 },
+  { "brenoprata10/nvim-highlight-colors", event = "VeryLazy" },
   --- completion
   {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
-    dependencies = { "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "onsails/lspkind.nvim" },
+    dependencies = { "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "onsails/lspkind.nvim", "windwp/nvim-autopairs" },
   },
   { "FelipeLema/cmp-async-path", url = "https://codeberg.org/FelipeLema/cmp-async-path.git" },
+  --- Snippet
   { "dcampos/nvim-snippy", event = "VeryLazy" },
   { "dcampos/cmp-snippy", event = "VeryLazy" },
   { "honza/vim-snippets", event = "VeryLazy" },
-  "windwp/nvim-autopairs",
   { "tzachar/cmp-tabnine", build = "./install.sh" },
   --- looker
   { "nvim-telescope/telescope.nvim", event = "VeryLazy", cmd = "Telescope" },
-  { "debugloop/telescope-undo.nvim" },
+  { "debugloop/telescope-undo.nvim", cmd = "Telescope undo" },
   "nvim-telescope/telescope-ui-select.nvim",
   { "2kabhishek/nerdy.nvim", dependencies = { "stevearc/dressing.nvim" }, cmd = "Nerdy" },
-  { "renerocksai/telekasten.nvim" },
+  { "renerocksai/telekasten.nvim", cmd = "Telekasten find_notes" },
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   { "nvim-telescope/telescope-frecency.nvim" },
-  --- lsp
+  --- Language support
+  --- Formatting and agnostic
+  { "stevearc/conform.nvim", event = { "BufReadPost", "BufNewFile" } },
   "mfussenegger/nvim-lint",
-  "williamboman/mason.nvim",
-  "williamboman/mason-lspconfig.nvim",
-  { "neovim/nvim-lspconfig", dependencies = { "hrsh7th/cmp-nvim-lsp" } },
-  { "ray-x/lsp_signature.nvim", event = "LspAttach" },
-  { "LukasPietzschmann/boo.nvim", event = "LspAttach" },
-  { "stevearc/conform.nvim" },
-  { "folke/trouble.nvim", event = "LspAttach" },
-  { "dnlhc/glance.nvim", event = "LspAttach" },
-  { "zeioth/garbage-day.nvim", event = "LspAttach" },
-  {
-    "MysticalDevil/inlay-hints.nvim",
-    event = "LspAttach",
-    config = function()
-      require("inlay-hints").setup()
-    end,
-  },
-  --- languages
   {
     "nvim-treesitter/nvim-treesitter",
     version = "*",
@@ -125,23 +111,36 @@ require("lazy").setup({
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
   },
-  { "kaarmu/typst.vim", ft = "typst" },
   { "michaelb/sniprun", cmd = "SnipRun", build = "./install.sh" },
+  --- Python
   "pappasam/nvim-repl",
-  "windwp/nvim-ts-autotag",
-  "pmizio/typescript-tools.nvim",
+  --- Typst
+  { "kaarmu/typst.vim", ft = "typst" },
+  --- Typescript
+  { "windwp/nvim-ts-autotag", ft = "typescript" },
+  { "pmizio/typescript-tools.nvim", ft = "typescript" },
+  ------ LSP
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
+  { "neovim/nvim-lspconfig", dependencies = { "hrsh7th/cmp-nvim-lsp" } },
+  -- Addons
+  { "ray-x/lsp_signature.nvim", event = "LspAttach" },
+  { "LukasPietzschmann/boo.nvim", event = "LspAttach" },
+  { "folke/trouble.nvim", event = "LspAttach" },
+  { "dnlhc/glance.nvim", event = "LspAttach" },
+  { "zeioth/garbage-day.nvim", event = "LspAttach" },
+  { "MysticalDevil/inlay-hints.nvim", event = "LspAttach" },
   --- applications
   { "sindrets/diffview.nvim" },
   { "NeogitOrg/neogit", cmd = "Neogit" },
   { "codota/tabnine-nvim", build = "./dl_binaries.sh" },
-  { "akinsho/toggleterm.nvim", version = "*", config = true },
+  { "akinsho/toggleterm.nvim", version = "*", config = true, cmd = "ToggleTerm" },
   { "is0n/fm-nvim", cmd = "Lf" },
   "TobinPalmer/rayso.nvim",
-  "andweeb/presence.nvim",
+  { "andweeb/presence.nvim", event = "VeryLazy" },
   --- editing
   { "phaazon/hop.nvim", version = false },
   { "MagicDuck/grug-far.nvim", cmd = "GrugFar" },
-  { "echasnovski/mini.nvim", version = false },
   { "kevinhwang91/nvim-ufo", dependencies = "kevinhwang91/promise-async" },
 })
 vim.keymap.set("n", "<c-1>", ":Lazy<cr>")

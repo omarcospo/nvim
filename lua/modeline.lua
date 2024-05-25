@@ -73,23 +73,6 @@ end
 ins_left("mode")
 
 ins_left({
-  "branch",
-  icon = "",
-  color = { fg = colors.orange, gui = "bold" },
-})
-
-ins_left({
-  "diff",
-  -- Is it me or the symbol for modified us really weird
-  symbols = { added = " ", modified = "󰝤 ", removed = " " },
-  diff_color = {
-    added = { fg = colors.aqua },
-    modified = { fg = colors.purple },
-    removed = { fg = colors.red },
-  },
-  cond = conditions.hide_in_width,
-})
-ins_left({
   function()
     return "%="
   end,
