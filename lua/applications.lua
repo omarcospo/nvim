@@ -30,27 +30,27 @@ require("fm-nvim").setup({
 	broot_conf = vim.fn.stdpath("data") .. "/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson",
 })
 vim.keymap.set("n", "<leader>ff", ":Lf<CR>")
----- TERMINAL -------------------------------------------------------
-require("toggleterm").setup({
-	hide_numbers = true,
-	shade_filetypes = {},
-	autochdir = true,
-	start_in_insert = true,
-	terminal_mappings = true,
-	persist_size = true,
-	persist_mode = true,
-	close_on_exit = true,
-	auto_scroll = true,
+---- TERM  -------------------------------------------------------
+require("FTerm").setup({
+	border = "rounded",
+	dimensions = {
+		height = 0.9,
+		width = 0.9,
+	},
 })
+---
+vim.keymap.set("n", "<leader>v", '<CMD>lua require("FTerm").toggle()<CR>')
+vim.keymap.set("t", "<C-v>", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
+---
 vim.api.nvim_create_autocmd("TermOpen", {
 	pattern = "*",
 	callback = function()
-		vim.keymap.set({ "t", "n" }, "<C-v>", "<cmd>ToggleTerm<CR>", { buffer = true, silent = true })
+		-- vim.keymap.set({ "t", "n" }, "<C-v>", "<cmd>ToggleTerm<CR>", { buffer = true, silent = true })
 		vim.opt_local.cursorline = nocursorline
+		vim.opt_local.number = false
+		vim.opt_local.relativenumber = false
 	end,
 })
-vim.keymap.set("n", "<leader>v", "<cmd>ToggleTerm<CR>", { remap = true }) --- toggle outside terminal
-vim.keymap.set("t", "<C-v>", "<cmd>ToggleTerm<CR>") --- toggle inside terminal
 ---- TABNINE  -------------------------------------------------------
 require("tabnine").setup({
 	disable_auto_comment = true,
@@ -103,3 +103,11 @@ require("presence").setup({
 	workspace_text = "Working on %s",
 	line_number_text = "Line %s out of %s",
 })
+---- TINYGIT -------------------------------------------------------
+vim.keymap.set("n", "ga", "<cmd>Gitsigns add_hunk<CR>") -- gitsigns.nvim
+vim.keymap.set("n", "gv", function()
+	require("tinygit").smartCommit()
+end)
+vim.keymap.set("n", "gp", function()
+	require("tinygit").push()
+end)

@@ -23,7 +23,7 @@ require("mini.indentscope").setup({
 		delay = 30,
 		priority = 2,
 	},
-	symbol = "│",
+	symbol = "▕",
 })
 ---- HIGHLIGHT COLORS AND TODOS -------------------------------------------------------
 local hipatterns = require("mini.hipatterns")

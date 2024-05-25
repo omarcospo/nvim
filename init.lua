@@ -139,6 +139,16 @@ require("lazy").setup({
 	{ "is0n/fm-nvim", cmd = "Lf" },
 	"TobinPalmer/rayso.nvim",
 	"andweeb/presence.nvim",
+	"numToStr/FTerm.nvim",
+	{
+		"chrisgrieser/nvim-tinygit",
+		ft = { "git_rebase", "gitcommit" },
+		dependencies = {
+			"stevearc/dressing.nvim",
+			"nvim-telescope/telescope.nvim",
+			"rcarriga/nvim-notify",
+		},
+	},
 	--- editing
 	{ "phaazon/hop.nvim", version = false },
 	{ "filipdutescu/renamer.nvim" },

@@ -104,6 +104,17 @@ if vim.g.neovide then
 		change_scale_factor(1 / 1.05)
 	end)
 end
+---- AUTOCHDIR -------------------------------------------------------
+vim.api.nvim_create_augroup("WorkingDirectory", { clear = true })
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+	pattern = { "*.*" },
+	callback = function()
+		local path = vim.fn.expand("%:h") .. "/"
+		path = "cd " .. path
+		vim.cmd(path)
+	end,
+	group = "WorkingDirectory",
+})
 ---- AUTOSAVE -------------------------------------------------------
 local function save()
 	local buf = vim.api.nvim_get_current_buf()
