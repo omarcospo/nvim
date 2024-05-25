@@ -14,13 +14,6 @@ vim.keymap.set("n", "gd", [[<cmd>lua require('boo').boo()<CR>]], { noremap = tru
 require("glance").setup()
 vim.keymap.set("n", "gf", ":Glance references<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "gh", ":Glance definitions<CR>", { noremap = true, silent = true })
----- DEVDOCS -------------------------------------------------------
-require("nvim-devdocs").setup({
-	after_open = function(bufnr)
-		vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-q>", ":close<CR>", {})
-	end,
-})
-vim.keymap.set("n", "<leader>d", ":DevdocsOpenCurrentFloat<CR>")
 ---- DIAGNOSTICS LIST -------------------------------------------------------
 require("trouble").setup({
 	position = "left", --- position of the list can be: bottom, top, left, right
