@@ -1,105 +1,105 @@
 local telescope = require("telescope")
 ---- TELESCOPE -------------------------------------------------------
 telescope.setup({
-	defaults = {
-		prompt_prefix = "   ",
-		selection_caret = "   ",
-		initial_mode = "insert",
-		vimgrep_arguments = {
-			"rg",
-			"-L",
-			"--color=never",
-			"--no-heading",
-			"--with-filename",
-			"--line-number",
-			"--column",
-			"--smart-case",
-		},
-		selection_strategy = "reset",
-		sorting_strategy = "ascending",
-		layout_strategy = "horizontal",
-		layout_config = {
-			horizontal = {
-				prompt_position = "top",
-				preview_width = 0.55,
-				results_width = 0.8,
-			},
-			vertical = {
-				mirror = false,
-			},
-			width = 0.87,
-			height = 0.80,
-			preview_cutoff = 120,
-		},
-		mappings = {
-			i = {
-				["<C-q>"] = "close",
-				["<C-f>"] = "select_default",
-				["<C-j>"] = "move_selection_next",
-				["<C-k>"] = "move_selection_previous",
-			},
-		},
-	},
-	pickers = {
-		buffers = {
-			show_all_buffers = true,
-			sort_mru = true,
-			mappings = {
-				i = {
-					["<C-d>"] = "delete_buffer",
-				},
-			},
-		},
-		colorscheme = {
-			enable_preview = true,
-		},
-	},
-	extensions = {
-		["ui-select"] = { require("telescope.themes").get_dropdown({}) },
-	},
+  defaults = {
+    prompt_prefix = "   ",
+    selection_caret = "   ",
+    initial_mode = "insert",
+    vimgrep_arguments = {
+      "rg",
+      "-L",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+    },
+    selection_strategy = "reset",
+    sorting_strategy = "ascending",
+    layout_strategy = "horizontal",
+    layout_config = {
+      horizontal = {
+        prompt_position = "top",
+        preview_width = 0.55,
+        results_width = 0.8,
+      },
+      vertical = {
+        mirror = false,
+      },
+      width = 0.87,
+      height = 0.80,
+      preview_cutoff = 120,
+    },
+    mappings = {
+      i = {
+        ["<C-q>"] = "close",
+        ["<C-f>"] = "select_default",
+        ["<C-j>"] = "move_selection_next",
+        ["<C-k>"] = "move_selection_previous",
+      },
+    },
+  },
+  pickers = {
+    buffers = {
+      show_all_buffers = true,
+      sort_mru = true,
+      mappings = {
+        i = {
+          ["<C-d>"] = "delete_buffer",
+        },
+      },
+    },
+    colorscheme = {
+      enable_preview = true,
+    },
+  },
+  extensions = {
+    ["ui-select"] = { require("telescope.themes").get_dropdown({}) },
+  },
 })
 telescope.load_extension("ui-select")
 ---- RECENT FILES -------------------------------------------------------
 telescope.setup({
-	extensions = {
-		frecency = {
-			show_scores = false,
-			show_unindexed = false,
-			ignore_patterns = { "*.git/*", "*/tmp/*", "term:*" },
-			disable_devicons = false,
-			workspaces = {
-				["conf"] = "~/.config",
-			},
-		},
-	},
+  extensions = {
+    frecency = {
+      show_scores = false,
+      show_unindexed = false,
+      ignore_patterns = { "*.git/*", "*/tmp/*", "term:*" },
+      disable_devicons = false,
+      workspaces = {
+        ["conf"] = "~/.config",
+      },
+    },
+  },
 })
 ---- FZF NATIVE -------------------------------------------------------
 telescope.setup({
-	extensions = {
-		fzf = {
-			fuzzy = true, --- false will only do exact matching
-			override_generic_sorter = true, --- override the generic sorter
-			override_file_sorter = true, --- override the file sorter
-			case_mode = "smart_case", --- or "ignore_case" or "respect_case"
-		},
-	},
+  extensions = {
+    fzf = {
+      fuzzy = true, --- false will only do exact matching
+      override_generic_sorter = true, --- override the generic sorter
+      override_file_sorter = true, --- override the file sorter
+      case_mode = "smart_case", --- or "ignore_case" or "respect_case"
+    },
+  },
 })
 telescope.load_extension("fzf")
 ---- UNDO -------------------------------------------------------
 
 telescope.load_extension("undo")
 telescope.setup({
-	extensions = {
-		undo = {
-			mappings = {
-				i = {
-					["<cr>"] = require("telescope-undo.actions").yank_additions,
-					["<C-y>"] = require("telescope-undo.actions").yank_deletions,
-					["<C-r>"] = require("telescope-undo.actions").restore,
-				},
-			},
-		},
-	},
+  extensions = {
+    undo = {
+      mappings = {
+        i = {
+          ["<cr>"] = require("telescope-undo.actions").yank_additions,
+          ["<C-y>"] = require("telescope-undo.actions").yank_deletions,
+          ["<C-r>"] = require("telescope-undo.actions").restore,
+        },
+      },
+    },
+  },
 })
 ---- NOTE TAKING -------------------------------------------------------
 require("telekasten").setup({ home = vim.fn.expand("~/Notes") })

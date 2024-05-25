@@ -16,23 +16,23 @@ vim.keymap.set("n", "gf", ":Glance references<CR>", { noremap = true, silent = t
 vim.keymap.set("n", "gh", ":Glance definitions<CR>", { noremap = true, silent = true })
 ---- DIAGNOSTICS LIST -------------------------------------------------------
 require("trouble").setup({
-	position = "left", --- position of the list can be: bottom, top, left, right
-	indent_lines = false,
-	padding = false,
-	width = 70,
+  position = "left", --- position of the list can be: bottom, top, left, right
+  indent_lines = false,
+  padding = false,
+  width = 70,
 })
 vim.keymap.set("n", "<leader>n", ":TroubleToggle<cr>")
 ---- DIAGNOSTICS IN GUTTER WITH CUSTOM ICONS -------------------------------------------------------
 local signs = {
-	{ name = "DiagnosticSignError", text = "󰈜" },
-	{ name = "DiagnosticSignWarn", text = "󰀧" },
-	{ name = "DiagnosticSignHint", text = "󰞋" },
-	{ name = "DiagnosticSignInfo", text = "󰞋" },
+  { name = "DiagnosticSignError", text = "󰈜" },
+  { name = "DiagnosticSignWarn", text = "󰀧" },
+  { name = "DiagnosticSignHint", text = "󰞋" },
+  { name = "DiagnosticSignInfo", text = "󰞋" },
 }
 for _, sign in ipairs(signs) do
-	vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 end
 
 vim.diagnostic.config({
-	signs = { active = signs },
+  signs = { active = signs },
 })

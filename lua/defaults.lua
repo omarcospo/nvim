@@ -66,69 +66,69 @@ vim.opt.numberwidth = 3
 vim.opt.fillchars:append({ eob = " " }) --- hide symbols at end of buffer
 ------ NEOVIDE ------------------------------------------------------
 if vim.g.neovide then
-	--- Fonts
-	vim.opt.guifont = "IosevkaTerm_Nerd_Font:h15"
-	vim.g.neovide_theme = "dark"
-	--- Cursor and mouse
-	vim.g.neovide_cursor_trail_size = 0.4
-	vim.g.neovide_hide_mouse_when_typing = true
-	vim.g.neovide_unlink_border_highlights = true
-	--- Scroll
-	vim.g.neovide_scroll_animation_length = 0.1
-	vim.g.neovide_scroll_animation_far_lines = 5
-	--- Window Padding
-	vim.g.neovide_padding_top = 0
-	vim.g.neovide_padding_bottom = 0
-	vim.g.neovide_padding_right = 0
-	vim.g.neovide_padding_left = 0
-	--- Floating
-	vim.g.neovide_floating_shadow = false
-	vim.g.neovide_floating_blur_amount_y = 0.0
-	vim.g.neovide_floating_blur_amount_x = 0.0
-	--- Keymaps
-	--- Paste like terminal
-	vim.keymap.set("n", "<sc-v>", 'l"+P', { noremap = true })
-	vim.keymap.set("v", "<sc-v>", '"+P', { noremap = true })
-	vim.keymap.set("c", "<sc-v>", '<C-o>l<C-o>"+<C-o>P<C-o>l', { noremap = true })
-	vim.keymap.set("t", "<sc-v>", '<C-\\><C-n>"+Pi', { noremap = true })
-	--- Scaling
-	vim.g.neovide_scale_factor = 1.0
-	local change_scale_factor = function(delta)
-		vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
-		vim.cmd("redraw!")
-	end
-	vim.keymap.set("n", "<C-=>", function()
-		change_scale_factor(1.05)
-	end)
-	vim.keymap.set("n", "<C-->", function()
-		change_scale_factor(1 / 1.05)
-	end)
+  --- Fonts
+  vim.opt.guifont = "IosevkaTerm_Nerd_Font:h15"
+  vim.g.neovide_theme = "dark"
+  --- Cursor and mouse
+  vim.g.neovide_cursor_trail_size = 0.4
+  vim.g.neovide_hide_mouse_when_typing = true
+  vim.g.neovide_unlink_border_highlights = true
+  --- Scroll
+  vim.g.neovide_scroll_animation_length = 0.1
+  vim.g.neovide_scroll_animation_far_lines = 5
+  --- Window Padding
+  vim.g.neovide_padding_top = 0
+  vim.g.neovide_padding_bottom = 0
+  vim.g.neovide_padding_right = 0
+  vim.g.neovide_padding_left = 0
+  --- Floating
+  vim.g.neovide_floating_shadow = false
+  vim.g.neovide_floating_blur_amount_y = 0.0
+  vim.g.neovide_floating_blur_amount_x = 0.0
+  --- Keymaps
+  --- Paste like terminal
+  vim.keymap.set("n", "<sc-v>", 'l"+P', { noremap = true })
+  vim.keymap.set("v", "<sc-v>", '"+P', { noremap = true })
+  vim.keymap.set("c", "<sc-v>", '<C-o>l<C-o>"+<C-o>P<C-o>l', { noremap = true })
+  vim.keymap.set("t", "<sc-v>", '<C-\\><C-n>"+Pi', { noremap = true })
+  --- Scaling
+  vim.g.neovide_scale_factor = 1.0
+  local change_scale_factor = function(delta)
+    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+    vim.cmd("redraw!")
+  end
+  vim.keymap.set("n", "<C-=>", function()
+    change_scale_factor(1.05)
+  end)
+  vim.keymap.set("n", "<C-->", function()
+    change_scale_factor(1 / 1.05)
+  end)
 end
 ---- AUTOCHDIR -------------------------------------------------------
 vim.api.nvim_create_augroup("WorkingDirectory", { clear = true })
 vim.api.nvim_create_autocmd({ "BufReadPost" }, {
-	pattern = { "*.*" },
-	callback = function()
-		local path = vim.fn.expand("%:h") .. "/"
-		path = "cd " .. path
-		vim.cmd(path)
-	end,
-	group = "WorkingDirectory",
+  pattern = { "*.*" },
+  callback = function()
+    local path = vim.fn.expand("%:h") .. "/"
+    path = "cd " .. path
+    vim.cmd(path)
+  end,
+  group = "WorkingDirectory",
 })
 ---- AUTOSAVE -------------------------------------------------------
 local function save()
-	local buf = vim.api.nvim_get_current_buf()
-	vim.api.nvim_buf_call(buf, function()
-		vim.cmd("silent! write")
-	end)
+  local buf = vim.api.nvim_get_current_buf()
+  vim.api.nvim_buf_call(buf, function()
+    vim.cmd("silent! write")
+  end)
 end
 vim.api.nvim_create_augroup("AutoSave", { clear = true })
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
-	callback = function()
-		save()
-	end,
-	pattern = "*",
-	group = "AutoSave",
+  callback = function()
+    save()
+  end,
+  pattern = "*",
+  group = "AutoSave",
 })
 ---- KEYBOARD -------------------------------------------------------
 vim.keymap.set("n", "<leader><leader>", ":")
@@ -144,7 +144,7 @@ vim.keymap.set("n", "<C-h>", "0")
 --- Buffers
 require("mini.bufremove").setup()
 vim.keymap.set("n", "<leader>bk", function()
-	require("mini.bufremove").delete()
+  require("mini.bufremove").delete()
 end)
 --- Window
 vim.keymap.set("n", "<leader>wh", "<C-w><C-h>")
@@ -167,5 +167,5 @@ vim.keymap.set("v", "<C-r>", ":s/")
 vim.keymap.set("v", "<C-.>", ":SnipRun<CR>")
 --- Replace
 vim.keymap.set("n", "gr", function()
-	return ":%s/" .. vim.fn.expand("<cword>") .. "//g<left><left>"
+  return ":%s/" .. vim.fn.expand("<cword>") .. "//g<left><left>"
 end, { desc = "Replace word under cursor", expr = true })
