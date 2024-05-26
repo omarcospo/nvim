@@ -34,7 +34,6 @@ require("lazy").setup({
   defaults = { version = false },
   performance = {
     rtp = {
-      -- disable some rtp plugins
       disabled_plugins = {
         "2html_plugin",
         "tohtml",
@@ -164,10 +163,11 @@ require("session_manager").setup({
 load("ui")
 load("defaults")
 load("statusline")
-load("modeline")
+-- load("modeline")
 load("completion")
 load("looker")
 load("lsp")
 load("languages")
 load("applications")
 load("editing")
+-- load("lightline")

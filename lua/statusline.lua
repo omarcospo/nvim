@@ -55,8 +55,10 @@ require("incline").setup({
         return labels
       end
       for name, icon in pairs(icons) do
-        if tonumber(signs[name]) and signs[name] > 0 then
-          table.insert(labels, { " ", icon .. signs[name], group = "MiniDiffSign" .. name })
+        local sign_count = tonumber(signs[name])
+        if sign_count and sign_count > 0 then
+          local group = props.focused and "MiniDiffSign" .. name or "Normal"
+          table.insert(labels, { " ", icon .. sign_count, group = group })
         end
       end
       if #labels > 0 then
@@ -70,9 +72,9 @@ require("incline").setup({
       { " ", get_diagnostic_label() },
       { get_mini_diff() },
       { "", filename, " " },
-      guibg = props.focused and "#383838" or "#181818",
+      guibg = props.focused and "#383838" or "#333333",
       guifg = props.focused and "#decfa9" or "#4b4641",
     }
   end,
 })
-vim.opt.laststatus = 3
+vim.opt.laststatus = 0

@@ -55,9 +55,16 @@ vim.opt.wrap = false --- dont wrap
 vim.opt.termguicolors = true --- guicolor
 vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 vim.opt.hlsearch = true
 vim.opt.linebreak = true
+vim.opt.laststatus = 0
+vim.opt.statusline = ""
+----------------------------------------------------------------
+vim.opt.laststatus = 0
+vim.api.nvim_set_hl(0, "StatusLine", { link = "Comment" })
+vim.api.nvim_set_hl(0, "StatusLineNC", { link = "Comment" })
+vim.opt.statusline = '%{repeat("─",winwidth("."))}'
 --- gutter
 vim.opt.number = true --- show line numbers
 vim.opt.relativenumber = true --- show relative line numbers

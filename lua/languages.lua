@@ -30,7 +30,8 @@ require("conform").setup({
   notify_on_error = false,
 })
 --------- LINTING --------------------------------
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+  pattern = { "*.*" },
   callback = function()
     require("lint").try_lint()
   end,
