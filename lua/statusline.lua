@@ -47,6 +47,14 @@ require("incline").setup({
       end
     end
 
+    local function get_time()
+      label = {}
+      local group = props.focused and "Normal" or "Comment"
+      table.insert(label, { "| ", group = "Comment" })
+      table.insert(label, { os.date("%H:%M"), group = group })
+      return label
+    end
+
     local function get_mini_diff()
       local icons = { add = " ", change = " ", delete = " " }
       local signs = vim.b[props.buf].minidiff_summary
@@ -62,7 +70,7 @@ require("incline").setup({
         end
       end
       if #labels > 0 then
-        table.insert(labels, { " ┃ ", guifg = "#4b4641" })
+        table.insert(labels, { " | ", group = "Comment" })
       end
       return labels
     end
@@ -72,6 +80,7 @@ require("incline").setup({
       { " ", get_diagnostic_label() },
       { get_mini_diff() },
       { "", filename, " " },
+      { "", get_time(), " " },
       guibg = props.focused and "#383838" or "#333333",
       guifg = props.focused and "#decfa9" or "#4b4641",
     }

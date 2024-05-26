@@ -9,6 +9,12 @@ vim.opt.undofile = true
 vim.opt.undodir = vim.fn.expand("~/.config/nvim/undo")
 vim.g.mousemoveement = true
 ---
+vim.opt.laststatus = 0
+vim.opt.cmdheight = 0
+vim.api.nvim_set_hl(0, "StatusLine", { link = "Comment" })
+vim.api.nvim_set_hl(0, "StatusLineNC", { link = "Comment" })
+vim.opt.statusline = '%{repeat("─",winwidth("."))}'
+---
 vim.opt.clipboard = "unnamedplus" --- copy/paste to system clipboard
 vim.opt.hidden = true --- enable background buffers
 vim.opt.history = 100 --- remember n lines in history
@@ -58,13 +64,7 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.cursorline = false
 vim.opt.hlsearch = true
 vim.opt.linebreak = true
-vim.opt.laststatus = 0
-vim.opt.statusline = ""
 ----------------------------------------------------------------
-vim.opt.laststatus = 0
-vim.api.nvim_set_hl(0, "StatusLine", { link = "Comment" })
-vim.api.nvim_set_hl(0, "StatusLineNC", { link = "Comment" })
-vim.opt.statusline = '%{repeat("─",winwidth("."))}'
 --- gutter
 vim.opt.number = true --- show line numbers
 vim.opt.relativenumber = true --- show relative line numbers

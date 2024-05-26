@@ -67,13 +67,12 @@ require("lazy").setup({
   },
   --- Dependencies
   "nvim-lua/plenary.nvim",
-  { "nvim-tree/nvim-web-devicons" },
+  "nvim-tree/nvim-web-devicons",
   --- Defaults
   { "mateuszwieloch/automkdir.nvim", event = "VeryLazy" },
-  { "Shatur/neovim-session-manager" },
+  "Shatur/neovim-session-manager",
   --- Fast UI
   { "sainnhe/gruvbox-material", lazy = false, priority = 101 },
-  { "nvim-lualine/lualine.nvim", lazy = false, priority = 100 },
   { "b0o/incline.nvim", lazy = false, priority = 100 },
   { "echasnovski/mini.nvim", lazy = false, priority = 100, version = false },
   --- modeline
