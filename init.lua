@@ -1,5 +1,5 @@
 pcall(function()
-	vim.loader.enable()
+  vim.loader.enable()
 end)
 ----------------------
 require("config.options")
