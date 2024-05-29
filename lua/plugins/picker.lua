@@ -1,6 +1,6 @@
 return {
   "nvim-telescope/telescope.nvim",
-  event = "BufReadPost",
+  event = "UIEnter",
   dependencies = {
     { "debugloop/telescope-undo.nvim", cmd = "Telescope undo" },
     { "renerocksai/telekasten.nvim", cmd = "Telekasten find_notes" },
