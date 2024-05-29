@@ -1,21 +1,39 @@
 --- Session
 vim.opt.sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize"
+vim.opt.autochdir = true
+--- Mouse
+vim.g.mousemoveement = true
+---- Typing
+vim.o.timeoutlen = 500
+vim.opt.updatetime = 500 --- completion faster
 --- Tabline
+--- Indentation
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.expandtab = true --- spaces to tab
+vim.opt.smartcase = true --- don't ignore case with capitals
+vim.opt.smartindent = true --- insert indents automatically
 --- Status Line
 --- Copy/Paste
-vim.opt.clipboard = "unnamed,unnamedplus" --- copy/paste to system clipboard
+vim.opt.clipboard = "unnamedplus" --- copy/paste to system clipboard
 --- Scrolling
 vim.opt.lazyredraw = true --- faster scrolling
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 --- Highlighting
 vim.opt.synmaxcol = 240 --- max column for syntax highlight Indentation - Width of a tab
-vim.opt.shiftwidth = 2
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.expandtab = true --- spaces to tab
 --- Gutter Signs
-vim.opt.fillchars:append({ eob = " " }) --- hide "~" at blank lines
+vim.opt.signcolumn = "yes"
+vim.opt.numberwidth = 3
+vim.opt.fillchars = {
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
+}
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 --- Line Numbers
 vim.opt.number = true --- show line numbers Window vim.opt.splitbelow = true --- put new windows below current
@@ -28,8 +46,7 @@ vim.opt.backup = false --- this is recommended by coc
 vim.opt.writebackup = false --- this is recommended by coc
 --- CursosLine
 vim.opt.cursorline = false
---- StatusLine
--- vim.opt.cmdheight = 0
+vim.opt.showmode = false -- Dont show mode since we have a statusline
 --- Neovide
 if vim.g.neovide then
   --- Fonts
@@ -56,9 +73,7 @@ if vim.g.neovide then
   vim.keymap.set("n", "<sc-v>", 'l"+P', { noremap = true })
   vim.keymap.set("v", "<sc-v>", '"+P', { noremap = true })
   vim.keymap.set("c", "<sc-v>", '<C-o>l<C-o>"+<C-o>P<C-o>l', { noremap = true })
-  vim.keymap.set("t", "<sc-v>", '<C-\\><C-n>"+Pi', { noremap = true })
-  --- Scaling
-  vim.g.neovide_scale_factor = 1.0
+  vim.keymap.set("t", "<sc-v>", '<C-\\><C-n>"+Pi', { noremap = true }) --- Scaling vim.g.neovide_scale_factor = 1.0
   local change_scale_factor = function(delta)
     vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
     vim.cmd("redraw!")
