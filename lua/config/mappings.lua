@@ -30,3 +30,5 @@ vim.keymap.set("n", "<leader><leader>", ":")
 vim.keymap.set("n", "gr", function()
   return ":%s/" .. vim.fn.expand("<cword>") .. "//g<left><left>"
 end)
+---- Fold
+vim.keymap.set("n", "<TAB>", "za")

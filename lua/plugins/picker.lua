@@ -106,5 +106,6 @@ return {
     vim.keymap.set("n", "<leader>h", ":Telescope help_tags<CR>")
     vim.keymap.set("n", "<leader>a", ":Telescope current_buffer_fuzzy_find<CR>")
     vim.keymap.set("n", "<leader>fl", ":Telescope live_grep search_dirs=. '~/'<CR>")
+    vim.keymap.set("n", "<leader>gh", ":Telescope git_commits<CR>")
   end,
 }

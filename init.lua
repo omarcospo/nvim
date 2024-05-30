@@ -1,6 +1,7 @@
 pcall(function()
   vim.loader.enable()
 end)
+vim.deprecate = function() end -- Disable deprecation warnings
 ----------------------
 require("config.options")
 require("config.mappings")
