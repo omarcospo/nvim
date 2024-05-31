@@ -94,8 +94,8 @@ return {
           { get_mini_diff() },
           { "", filename, " " },
           { "", get_time(), " " },
-          guibg = props.focused and "#383838" or "#333333",
-          guifg = props.focused and "#decfa9" or "#4b4641",
+          guibg = props.focused and "#373b41" or "#151718",
+          guifg = props.focused and "#eaeaea" or "#707880",
         }
       end,
     })
