@@ -4,6 +4,7 @@ return {
     "LukasPietzschmann/boo.nvim",
     "pmizio/typescript-tools.nvim",
     "nvim-lua/plenary.nvim",
+    "MysticalDevil/inlay-hints.nvim",
   },
   ft = { "python", "go", "typescript" },
   keys = {
@@ -13,6 +14,7 @@ return {
   config = function()
     lsp = require("lspconfig")
     require("boo").setup()
+    require("inlay-hints").setup()
     --- Python
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "python",
@@ -24,7 +26,6 @@ return {
         vim.opt_local.foldmethod = "indent"
       end,
     })
-    vim.g.python3_host_prog = vim.fn.expand("~/.local/python/bin/python")
     lsp.jedi_language_server.setup({
       init_options = {
         workspace = { environmentPath = vim.g.python3_host_prog },
@@ -36,6 +37,15 @@ return {
         gopls = {
           gofumpt = true,
         },
+        hints = {
+          rangeVariableTypes = true,
+          parameterNames = true,
+          constantValues = true,
+          assignVariableTypes = true,
+          compositeLiteralFields = true,
+          compositeLiteralTypes = true,
+          functionTypeParameters = true,
+        },
       },
     })
     --- TypeScript
@@ -46,6 +56,27 @@ return {
         code_lens = "off",
         disable_member_code_lens = false,
         jsx_close_tag = { enable = false },
+        --- Inlay Hints
+        tsserver_file_preferences = {
+          includeInlayParameterNameHints = "all",
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        },
+      },
+    })
+    --- Typst
+    lsp.typst_lsp.setup({
+      settings = {
+        exportPdf = "onType",
+        format = {
+          formatting_options = nil,
+          timeout_ms = nil,
+        },
       },
     })
   end,

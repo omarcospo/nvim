@@ -1,12 +1,14 @@
 --- Session
-vim.opt.sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize"
+vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 vim.opt.autochdir = true
+--- Split
+vim.opt.splitright = true --- put new vertical splits to right
+vim.opt.splitbelow = true --- put new horizontal splits below current
+vim.opt.splitkeep = "screen"
 --- Mouse
 vim.g.mousemoveement = true
 ---- Typing
-vim.o.timeoutlen = 500
 vim.opt.updatetime = 500 --- completion faster
---- Tabline
 --- Indentation
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
@@ -21,8 +23,10 @@ vim.opt.clipboard = "unnamedplus" --- copy/paste to system clipboard
 vim.opt.lazyredraw = true --- faster scrolling
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
+vim.opt.smoothscroll = true
 --- Highlighting
 vim.opt.synmaxcol = 240 --- max column for syntax highlight Indentation - Width of a tab
+vim.opt.conceallevel = 3 --- hide markup
 --- Gutter Signs
 vim.opt.signcolumn = "yes"
 vim.opt.numberwidth = 3
@@ -37,7 +41,6 @@ vim.opt.fillchars = {
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 --- Line Numbers
 vim.opt.number = true --- show line numbers Window vim.opt.splitbelow = true --- put new windows below current
-vim.opt.splitright = true --- put new vertical splits to right
 --- Undo
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.expand("~/.config/nvim/undo")
@@ -85,3 +88,8 @@ if vim.g.neovide then
     change_scale_factor(1 / 1.05)
   end)
 end
+---- Python
+vim.g.python3_host_prog = vim.fn.expand("~/.local/python/bin/python")
+vim.g.jukit_shell_cmd = vim.g.python3_host_prog
+---- Other filetypes
+vim.filetype.add({ extension = { typ = "typst" } })

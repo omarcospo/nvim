@@ -1,6 +1,10 @@
+vim.o.timeoutlen = 500 --- keychord delay timeout
 ---- Set <leader> key to <SPACE>
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+---- Set <localleader> key to <n>
+vim.keymap.set("", "n", "<Nop>")
+vim.keymap.set("", "N", "<Nop>")
+vim.g.maplocalleader = "m"
 ---- Window
 vim.keymap.set("n", "<leader>wh", "<C-w><C-h>")
 vim.keymap.set("n", "<leader>wl", "<C-w><C-l>")
@@ -22,6 +26,7 @@ vim.keymap.set("n", "<C-l>", "$")
 vim.keymap.set("n", "<C-h>", "0")
 ---- File
 vim.keymap.set("n", "<leader>fs", "<cmd>write!<CR>")
+vim.keymap.set("n", "<leader>fn", "<cmd>enew<CR>")
 ---- Reload
 vim.keymap.set("n", "<c-,>", ":source $MYVIMRC<cr>")
 ---- Open CMD Line
@@ -32,3 +37,11 @@ vim.keymap.set("n", "gr", function()
 end)
 ---- Fold
 vim.keymap.set("n", "<TAB>", "za")
+---- Move lines
+vim.keymap.set("n", "<C-j>", "<cmd>m .+1<cr>==")
+vim.keymap.set("n", "<C-k>", "<cmd>m .-2<cr>==")
+vim.keymap.set("v", "<C-j>", ":m '>+1<cr>gv=gv")
+vim.keymap.set("v", "<C-k>", ":m '<-2<cr>gv=gv")
+---- Comenting
+vim.keymap.set("n", "gco", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>") --- above
+vim.keymap.set("n", "gcO", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>") --- below

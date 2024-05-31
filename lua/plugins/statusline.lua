@@ -2,13 +2,19 @@ return {
   "b0o/incline.nvim",
   lazy = false,
   priority = 100,
-  dependencies = { "nvim-tree/nvim-web-devicons" },
+  dependencies = { "nvim-tree/nvim-web-devicons", "echasnovski/mini.diff" },
   event = "UIEnter",
   config = function()
     --- INCLINE HELPERS -------------------------------------
     local helpers = require("incline.helpers")
     local devicons = require("nvim-web-devicons")
     --- REQUIRE -------------------------------------
+    require("mini.diff").setup({
+      view = {
+        style = "sign",
+        signs = { add = "▌", change = "▌", delete = "▌" },
+      },
+    })
     require("incline").setup({
       window = {
         padding = 0,
