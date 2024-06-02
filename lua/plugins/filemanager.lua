@@ -1,5 +1,5 @@
 return {
-  "is0n/fm-nvim", 
+  "is0n/fm-nvim",
   config = function()
     require("fm-nvim").setup({
       edit_cmd = "edit",
@@ -27,7 +27,7 @@ return {
         horz_split = "<C-s>",
         tabedit = "<C-t>",
         edit = "<C-e>",
-        ESC = "<ESC>",
+        ESC = "<C-q>",
       },
       broot_conf = vim.fn.stdpath("data") .. "/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson",
     })

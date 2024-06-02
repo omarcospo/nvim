@@ -3,10 +3,13 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = {
     "CodeAction",
     "checkhealth",
+    "help",
+    "DressingInput",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+    vim.keymap.set({ "n", "i" }, "<C-q>", "<cmd>close<cr>", { buffer = event.buf, silent = true })
   end,
 })
 -- Change to the directory of the current file before opening a terminal

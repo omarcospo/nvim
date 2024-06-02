@@ -11,17 +11,11 @@ return {
     persist_mode = true,
     close_on_exit = true,
     auto_scroll = true,
-    direction = "float",
+    direction = "horizontal",
     float_opts = { border = "rounded" },
   },
   init = function()
-    vim.keymap.set(
-      "n",
-      "<leader>vv",
-      "<cmd>:ToggleTerm size=100 direction=vertical name=vertical<CR>",
-      { remap = true }
-    )
-    vim.keymap.set("n", "<leader>vf", "<cmd>:ToggleTerm name=float<CR>", { remap = true })
+    vim.keymap.set("n", "<leader>v", ":ToggleTerm<CR>", { remap = true })
     vim.api.nvim_create_autocmd("TermOpen", {
       pattern = "*",
       callback = function()
