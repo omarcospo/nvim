@@ -17,17 +17,19 @@ return {
         initial_mode = "insert",
         selection_strategy = "reset",
         sorting_strategy = "ascending",
-        layout_strategy = "horizontal",
+        layout_strategy = "vertical",
         layout_config = {
           horizontal = {
             prompt_position = "top",
-            preview_width = 0.55,
+            preview_width = 0.65,
             results_width = 0.8,
           },
-          vertical = { mirror = false },
-          width = 0.87,
-          height = 0.80,
-          preview_cutoff = 120,
+          vertical = {
+            mirror = true,
+            prompt_position = "top",
+            preview_height = 0.65,
+            preview_cutoff = 0,
+          },
         },
         mappings = {
           i = {
@@ -96,12 +98,14 @@ return {
     })
     ---- NOTE TAKING -------------------------------------------------------
     require("telekasten").setup({ home = vim.fn.expand("~/Notes") })
+    vim.keymap.set("n", "<leader>of", "<cmd>Telekasten find_notes<cr>")
+    vim.keymap.set("n", "<leader>on", "<cmd>Telekasten new_note<cr>")
+    vim.keymap.set("n", "<leader>os", "<cmd>Telekasten search_notes<cr>")
     ---- KEYMAPS -------------------------------------------------------
     vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>")
-    vim.keymap.set("n", "<leader>o", "<cmd>Telekasten find_notes<cr>")
     vim.keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<CR>")
     vim.keymap.set("n", "<leader>fr", ":Telescope frecency<CR>")
-    vim.keymap.set("n", "<c-f>", ":Telescope fd<CR>")
+    vim.keymap.set("n", "<leader>fd", ":Telescope fd<CR>")
     vim.keymap.set("n", "<leader>s", ":Telescope live_grep<CR>")
     vim.keymap.set("n", "<leader>h", ":Telescope help_tags<CR>")
     vim.keymap.set("n", "<leader>a", ":Telescope current_buffer_fuzzy_find<CR>")
