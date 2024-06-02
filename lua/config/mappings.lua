@@ -29,7 +29,7 @@ vim.keymap.set("n", "<leader>fn", "<cmd>enew<CR>")
 ---- Reload
 vim.keymap.set("n", "<c-,>", ":source $MYVIMRC<cr>")
 ---- Open CMD Line
-vim.keymap.set("n", "<leader><leader>", ":")
+vim.keymap.set({ "n", "v" }, "<leader><leader>", ":")
 ---- Replace word
 vim.keymap.set("n", "gr", function()
   return ":%s/" .. vim.fn.expand("<cword>") .. "//g<left><left>"
