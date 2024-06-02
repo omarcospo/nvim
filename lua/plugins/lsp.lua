@@ -6,13 +6,13 @@ return {
     "nvim-lua/plenary.nvim",
     "MysticalDevil/inlay-hints.nvim",
   },
-  ft = { "python", "go", "typescript" },
+  ft = { "python", "go", "typescript", "lua" },
   keys = {
-    { "<leader>c", vim.lsp.buf.code_action, desc = "Code Action" },
-    { "gd", [[<cmd>lua require('boo').boo()<CR>]], desc = "Go to definition" },
+    { "gd", [[<cmd>lua require('boo').boo()<CR>]] },
+    { "gr", "<cmd>lua vim.lsp.buf.rename()<CR>" },
   },
   config = function()
-    lsp = require("lspconfig")
+    local lsp = require("lspconfig")
     require("boo").setup()
     require("inlay-hints").setup()
     --- Python
@@ -79,5 +79,7 @@ return {
         },
       },
     })
+    --- LUA
+    lsp.lua_ls.setup({})
   end,
 }
