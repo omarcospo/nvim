@@ -29,7 +29,6 @@ end
 
 -- Clear existing AutoSave group
 vim.api.nvim_create_augroup("AutoSave", { clear = true })
-
 -- Function to start the timer
 local function start_autosave_timer()
   local timer = vim.loop.new_timer()
@@ -67,3 +66,28 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
     vim.cmd("tabnext " .. current_tab)
   end,
 })
+
+----
+local layout_active = false
+local function tree_layout()
+  if layout_active then
+    vim.cmd("only")
+    layout_active = false
+  else
+    vim.cmd("only")
+    local mainBuf = vim.api.nvim_get_current_buf()
+    local win = vim.api.nvim_get_current_win()
+    local buf = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_win_set_buf(win, buf)
+    vim.api.nvim_open_win(0, false, { split = "left", win = 0 })
+    local mainWin = vim.api.nvim_get_current_win()
+    vim.api.nvim_win_set_buf(mainWin, mainBuf)
+    vim.api.nvim_open_win(0, false, { split = "left", win = 0 })
+    vim.api.nvim_win_set_buf(win, buf)
+    vim.cmd("wincmd h")
+    layout_active = true
+  end
+end
+-- Map the function to a command for easy use
+vim.api.nvim_create_user_command("ThreeSplitLayout", tree_layout, {})
+vim.keymap.set("n", "<leader>te", "<CMD>ThreeSplitLayout<CR>")
