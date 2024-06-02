@@ -8,8 +8,9 @@ vim.api.nvim_create_autocmd("FileType", {
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
-    vim.keymap.set({ "n", "i" }, "<C-q>", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+    local options = { buffer = event.buf, silent = true }
+    vim.keymap.set("n", "q", "<cmd>close<cr>", options)
+    vim.keymap.set({ "n", "i" }, "<C-q>", "<cmd>close<cr>", options)
   end,
 })
 -- Change to the directory of the current file before opening a terminal
@@ -26,7 +27,6 @@ local function save()
     vim.cmd("silent! write")
   end)
 end
-
 -- Clear existing AutoSave group
 vim.api.nvim_create_augroup("AutoSave", { clear = true })
 -- Function to start the timer
