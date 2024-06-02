@@ -1,6 +1,9 @@
 --- Session
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 vim.opt.autochdir = true
+vim.opt.shortmess:append({ s = true, I = true }) -- Disable startup message.
+vim.g.big_file = { size = 1024 * 100, lines = 10000 } -- For files bigger than this, disable 'treesitter' (+100kb).
+vim.g.autoread = true
 --- Split
 vim.opt.splitright = true --- put new vertical splits to right
 vim.opt.splitbelow = true --- put new horizontal splits below current
@@ -9,6 +12,13 @@ vim.opt.splitkeep = "screen"
 vim.g.mousemoveement = true
 ---- Typing
 vim.opt.updatetime = 500 --- completion faster
+vim.opt.backspace:append({ "nostop" }) -- Don't stop backspace at insert.
+---- History
+vim.opt.history = 100 -- Number of commands to remember in a history table (per buffer).
+--- Wraping
+vim.opt.wrap = true -- Disable wrapping of lines longer than the width of window.
+vim.opt.colorcolumn = "80" -- PEP8 like character limit vertical bar.
+vim.opt.mousescroll = "ver:1,hor:0" -- Disables hozirontal scroll in neovim.
 --- Indentation
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
@@ -16,13 +26,15 @@ vim.opt.softtabstop = 2
 vim.opt.expandtab = true --- spaces to tab
 vim.opt.smartcase = true --- don't ignore case with capitals
 vim.opt.smartindent = true --- insert indents automatically
+vim.opt.preserveindent = true
 --- Status Line
 --- Copy/Paste
 vim.opt.clipboard = "unnamedplus" --- copy/paste to system clipboard
+vim.opt.copyindent = true -- Copy the previous indentation on autoindenting.
 --- Scrolling
 vim.opt.lazyredraw = true --- faster scrolling
-vim.opt.scrolloff = 8
-vim.opt.sidescrolloff = 8
+vim.opt.scrolloff = 1000 -- Number of lines to leave before/after the cursor when scrolling. Setting a high value keep the cursor centered.
+vim.opt.sidescrolloff = 8 -- Same but for side scrolling.
 vim.opt.smoothscroll = true
 --- Highlighting
 vim.opt.synmaxcol = 240 --- max column for syntax highlight Indentation - Width of a tab
@@ -36,7 +48,7 @@ vim.opt.fillchars = {
   fold = " ",
   foldsep = " ",
   diff = "╱",
-  eob = " ",
+  eob = " ", --- disable `~` on nonexistent lines.
 }
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 --- Line Numbers
@@ -93,3 +105,5 @@ vim.g.python3_host_prog = vim.fn.expand("~/.local/python/bin/python")
 vim.g.jukit_shell_cmd = vim.g.python3_host_prog
 ---- Other filetypes
 vim.filetype.add({ extension = { typ = "typst" } })
+---- End of line
+vim.opt.selection = "old" -- Don't select the newline symbol when using <End> on visual mode.
