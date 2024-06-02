@@ -2,11 +2,8 @@ return {
   "folke/trouble.nvim",
   cmd = "Trouble diagnostics toggle",
   keys = {
-    {
-      "<leader>xx",
-      "<cmd>Trouble diagnostics toggle<cr>",
-      desc = "Diagnostics (Trouble)",
-    },
+    { "gx", "<CMD>Trouble diagnostics toggle filter.buf=0 focus=true<CR>" },
+    { "gs", "<CMD>Trouble lsp_references focus=true<CR>" },
   },
   opts = {
     auto_close = true,
