@@ -6,6 +6,8 @@ vim.api.nvim_create_autocmd("FileType", {
     "help",
     "DressingInput",
     "NeogitStatus",
+    "NeogitConsole",
+    "NeogitPopup",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
