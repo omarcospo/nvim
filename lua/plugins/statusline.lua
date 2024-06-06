@@ -12,7 +12,7 @@ return {
     --- REQUIRE -------------------------------------
     require("mini.diff").setup({
       view = {
-        style = "sign",
+        style = "number",
         signs = { add = "▌", change = "▌", delete = "▌" },
       },
     })

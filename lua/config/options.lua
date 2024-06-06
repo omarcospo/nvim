@@ -5,7 +5,6 @@ vim.opt.shortmess:append({ s = true, I = true }) -- Disable startup message.
 vim.g.big_file = { size = 1024 * 100, lines = 10000 } -- For files bigger than this, disable 'treesitter' (+100kb).
 vim.g.autoread = true
 vim.opt.showtabline = 0
-vim.opt.tabline = " "
 --- Split
 vim.opt.splitright = true --- put new vertical splits to right
 vim.opt.splitbelow = true --- put new horizontal splits below current
@@ -30,7 +29,6 @@ vim.opt.smartcase = true --- don't ignore case with capitals
 vim.opt.smartindent = true --- insert indents automatically
 vim.opt.preserveindent = true
 --- Status Line
-vim.opt.showcmdloc = " "
 --- Copy/Paste
 vim.opt.clipboard = "unnamedplus" --- copy/paste to system clipboard
 vim.opt.copyindent = true -- Copy the previous indentation on autoindenting.
@@ -54,6 +52,16 @@ vim.opt.fillchars = {
   eob = " ", --- disable `~` on nonexistent lines.
 }
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.diagnostic.config({
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.INFO] = "",
+      [vim.diagnostic.severity.HINT] = "󰌵",
+    },
+  },
+})
 --- Line Numbers
 vim.opt.number = true --- show line numbers Window vim.opt.splitbelow = true --- put new windows below current
 --- Undo
