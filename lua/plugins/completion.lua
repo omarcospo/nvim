@@ -9,6 +9,7 @@ return {
     "dcampos/cmp-snippy",
     "honza/vim-snippets",
     "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-calc",
     { "tzachar/cmp-tabnine", build = "./install.sh" },
   },
   config = function()
@@ -20,8 +21,9 @@ return {
         { name = "nvim_lsp", max_item_count = 10, priority = 10 },
         { name = "snippy", max_item_count = 5, priority = 9 },
         { name = "buffer", max_item_count = 10, priority = 8 },
-        { name = "async_path", max_item_count = 5, priority = 6 },
+        { name = "async_path", priority = 6 },
         { name = "cmp_tabnine", max_item_count = 5, priority = 7 },
+        { name = "calc" },
       },
       window = {
         documentation = cmp.config.window.bordered(),

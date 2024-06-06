@@ -94,3 +94,12 @@ end
 -- Map the function to a command for easy use
 vim.api.nvim_create_user_command("ThreeSplitLayout", tree_layout, {})
 vim.keymap.set("n", "<leader>te", "<CMD>ThreeSplitLayout<CR>")
+
+function Test_input()
+  vim.ui.input({ prompt = "😄 Calculator: " }, function(input)
+    local calc = load("return " .. (input or ""))()
+    if calc then
+      vim.api.nvim_feedkeys(tostring(calc), "i", true)
+    end
+  end)
+end
