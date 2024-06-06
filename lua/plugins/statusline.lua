@@ -3,6 +3,7 @@ return {
   lazy = false,
   priority = 100,
   dependencies = { "nvim-tree/nvim-web-devicons", "echasnovski/mini.diff" },
+  after = "oxocarbon.nvim",
   event = "UIEnter",
   config = function()
     --- INCLINE HELPERS -------------------------------------
@@ -61,7 +62,7 @@ return {
         end
 
         local function get_time()
-          label = {}
+          local label = {}
           local group = props.focused and "Normal" or "Comment"
           table.insert(label, { "| ", group = "Comment" })
           table.insert(label, { os.date("%H:%M"), group = group })
