@@ -3,11 +3,26 @@ return {
   events = "UIEnter",
   version = false, -- last release is way too old and doesn't work on Windows
   build = ":TSUpdate",
-  -- event = "VeryLazy",
-  -- lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
-  -- cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
   opts = {
-    highlight = { enable = true },
+    auto_install = false,
+    highlight = {
+      enable = true,
+      disable = function(_, bufnr)
+        local excluded_filetypes = {} -- disabled for bugged parsers
+        local is_disabled = vim.tbl_contains(excluded_filetypes, vim.bo.filetype) or utils.is_big_file(bufnr)
+        return is_disabled
+      end,
+    },
+    matchup = {
+      enable = true,
+      enable_quotes = true,
+      disable = function(_, bufnr)
+        local excluded_filetypes = { "c" } -- disabled for slow parsers
+        local is_disabled = vim.tbl_contains(excluded_filetypes, vim.bo.filetype) or utils.is_big_file(bufnr)
+        return is_disabled
+      end,
+    },
+    incremental_selection = { enable = true },
     indent = { enable = true },
     ensure_installed = {
       "bash",

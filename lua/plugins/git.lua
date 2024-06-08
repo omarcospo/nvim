@@ -22,6 +22,9 @@ return {
     "kdheepak/lazygit.nvim",
     cmd = { "LazyGitCurrentFile" },
     dependencies = { "nvim-lua/plenary.nvim" },
+    init = function()
+      vim.g.lazygit_floating_window_use_plenary = 0
+    end,
     keys = {
       { "<leader>gg", ":LazyGitCurrentFile<CR>" },
     },
