@@ -1,7 +1,7 @@
 return {
   "akinsho/toggleterm.nvim",
   version = "*",
-  events = "BufReadPost",
+  event = "BufReadPost",
   cmd = "ToggleTerm",
   opts = {
     shade_filetypes = {},

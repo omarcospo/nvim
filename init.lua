@@ -27,6 +27,7 @@ vim.g.loaded_python_provider = 0
 vim.g.no_plugin_maps = 1
 vim.opt.shell = "zsh"
 ----------------------
+require("config.utils")
 require("config.options")
 require("config.mappings")
 require("config.autocmds")

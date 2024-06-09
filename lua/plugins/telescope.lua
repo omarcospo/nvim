@@ -6,7 +6,6 @@ return {
     { "renerocksai/telekasten.nvim", cmd = "Telekasten find_notes" },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     { "nvim-telescope/telescope-frecency.nvim" },
-    { "polirritmico/telescope-lazy-plugins.nvim" },
   },
   config = function()
     local telescope = require("telescope")
@@ -97,9 +96,6 @@ return {
         },
       },
     })
-    ---- LAZY PLUGINS -------------------------------------------------------
-    require("telescope").load_extension("lazy_plugins")
-    vim.keymap.set("n", "<leader>fp", "<cmd>Telescope lazy_plugins<cr>")
     ---- NOTE TAKING -------------------------------------------------------
     require("telekasten").setup({ home = vim.fn.expand("~/Notes") })
     vim.keymap.set("n", "<leader>of", "<cmd>Telekasten find_notes<cr>")
@@ -113,7 +109,6 @@ return {
     vim.keymap.set("n", "<leader>s", ":Telescope live_grep<CR>")
     vim.keymap.set("n", "<leader>h", ":Telescope help_tags<CR>")
     vim.keymap.set("n", "<leader>a", ":Telescope current_buffer_fuzzy_find<CR>")
-    vim.keymap.set("n", "<leader>fl", ":Telescope live_grep search_dirs=. '~/'<CR>")
     vim.keymap.set("n", "<leader>gh", ":Telescope git_commits<CR>")
   end,
 }

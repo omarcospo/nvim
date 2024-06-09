@@ -3,7 +3,6 @@ return {
   lazy = false,
   priority = 100,
   dependencies = { "nvim-tree/nvim-web-devicons", "echasnovski/mini.diff" },
-  after = "oxocarbon.nvim",
   event = "UIEnter",
   config = function()
     --- INCLINE HELPERS -------------------------------------
