@@ -1,7 +1,7 @@
 return {
   "omarcospo/oxocarbon.nvim",
   version = false,
-  event = "BufRead",
+  event = "UIEnter",
   config = function()
     vim.cmd.colorscheme("oxocarbon")
     if not vim.g.neovide then
