@@ -6,6 +6,7 @@ vim.opt.ruler = false
 --- Session
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 vim.opt.autochdir = true
+vim.opt.swapfile = false
 vim.g.big_file = { size = 1024 * 100, lines = 10000 } -- For files bigger than this, disable 'treesitter' (+100kb).
 vim.g.autoread = true
 vim.opt.showtabline = 0
