@@ -4,7 +4,7 @@ return {
   dependencies = {
     { "debugloop/telescope-undo.nvim", cmd = "Telescope undo" },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    { "nvim-telescope/telescope-frecency.nvim" },
+    { "nvim-telescope/telescope-frecency.nvim", cmd = "Telescope frecency" },
   },
   config = function()
     local telescope = require("telescope")
@@ -85,6 +85,10 @@ return {
     telescope.setup({
       extensions = {
         undo = {
+          use_delta = true,
+          side_by_side = true,
+          diff_context_lines = 0,
+          entry_format = "󰣜 #$ID, $STAT, $TIME",
           mappings = {
             i = {
               ["<cr>"] = require("telescope-undo.actions").yank_additions,

@@ -1,6 +1,7 @@
 return {
   "luckasRanarison/nvim-devdocs",
   cmd = "DevdocsOpenCurrent",
+  ft = { "lua", "go", "typescript" },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope.nvim",
