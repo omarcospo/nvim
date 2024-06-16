@@ -41,3 +41,5 @@ vim.keymap.set("v", "<C-k>", ":m '<-2<cr>gv=gv")
 ---- Comenting
 vim.keymap.set("n", "gco", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>") --- above
 vim.keymap.set("n", "gcO", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>") --- below
+---- Format and wrap
+vim.keymap.set("v", "w", ":'<,'>!fmt -80<CR>") --- below
