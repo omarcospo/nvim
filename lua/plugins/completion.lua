@@ -19,8 +19,8 @@ return {
     local snippy = require("snippy")
     require("cmp").setup({
       sources = {
+        { name = "snippy", max_item_count = 5, priority = 11 },
         { name = "nvim_lsp", max_item_count = 10, priority = 10 },
-        { name = "snippy", max_item_count = 5, priority = 9 },
         { name = "buffer", max_item_count = 10, priority = 8 },
         { name = "async_path", priority = 6 },
         { name = "cmp_tabnine", max_item_count = 5, priority = 7 },
@@ -68,12 +68,9 @@ return {
         ["<C-e>"] = cmp.mapping.close(),
         ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
         ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
-          elseif snippy.can_expand_or_advance() then
+          if snippy.can_expand_or_advance() then
             snippy.expand_or_advance()
           else
-            fallback()
           end
         end, { "i", "s" }),
       }),
