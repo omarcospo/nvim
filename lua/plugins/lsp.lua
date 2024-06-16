@@ -44,11 +44,7 @@ return {
         vim.opt_local.foldmethod = "indent"
       end,
     })
-    -- lsp.jedi_language_server.setup({
-    --   init_options = {
-    --     workspace = { environmentPath = vim.g.python3_host_prog },
-    --   },
-    -- })
+    lsp.pylsp.setup({})
     --- GO
     lsp.gopls.setup({
       settings = {

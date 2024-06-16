@@ -10,8 +10,8 @@ return {
         TRACE = "✎",
         WARN = "",
       },
-      minimum_width = 40,
-      render = "compact",
+      minimum_width = 30,
+      render = "wrapped-compact",
       stages = "static",
     },
     config = function(_, opts)

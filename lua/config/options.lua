@@ -110,7 +110,6 @@ if vim.g.neovide then
 end
 ---- Python
 vim.g.python3_host_prog = vim.fn.expand("~/.local/python/bin/python")
-vim.g.jukit_shell_cmd = vim.g.python3_host_prog
 ---- Other filetypes
 vim.filetype.add({ extension = { typ = "typst" } })
 ---- End of line
