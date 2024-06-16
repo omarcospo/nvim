@@ -58,6 +58,7 @@ return {
     telescope.setup({
       extensions = {
         frecency = {
+          auto_validate = true,
           show_scores = false,
           show_unindexed = false,
           ignore_patterns = { "*.git/*", "*/tmp/*", "term:*" },
