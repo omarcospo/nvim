@@ -1,13 +1,11 @@
 vim.opt.title = true -- set terminal title
 vim.opt.cmdheight = 0
 vim.opt.laststatus = 0
-vim.opt.statusline = ""
 vim.opt.showcmd = false
 vim.opt.ruler = false
 --- Session
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 vim.opt.autochdir = true
-vim.opt.shortmess:append({ s = true, I = true }) -- Disable startup message.
 vim.g.big_file = { size = 1024 * 100, lines = 10000 } -- For files bigger than this, disable 'treesitter' (+100kb).
 vim.g.autoread = true
 vim.opt.showtabline = 0
@@ -39,7 +37,7 @@ vim.opt.clipboard = "unnamedplus" --- copy/paste to system clipboard
 vim.opt.copyindent = true -- Copy the previous indentation on autoindenting.
 vim.opt.virtualedit = "block" -- Allow going past end of line in visual block mode.
 --- Scrolling
-vim.opt.lazyredraw = true --- faster scrolling
+vim.opt.lazyredraw = false --- faster scrolling
 vim.opt.scrolloff = 1000 -- Number of lines to leave before/after the cursor when scrolling. Setting a high value keep the cursor centered.
 vim.opt.sidescrolloff = 8 -- Same but for side scrolling.
 vim.opt.smoothscroll = true
