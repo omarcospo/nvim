@@ -1,36 +1,49 @@
 return {
-  "is0n/fm-nvim",
-  config = function()
-    require("fm-nvim").setup({
-      edit_cmd = "edit",
-      on_close = {},
-      on_open = {},
-      ui = {
-        default = "float",
-        float = {
-          border = "rounded",
-          float_hl = "Normal",
-          border_hl = "FloatBorder",
-          blend = 0,
-          height = 0.9,
-          width = 0.9,
-          x = 0.5,
-          y = 0.3,
+  {
+    "is0n/fm-nvim",
+    config = function()
+      require("fm-nvim").setup({
+        edit_cmd = "edit",
+        on_close = {},
+        on_open = {},
+        ui = {
+          default = "float",
+          float = {
+            border = "rounded",
+            float_hl = "Normal",
+            border_hl = "FloatBorder",
+            blend = 0,
+            height = 0.9,
+            width = 0.9,
+            x = 0.5,
+            y = 0.3,
+          },
+          split = {
+            direction = "topright",
+            size = 24,
+          },
         },
-        split = {
-          direction = "topright",
-          size = 24,
+        mappings = {
+          vert_split = "<Nop>",
+          horz_split = "<Nop>",
+          tabedit = "<Nop>",
+          edit = "<Nop>",
+          ESC = "<Nop>",
         },
-      },
-      mappings = {
-        vert_split = "<C-h>",
-        horz_split = "<C-s>",
-        tabedit = "<C-t>",
-        edit = "<C-e>",
-        ESC = "<C-q>",
-      },
-      broot_conf = vim.fn.stdpath("data") .. "/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson",
-    })
-    vim.keymap.set("n", "<leader>ff", ":Lf<CR>")
-  end,
+        broot_conf = vim.fn.stdpath("data") .. "/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson",
+      })
+      vim.keymap.set("n", "<leader>ff", ":Lf<CR>")
+    end,
+  },
+
+  {
+    "kevinhwang91/rnvimr",
+    event = "User BaseDefered",
+    cmd = { "RnvimrToggle" },
+    config = function()
+      -- vim.g.rnvimr_vanilla = 1
+      vim.g.rnvimr_enable_picker = 1
+      vim.g.rnvimr_ranger_cmd = { "ranger" }
+    end,
+  },
 }

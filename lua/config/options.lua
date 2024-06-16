@@ -1,3 +1,9 @@
+vim.opt.title = true -- set terminal title
+vim.opt.cmdheight = 0
+vim.opt.laststatus = 0
+vim.opt.statusline = ""
+vim.opt.showcmd = false
+vim.opt.ruler = false
 --- Session
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 vim.opt.autochdir = true
@@ -12,14 +18,13 @@ vim.opt.splitkeep = "screen"
 --- Mouse
 vim.g.mousemoveement = true
 ---- Typing
-vim.opt.updatetime = 500 --- completion faster
+vim.opt.updatetime = 300 --- completion faster
 vim.opt.backspace:append({ "nostop" }) -- Don't stop backspace at insert.
 ---- History
 vim.opt.history = 100 -- Number of commands to remember in a history table (per buffer).
 --- Wraping
 vim.opt.wrap = true -- Disable wrapping of lines longer than the width of window.
 vim.opt.colorcolumn = "80" -- PEP8 like character limit vertical bar.
-vim.opt.mousescroll = "ver:1,hor:0" -- Disables hozirontal scroll in neovim.
 --- Indentation
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
@@ -32,11 +37,13 @@ vim.opt.preserveindent = true
 --- Copy/Paste
 vim.opt.clipboard = "unnamedplus" --- copy/paste to system clipboard
 vim.opt.copyindent = true -- Copy the previous indentation on autoindenting.
+vim.opt.virtualedit = "block" -- Allow going past end of line in visual block mode.
 --- Scrolling
 vim.opt.lazyredraw = true --- faster scrolling
 vim.opt.scrolloff = 1000 -- Number of lines to leave before/after the cursor when scrolling. Setting a high value keep the cursor centered.
 vim.opt.sidescrolloff = 8 -- Same but for side scrolling.
 vim.opt.smoothscroll = true
+vim.opt.mousescroll = "ver:1,hor:0" -- Disables hozirontal scroll in neovim.
 --- Highlighting
 vim.opt.synmaxcol = 240 --- max column for syntax highlight Indentation - Width of a tab
 vim.opt.conceallevel = 3 --- hide markup
@@ -52,21 +59,11 @@ vim.opt.fillchars = {
   eob = " ", --- disable `~` on nonexistent lines.
 }
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-vim.diagnostic.config({
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = "",
-      [vim.diagnostic.severity.WARN] = "",
-      [vim.diagnostic.severity.INFO] = "",
-      [vim.diagnostic.severity.HINT] = " 󰌵",
-    },
-  },
-})
 --- Line Numbers
 vim.opt.number = true --- show line numbers Window vim.opt.splitbelow = true --- put new windows below current
 --- Undo
 vim.opt.undofile = true
-vim.opt.undodir = vim.fn.expand("~/.config/nvim/undo")
+vim.opt.undodir = vim.fn.expand("~/.config/nvim/.undo")
 --- Backups
 vim.opt.backup = false --- this is recommended by coc
 vim.opt.writebackup = false --- this is recommended by coc
@@ -74,10 +71,12 @@ vim.opt.writebackup = false --- this is recommended by coc
 vim.opt.cursorline = false
 vim.opt.showmode = false -- Dont show mode since we have a statusline
 --- Neovide
+vim.opt.linespace = 0
 if vim.g.neovide then
   --- Fonts
   vim.opt.guifont = "IosevkaTerm_Nerd_Font:h15"
   vim.g.neovide_theme = "dark"
+  vim.g.neovide_fullscreen = true
   --- Cursor and mouse
   vim.g.neovide_cursor_trail_size = 0.4
   vim.g.neovide_hide_mouse_when_typing = true
@@ -118,3 +117,8 @@ vim.g.jukit_shell_cmd = vim.g.python3_host_prog
 vim.filetype.add({ extension = { typ = "typst" } })
 ---- End of line
 vim.opt.selection = "old" -- Don't select the newline symbol when using <End> on visual mode.
+-- clean mappings
+vim.o.timeoutlen = 500 --- keychord delay timeout
+---- Set <leader> key to <SPACE>
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "

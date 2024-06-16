@@ -3,7 +3,6 @@ return {
   event = "UIEnter",
   dependencies = {
     { "debugloop/telescope-undo.nvim", cmd = "Telescope undo" },
-    { "renerocksai/telekasten.nvim", cmd = "Telekasten find_notes" },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     { "nvim-telescope/telescope-frecency.nvim" },
   },
@@ -96,11 +95,6 @@ return {
         },
       },
     })
-    ---- NOTE TAKING -------------------------------------------------------
-    require("telekasten").setup({ home = vim.fn.expand("~/Notes") })
-    vim.keymap.set("n", "<leader>of", "<cmd>Telekasten find_notes<cr>")
-    vim.keymap.set("n", "<leader>on", "<cmd>Telekasten new_note<cr>")
-    vim.keymap.set("n", "<leader>os", "<cmd>Telekasten search_notes<cr>")
     ---- KEYMAPS -------------------------------------------------------
     vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>")
     vim.keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<CR>")

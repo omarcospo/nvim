@@ -2,7 +2,7 @@ return {
   "neovim/nvim-lspconfig",
   dependencies = {
     "LukasPietzschmann/boo.nvim",
-    "pmizio/typescript-tools.nvim",
+    { "pmizio/typescript-tools.nvim", ft = { "typescript" } },
     "nvim-lua/plenary.nvim",
     "MysticalDevil/inlay-hints.nvim",
     {
@@ -23,6 +23,12 @@ return {
     { "gd", [[<cmd>lua require('boo').boo()<CR>]] },
     { "gr", "<cmd>lua vim.lsp.buf.rename()<CR>" },
   },
+  init = function()
+    local lsp = vim.lsp
+    lsp.handlers["$/progress"] = function() end
+    lsp.handlers["window/logMessage"] = function() end
+    lsp.handlers["window/showMessage"] = function() end
+  end,
   config = function()
     local lsp = require("lspconfig")
     require("boo").setup()
@@ -38,11 +44,11 @@ return {
         vim.opt_local.foldmethod = "indent"
       end,
     })
-    lsp.jedi_language_server.setup({
-      init_options = {
-        workspace = { environmentPath = vim.g.python3_host_prog },
-      },
-    })
+    -- lsp.jedi_language_server.setup({
+    --   init_options = {
+    --     workspace = { environmentPath = vim.g.python3_host_prog },
+    --   },
+    -- })
     --- GO
     lsp.gopls.setup({
       settings = {

@@ -1,7 +1,3 @@
-vim.o.timeoutlen = 500 --- keychord delay timeout
----- Set <leader> key to <SPACE>
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 ---- Set <localleader> key to <n>
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
