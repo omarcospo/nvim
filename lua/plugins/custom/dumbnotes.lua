@@ -5,33 +5,34 @@ local delete_note_key = "<C-d>"
 
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
-local selection = action_state.get_selected_entry()
 
 local function open(input, ext)
   local path
-  if ext == true then
-    path = vim.fn.expand(DumbPath .. "/" .. input .. "." .. DumbFormat)
-    vim.cmd("edit " .. vim.fn.fnameescape(path))
-  else
-    path = vim.fn.expand(DumbPath .. "/" .. input)
-    if vim.fn.filereadable(path) == 1 then
+  if input == true or input ~= "" then
+    if ext == true then
+      path = vim.fn.expand(DumbPath .. "/" .. input .. "." .. DumbFormat)
       vim.cmd("edit " .. vim.fn.fnameescape(path))
     else
-      print("Invalid note: " .. path)
+      path = vim.fn.expand(DumbPath .. "/" .. input)
+      if vim.fn.filereadable(path) == 1 then
+        vim.cmd("edit " .. vim.fn.fnameescape(path))
+      else
+        print("Invalid note: " .. path)
+      end
     end
+  else
+    print("Invalid note.")
   end
 end
 
 local function open_note(prompt_bufnr)
-  if selection == nil then
-    print("No valid note selected.")
-    return
-  end
+  local selection = action_state.get_selected_entry()
   actions.close(prompt_bufnr)
   open(selection[1])
 end
 
 local function delete_note(prompt_bufnr)
+  local selection = action_state.get_selected_entry()
   local file_path = vim.fn.expand(DumbPath .. "/" .. selection[1])
   actions.close(prompt_bufnr)
   if vim.fn.filereadable(file_path) == 1 then
@@ -57,9 +58,7 @@ local function new_note(prompt_bufnr)
     return vim.fn.input({ prompt = "Note title: " })
   end)
   if ok then
-    if input and input ~= "" then
-      open(input, true)
-    end
+    open(input, true)
   else
     print("Error creating note: " .. input)
   end
