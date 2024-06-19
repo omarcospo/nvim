@@ -11,7 +11,7 @@ return {
     "honza/vim-snippets",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-calc",
-    { "tzachar/cmp-tabnine", build = "./install.sh" },
+    -- { "tzachar/cmp-tabnine", build = "./install.sh" },
   },
   config = function()
     local cmp = require("cmp")
@@ -23,7 +23,7 @@ return {
         { name = "nvim_lsp", max_item_count = 10, priority = 10 },
         { name = "buffer", max_item_count = 10, priority = 8 },
         { name = "async_path", priority = 6 },
-        { name = "cmp_tabnine", max_item_count = 5, priority = 7 },
+        -- { name = "cmp_tabnine", max_item_count = 5, priority = 7 },
         { name = "calc" },
       },
       window = {
@@ -37,12 +37,13 @@ return {
         format = function(entry, vim_item)
           local kind = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
           local strings = vim.split(kind.kind, "%s", { trimempty = true })
-          if entry.source.name == "cmp_tabnine" then
-            vim_item.kind = ""
-            vim_item.abbr = string.sub(vim_item.abbr, 1, 80)
-          else
-            kind.kind = (strings[1] or "") .. " "
-          end
+          -- if entry.source.name == "cmp_tabnine" then
+          --   vim_item.kind = ""
+          --   vim_item.abbr = string.sub(vim_item.abbr, 1, 80)
+          -- else
+          --   kind.kind = (strings[1] or "") .. " "
+          -- end
+          kind.kind = (strings[1] or "") .. " "
           kind.menu = (strings[2] or "")
           return kind
         end,
