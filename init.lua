@@ -34,7 +34,6 @@ if not vim.g.vscode then
   require("config.clean")
   require("config.mappings")
   require("config.autocmds")
-  require("plugins.custom.dumbnotes")
 else
   require("config.vscode")
 end
