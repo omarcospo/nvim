@@ -1,49 +1,23 @@
 return {
   {
-    "is0n/fm-nvim",
+    "rolv-apneseth/tfm.nvim",
     config = function()
-      require("fm-nvim").setup({
-        edit_cmd = "edit",
-        on_close = {},
-        on_open = {},
+      require("tfm").setup({
+        replace_netrw = true,
+        file_manager = "lf",
+        enable_cmds = false,
+        keybindings = {},
         ui = {
-          default = "float",
-          float = {
-            border = "rounded",
-            float_hl = "Normal",
-            border_hl = "FloatBorder",
-            blend = 0,
-            height = 0.9,
-            width = 0.9,
-            x = 0.5,
-            y = 0.3,
-          },
-          split = {
-            direction = "topright",
-            size = 24,
-          },
+          border = "rounded",
+          height = 0.8,
+          width = 0.75,
+          x = 0.5,
+          y = 0.5,
         },
-        mappings = {
-          vert_split = "<Nop>",
-          horz_split = "<Nop>",
-          tabedit = "<Nop>",
-          edit = "<Nop>",
-          ESC = "<Nop>",
-        },
-        broot_conf = vim.fn.stdpath("data") .. "/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson",
       })
-      vim.keymap.set("n", "<leader>ff", ":Lf<CR>")
-    end,
-  },
-
-  {
-    "kevinhwang91/rnvimr",
-    event = "User BaseDefered",
-    cmd = { "RnvimrToggle" },
-    config = function()
-      -- vim.g.rnvimr_vanilla = 1
-      vim.g.rnvimr_enable_picker = 1
-      vim.g.rnvimr_ranger_cmd = { "ranger" }
+      vim.keymap.set("n", "<leader>ff", function()
+        require("tfm").open()
+      end)
     end,
   },
 }
