@@ -33,6 +33,7 @@ return {
     local lsp = require("lspconfig")
     require("boo").setup()
     require("inlay-hints").setup()
+    vim.keymap.set("n", "<leader>lh", ":InlayHintsToggle<CR>")
     --- Python
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "python",
@@ -50,15 +51,33 @@ return {
       settings = {
         gopls = {
           gofumpt = true,
-        },
-        hints = {
-          rangeVariableTypes = true,
-          parameterNames = true,
-          constantValues = true,
-          assignVariableTypes = true,
-          compositeLiteralFields = true,
-          compositeLiteralTypes = true,
-          functionTypeParameters = true,
+          usePlaceholders = true,
+          analyses = {
+            fieldalignment = false, -- find structs that would use less memory if their fields were sorted
+            nilness = true,
+            unusedparams = true,
+            unusedwrite = true,
+            useany = true,
+          },
+          codelenses = {
+            gc_details = false,
+            generate = true,
+            regenerate_cgo = true,
+            run_govulncheck = true,
+            test = true,
+            tidy = true,
+            upgrade_dependency = true,
+            vendor = true,
+          },
+          hints = {
+            rangeVariableTypes = true,
+            parameterNames = false,
+            constantValues = true,
+            assignVariableTypes = true,
+            compositeLiteralFields = true,
+            compositeLiteralTypes = true,
+            functionTypeParameters = true,
+          },
         },
       },
     })

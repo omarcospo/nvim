@@ -72,6 +72,7 @@ return {
           if snippy.can_expand_or_advance() then
             snippy.expand_or_advance()
           else
+            vim.api.nvim_put({ "\t" }, "c", false, true)
           end
         end, { "i", "s" }),
       }),

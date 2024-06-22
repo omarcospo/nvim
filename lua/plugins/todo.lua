@@ -1,6 +1,6 @@
 return {
   "folke/todo-comments.nvim",
-  event = "BufReadPost",
+  ft = { "go", "typescript", "python", "lua" },
   dependencies = { "nvim-lua/plenary.nvim" },
   opts = {
     keywords = {
