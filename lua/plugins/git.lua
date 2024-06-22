@@ -10,36 +10,13 @@ return {
     },
   },
   {
-    "tpope/vim-fugitive",
-    dependencies = { "tpope/vim-rhubarb" },
-    cmd = {
-      "Gvdiffsplit",
-      "Gdiffsplit",
-      "Gedit",
-      "Gsplit",
-      "Gread",
-      "Gwrite",
-      "Ggrep",
-      "GMove",
-      "GRename",
-      "GDelete",
-      "GRemove",
-      "GBrowse",
-      "Git",
-      "Gstatus",
-    },
+    "NeogitOrg/neogit",
     keys = {
-      { "<leader>gg", ":Git<CR>" },
+      { "<leader>gg", ":Neogit<CR>" },
       { "<leader>gb", "<cmd>Telescope git_bcommits<cr>" },
       { "<leader>gl", "<cmd>Telescope git_commits<cr>" },
-      { "<leader>gf", "<cmd>Telescope git_files<cr>" },
+      { "<leader>fg", "<cmd>Telescope git_files<cr>" },
     },
-    config = function()
-      vim.g.fugitive_no_maps = 1
-    end,
-  },
-  {
-    "NeogitOrg/neogit",
     config = function()
       require("neogit").setup({
         disable_hint = true,
@@ -54,7 +31,6 @@ return {
           staged_diff_split_kind = "auto",
         },
         signs = {
-          -- { CLOSED, OPENED }
           hunk = { "", "" },
           item = { " ", " " },
           section = { " ", " " },
