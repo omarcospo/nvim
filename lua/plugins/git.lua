@@ -39,6 +39,12 @@ return {
         tag_editor = { kind = "split" },
         log_view = { kind = "split" },
         popup = { kind = "split" }, -- keymaps
+        mappings = {
+          popup = {
+            ["p"] = "PushPopup",
+            ["P"] = "PullPopup",
+          },
+        },
       })
     end,
   },
