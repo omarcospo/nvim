@@ -10,7 +10,6 @@ return {
         width = vim.fn.float2nr(vim.fn.round(2.25 * vim.o.columns)),
         default_file_manager = true,
       })
-
       vim.g.lf_netrw = 1
       vim.api.nvim_create_autocmd({ "User" }, {
         pattern = "LfTermEnter",
