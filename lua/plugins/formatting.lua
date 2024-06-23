@@ -16,7 +16,7 @@ return {
       go = { "gofumpt", "goimports", "goimports-reviser" },
       markdown = { "mdformat" },
       typst = { "typstyle" },
-      sh = { "shfmt" },
+      sh = { "shellcheck" },
     },
     format_on_save = { timeout_ms = 200, lsp_fallback = true },
     notify_on_error = false,
