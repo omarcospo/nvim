@@ -121,5 +121,5 @@ vim.o.timeoutlen = 500 --- keychord delay timeout
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.filetype.add({
-  filename = { [".zshrc"] = "bash" },
+  filename = { [".zshrc"] = "sh" },
 })

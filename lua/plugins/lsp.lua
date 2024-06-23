@@ -113,5 +113,7 @@ return {
     })
     --- LUA
     lsp.lua_ls.setup({})
+    --- SH
+    lsp.bashls.setup({})
   end,
 }
