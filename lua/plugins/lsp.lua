@@ -45,7 +45,6 @@ return {
         vim.opt_local.foldmethod = "indent"
       end,
     })
-    lsp.pylsp.setup({})
     --- GO
     lsp.gopls.setup({
       settings = {
