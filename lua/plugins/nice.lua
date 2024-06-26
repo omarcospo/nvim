@@ -28,6 +28,7 @@ return {
       "rcarriga/nvim-notify",
     },
     opts = {
+      presets = { inc_rename = true },
       background_color = "#161616",
       messages = { enabled = true },
       lsp = {

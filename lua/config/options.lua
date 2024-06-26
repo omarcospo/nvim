@@ -3,6 +3,7 @@ vim.opt.cmdheight = 0
 vim.opt.laststatus = 0
 vim.opt.showcmd = false
 vim.opt.ruler = false
+vim.opt.inccommand = "split"
 --- Session
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 vim.opt.autochdir = true
@@ -56,6 +57,8 @@ vim.opt.fillchars = {
   foldsep = " ",
   diff = "╱",
   eob = " ", --- disable `~` on nonexistent lines.
+  stl = "─",
+  stlnc = "─",
 }
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 --- Line Numbers

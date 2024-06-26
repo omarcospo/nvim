@@ -1,10 +1,20 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
+    {
+      "Bekaboo/dropbar.nvim",
+      config = function() end,
+    },
     "LukasPietzschmann/boo.nvim",
     { "pmizio/typescript-tools.nvim", ft = { "typescript" } },
     "nvim-lua/plenary.nvim",
     "MysticalDevil/inlay-hints.nvim",
+    {
+      "smjonas/inc-rename.nvim",
+      config = function()
+        require("inc_rename").setup({})
+      end,
+    },
     {
       "zeioth/garbage-day.nvim",
       event = "User BaseFile",
@@ -21,7 +31,7 @@ return {
   ft = { "python", "go", "typescript", "lua" },
   keys = {
     { "gd", [[<cmd>lua require('boo').boo()<CR>]] },
-    { "gr", "<cmd>lua vim.lsp.buf.rename()<CR>" },
+    { "gr", ":IncRename " },
   },
   init = function()
     local lsp = vim.lsp
