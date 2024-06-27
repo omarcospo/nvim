@@ -15,7 +15,6 @@ return {
       lua = { "stylua" },
       go = { "gofumpt", "goimports", "goimports-reviser" },
       markdown = { "mdformat" },
-      typst = { "typstyle" },
       sh = { "shellcheck" },
     },
     format_on_save = { timeout_ms = 200, lsp_fallback = true },
