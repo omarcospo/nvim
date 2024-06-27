@@ -43,3 +43,12 @@ vim.keymap.set("n", "gco", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>") --- above
 vim.keymap.set("n", "gcO", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>") --- below
 ---- Format and wrap
 vim.keymap.set("v", "w", ":'<,'>!fmt -80<CR>") --- below
+---- Add thing at end of line
+function Add_at_end(char)
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  vim.cmd("norm A" .. char)
+  vim.api.nvim_win_set_cursor(0, cursor)
+end
+vim.keymap.set("n", ";", ":lua Add_at_end(';')<CR>")
+vim.keymap.set("n", ",", ":lua Add_at_end(',')<CR>")
+vim.keymap.set("n", ".", ":lua Add_at_end('.')<CR>")

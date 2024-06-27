@@ -3,17 +3,28 @@ return {
     "akinsho/toggleterm.nvim",
     version = "*",
     cmd = { "ToggleTerm", "TermExec" },
-    opts = {
-      shade_filetypes = {},
-      autochdir = true,
-      terminal_mappings = true,
-      persist_size = true,
-      persist_mode = true,
-      close_on_exit = true,
-      auto_scroll = true,
-      direction = "horizontal",
-      float_opts = { border = "rounded" },
-    },
+    opts = function()
+      return {
+        size = function(term)
+          if term.direction == "horizontal" then
+            return vim.o.lines * 0.4
+          elseif term.direction == "vertical" then
+            return vim.o.columns * 0.5
+          end
+        end,
+        shade_terminals = false,
+        shade_filetypes = {},
+        autochdir = true,
+        terminal_mappings = true,
+        persist_size = true,
+        persist_mode = true,
+        close_on_exit = true,
+        auto_scroll = true,
+        direction = "horizontal",
+        float_opts = { border = "rounded" },
+        winbar = { enabled = false },
+      }
+    end,
     init = function()
       vim.keymap.set("n", "<leader>v", ":ToggleTerm<CR>", { remap = true })
       vim.api.nvim_create_autocmd("TermOpen", {
