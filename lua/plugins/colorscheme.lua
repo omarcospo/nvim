@@ -5,7 +5,7 @@ return {
     event = "VimEnter",
     config = function()
       vim.cmd.colorscheme("oxocarbon")
-      vim.opt.statusline = '%{repeat("─",winwidth("."))}'
+      vim.opt.statusline = '%{repeat("_",winwidth("."))}'
       vim.opt.laststatus = 0
       vim.opt.showcmd = false
       vim.opt.ruler = false

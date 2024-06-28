@@ -12,6 +12,10 @@ return {
     },
     formatters_by_ft = {
       python = { "ruff_fix", "ruff_organize_imports", "ruff_format" },
+      typescript = { "biome" },
+      javascript = { "biome" },
+      json = { "biome" },
+      css = { "biome" },
       lua = { "stylua" },
       go = { "gofumpt", "goimports", "goimports-reviser" },
       markdown = { "mdformat" },

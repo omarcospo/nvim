@@ -14,6 +14,8 @@ vim.keymap.set("n", "<leader>tl", "<cmd>set wrap!<CR>")
 --- Window size
 vim.keymap.set("n", "<left>", "<c-w>5>")
 vim.keymap.set("n", "<right>", "<c-w>5<")
+vim.keymap.set("n", "<up>", "<c-w>2+")
+vim.keymap.set("n", "<down>", "<c-w>2-")
 ---- ESC with C-q
 vim.keymap.set("n", "<C-q>", "<cmd>nohlsearch<CR>")
 vim.keymap.set({ "i", "v" }, "<C-q>", "<Esc>")

@@ -23,7 +23,7 @@ vim.opt.backspace:append({ "nostop" }) -- Don't stop backspace at insert.
 ---- History
 vim.opt.history = 100 -- Number of commands to remember in a history table (per buffer).
 --- Wraping
-vim.opt.wrap = true -- Disable wrapping of lines longer than the width of window.
+vim.opt.wrap = false -- Disable wrapping of lines longer than the width of window.
 vim.opt.colorcolumn = "80" -- PEP8 like character limit vertical bar.
 --- Indentation
 vim.opt.shiftwidth = 2
