@@ -18,7 +18,7 @@ vim.opt.splitkeep = "screen"
 --- Mouse
 vim.g.mousemoveement = true
 ---- Typing
-vim.opt.updatetime = 300 --- completion faster
+vim.opt.updatetime = 250 --- completion faster
 vim.opt.backspace:append({ "nostop" }) -- Don't stop backspace at insert.
 ---- History
 vim.opt.history = 100 -- Number of commands to remember in a history table (per buffer).
