@@ -1,27 +1,34 @@
 return {
+  -- local sendEsc = "<C-\\><C-n>i<Esc>"
   {
-    "lmburns/lf.nvim",
-    dependencies = { "toggleterm.nvim" },
+    "is0n/fm-nvim",
+    keys = {
+      { "<Leader>ff", ":Lf<CR>" },
+    },
     config = function()
-      require("lf").setup({
-        border = "rounded",
-        winblend = 0,
-        height = vim.fn.float2nr(vim.fn.round(0.80 * vim.o.lines)),
-        width = vim.fn.float2nr(vim.fn.round(0.65 * vim.o.columns)),
-        default_file_manager = true,
+      require("fm-nvim").setup({
+        on_close = {},
+        on_open = {
+          function()
+            vim.keymap.set("t", "<C-q>", "q", { silent = true, buffer = true })
+          end,
+        },
+        ui = {
+          default = "float",
+          float = {
+            border = "rounded",
+            height = 0.9,
+            width = 0.6,
+          },
+        },
+        mappings = {
+          vert_split = "<C-v>",
+          horz_split = "<C-h>",
+          tabedit = "<C-t>",
+          edit = "<C-e>",
+          ESC = "<ESC>",
+        },
       })
-      vim.g.lf_netrw = 1
-      vim.api.nvim_create_autocmd({ "User" }, {
-        pattern = "LfTermEnter",
-        callback = function(a)
-          local sendEsc = "<C-\\><C-n>i<Esc>"
-          vim.api.nvim_buf_set_keymap(a.buf, "t", "q", "q", { nowait = true })
-          vim.api.nvim_buf_set_keymap(a.buf, "t", "<Esc>", sendEsc, { noremap = true })
-          vim.api.nvim_buf_set_keymap(a.buf, "t", "<C-q>", sendEsc, { nowait = true })
-          vim.api.nvim_buf_set_keymap(a.buf, "t", "<C-c>", sendEsc, { nowait = true })
-        end,
-      })
-      vim.keymap.set("n", "<leader>dd", ":Lf<CR>")
     end,
   },
   {
