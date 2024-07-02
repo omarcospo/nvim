@@ -6,8 +6,8 @@ return {
       require("lf").setup({
         border = "rounded",
         winblend = 0,
-        height = vim.fn.float2nr(vim.fn.round(1.40 * vim.o.lines)),
-        width = vim.fn.float2nr(vim.fn.round(2.25 * vim.o.columns)),
+        height = vim.fn.float2nr(vim.fn.round(0.80 * vim.o.lines)),
+        width = vim.fn.float2nr(vim.fn.round(0.65 * vim.o.columns)),
         default_file_manager = true,
       })
       vim.g.lf_netrw = 1
@@ -21,7 +21,7 @@ return {
           vim.api.nvim_buf_set_keymap(a.buf, "t", "<C-c>", sendEsc, { nowait = true })
         end,
       })
-      vim.keymap.set("n", "<leader>ff", ":Lf<CR>")
+      vim.keymap.set("n", "<leader>dd", ":Lf<CR>")
     end,
   },
   {
