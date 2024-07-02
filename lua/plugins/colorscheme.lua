@@ -1,6 +1,6 @@
 return {
   {
-    dir = vim.fn.expand("~/.config/nvim/lua/plugins/custom/oxocarbon"),
+    "omarcospo/oxocarbon.nvim",
     version = false,
     event = "VimEnter",
     config = function()
