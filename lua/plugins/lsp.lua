@@ -41,6 +41,13 @@ return {
       require("boo").setup()
       require("inlay-hints").setup()
       vim.keymap.set("n", "<leader>lh", ":InlayHintsToggle<CR>")
+      vim.keymap.set("i", "<c-s>", function()
+        vim.lsp.buf.signature_help()
+      end, { buffer = true })
+      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers["signature_help"], {
+        border = "rounded",
+        close_events = { "CursorMoved", "BufHidden", "InsertCharPre" },
+      })
       --- Python
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "python",

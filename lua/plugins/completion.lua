@@ -11,6 +11,8 @@ return {
     "honza/vim-snippets",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-calc",
+    "hrsh7th/cmp-emoji",
+    "dmitmel/cmp-digraphs",
   },
   config = function()
     local cmp = require("cmp")
@@ -23,6 +25,8 @@ return {
         { name = "buffer", max_item_count = 10, priority = 8 },
         { name = "async_path", priority = 6 },
         { name = "calc" },
+        { name = "emoji" },
+        { name = "digraphs" },
       },
       window = {
         documentation = cmp.config.window.bordered(),
