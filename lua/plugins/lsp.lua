@@ -68,6 +68,7 @@ return {
           vim.opt_local.foldmethod = "indent"
         end,
       })
+      lsp.jedi_language_server.setup({})
       --- GO
       lsp.gopls.setup({
         settings = {
@@ -124,8 +125,6 @@ return {
           },
         },
       })
-      --- Python
-      lsp.jedi_language_server.setup({})
       --- Typst
       lsp.typst_lsp.setup({
         settings = {
