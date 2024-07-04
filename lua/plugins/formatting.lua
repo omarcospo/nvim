@@ -11,7 +11,7 @@ return {
       },
       typstyle = {
         inherit = false,
-        command = "typstyle",
+        command = "typstfmt",
         args = { "$FILENAME" },
         stdin = false,
       },

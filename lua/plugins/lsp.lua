@@ -2,6 +2,9 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "neovim/nvim-lspconfig",
       "LukasPietzschmann/boo.nvim",
       { "pmizio/typescript-tools.nvim", ft = { "typescript" } },
       "nvim-lua/plenary.nvim",
@@ -40,6 +43,10 @@ return {
       local lsp = require("lspconfig")
       require("boo").setup()
       require("inlay-hints").setup()
+      require("mason").setup()
+      require("mason-lspconfig").setup({
+        automatic_installation = true,
+      })
       vim.keymap.set("n", "<leader>lh", ":InlayHintsToggle<CR>")
       vim.keymap.set("i", "<c-s>", function()
         vim.lsp.buf.signature_help()
