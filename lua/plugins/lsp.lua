@@ -9,6 +9,7 @@ return {
       { "pmizio/typescript-tools.nvim", ft = { "typescript" } },
       "nvim-lua/plenary.nvim",
       "MysticalDevil/inlay-hints.nvim",
+      "felpafel/inlay-hint.nvim",
       {
         "smjonas/inc-rename.nvim",
         config = function()
@@ -42,6 +43,7 @@ return {
     config = function()
       local lsp = require("lspconfig")
       require("boo").setup()
+      require("inlay-hint").setup()
       require("inlay-hints").setup()
       require("mason").setup()
       require("mason-lspconfig").setup({
